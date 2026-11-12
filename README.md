@@ -1,5 +1,7 @@
 # Sequence weighting across model widths
 
+***In short:** p\* rises as training goes on, so models of different sizes compared after the same number of updates are also at different stages of training. In a test registered publicly before any of its runs, two widths at learning rate 1e-4 come out in opposite orders at equal updates and at equal training loss. Later analysis shows that the second comparison also differs in how recently each model saw its sequences, so the flip does not show that the order of the sizes reverses once training progress is fully matched.*
+
 This repository is the research record of a small-scale study of *sequence weighting*: giving each training sequence
 a weight in the loss and measuring how strongly a model's learning follows those weights. It continues the question
 raised by Renda and Mani's
@@ -16,13 +18,35 @@ aligned?
 > small-scale finding about the estimator p\*. Nothing here replicates or tests the regime of the reference study.
 > The experiments are closed, and no further runs are authorised.
 
+## p\* across width and training
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/landscape-dark.png">
+  <img alt="Heatmaps of mean p* by model width and epochs trained, for WikiText-103 over three epochs and WikiText-2 over 32 epochs" src="docs/figures/landscape-light.png">
+</picture>
+
+Like the reference study's surfaces, this shows p\* over model size and training at once, here for two of the studies. In both, p\* rises with training at every width. Which width has the highest p\* (the rings) is not fixed: over three epochs of WikiText-103 it is 512 throughout, and over 32 epochs of WikiText-2 it moves from 512 to 768, the top of that ladder, and back down to 384 by epoch 32. A statement about which size responds most therefore depends on when the sizes are compared, and that is the question N7 was built to test. Claims C1–C3 in [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md) give what these studies support, with their limits.
+
 ## Main result
 
 In a confirmatory study (N7) registered publicly before any of its runs, we trained widths 512 and 768 on six fresh
-WikiText-103 draws and compared p\* at epoch 3. The figure and table give p\*(512) − p\*(768), with 95% intervals over
-draws.
+WikiText-103 draws and compared p\* at epoch 3. The first figure shows the same runs on the two axes the study compares; the second and the
+table give p\*(512) − p\*(768) draw by draw, with 95% intervals over draws.
 
-![p*(512) − p*(768) for six draws at equal updates and at equal training loss, at two learning rates](docs/n7_result.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/alignment-dark.png">
+  <img alt="p* of widths 512 and 768 against epochs trained and against training loss, at learning rates 1e-4 and 3e-4" src="docs/figures/alignment-light.png">
+</picture>
+
+Read each row left to right. At 1e-4 the two curves are almost on top of each other against epochs, and at epoch 3
+the wider model is slightly higher. Against training loss the narrower model sits above along the whole path: the
+wider model reaches any given loss earlier in training, when its p\* is still lower. At 3e-4 the narrower model is
+higher on both axes.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/result-dark.png">
+  <img alt="p*(512) − p*(768) for six draws at equal updates and at equal training loss, at two learning rates" src="docs/figures/result-light.png">
+</picture>
 
 | Learning rate | Equal updates (equal tokens) | Equal training loss |
 |---|---|---|
@@ -54,6 +78,20 @@ registered) narrows the reading of the 1e-4 row:
   updates (+0.01184 [+0.00789, +0.01578], 6/6) and at equal training loss (+0.01235 [+0.00523, +0.01947], 5/6; like
   the 3e-4 entry marked \* above, this interval includes 0 at the later end of each bracket).
 - At 1e-4 the wider model leads at equal updates only from epoch 2.5; in the first epoch the narrower one leads.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/exposure-dark.png">
+  <img alt="Difference in p* between sequences already trained in the current epoch and the rest, by readout, for both widths and rates" src="docs/figures/exposure-light.png">
+</picture>
+
+Within one model, sequences trained in the current epoch carry a much higher p\* than the rest (above). Equal
+training loss reads the wider model part-way through an epoch and the narrower one at its end, so the two are read with
+different shares of recently trained sequences. Every estimate, registered and post hoc, is in one place below.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/estimates-dark.png">
+  <img alt="Forest plot of every registered and post-hoc estimate of p*(512) − p*(768), with 95% intervals and the six draws" src="docs/figures/estimates-light.png">
+</picture>
 
 The registered result stands as measured. It is not evidence that the order of the widths reverses once training
 progress is matched; whether it would, with training loss and exposure both matched, is not determined by these data.
@@ -111,7 +149,7 @@ set by which width is interpolated, and that C4 lacked a power figure and severa
 | [`outputs/`](outputs/README.md) | Earlier synthetic-task studies (Stages 1–11 and v0129–v0136) and their source, mapped in [`outputs/README.md`](outputs/README.md) |
 | `figure/` | Figure catalogue for the earlier studies, with backing tables |
 | `migration/` | Package lock (`pip freeze`) of the Linux environment after the local project moved to another drive; Stage 2's scripts read it |
-| `docs/` | The README figure and the script that draws it from the published table |
+| `docs/` | The README figures (`figures/`, light and dark) and the scripts that draw them from the published tables: `make_readme_figures.py` for all five, `make_n7_figure.py` for the earlier single figure, `n7_result.png` |
 | `tools/` | `verify_publication.py` checks every file against the manifest and every local Markdown link; `verify_n7_losses.py` refits N7's estimates from the loss-array bundle; `verify_posthoc.py` reruns the post-hoc exposure analysis on the same bundle, with the versions pinned in `requirements-posthoc.txt`, and compares it with the published values |
 | `.github/workflows/` | The automated checks: `verify` runs `verify_publication.py`, the estimator fixture, the README example and `verify_n7_losses.py` on every change; `verify-posthoc` reproduces the post-hoc exposure analysis with pinned versions when its files change, weekly and on each release |
 | `LICENSE`, `LICENSE-CC-BY-4.0.md` | MIT for code; CC BY 4.0 for everything else |
