@@ -1,0 +1,67 @@
+name: verify-posthoc
+
+# Reproduces the post-hoc exposure analysis of N7 from the loss-array bundle attached to release BUNDLE_TAG and
+# compares it with the published per-draw values. Heavier than `verify` (it installs PyTorch), so it runs only when the files it checks change,
+# once a week, when a release is published, and on demand. CPU only; nothing here trains a model.
+on:
+  pull_request:
+    paths:
+      - "reports/natural-text-matched-assistant-posthoc-20261111-01/**"
+      - "reports/natural-text-matched-analysis-20261105-01/POINTS.csv"
+      - "tools/verify_posthoc.py"
+      - "tools/requirements-posthoc.txt"
+      - ".github/workflows/verify-posthoc.yml"
+  push:
+    branches: [main]
+    paths:
+      - "reports/natural-text-matched-assistant-posthoc-20261111-01/**"
+      - "reports/natural-text-matched-analysis-20261105-01/POINTS.csv"
+      - "tools/verify_posthoc.py"
+      - "tools/requirements-posthoc.txt"
+      - ".github/workflows/verify-posthoc.yml"
+  schedule:
+    - cron: "17 3 * * 1"
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  posthoc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BUNDLE_TAG: v1.2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tools/requirements-posthoc.txt
+      - name: Install the pinned versions (PyTorch CPU build)
+        run: |
+          python -m pip install --quiet --index-url https://download.pytorch.org/whl/cpu torch==2.7.0
+          python -m pip install --quiet -r tools/requirements-posthoc.txt
+      - name: Fetch the loss-array bundle
+        id: fetch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Skip only when the release does not exist yet (HTTP 404); any other failure fails the job.
+          code=$(curl -sS -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases/tags/$BUNDLE_TAG")
+          if [ "$code" = "404" ]; then
+            echo "No $BUNDLE_TAG release yet; skipping." && echo "ok=false" >> "$GITHUB_OUTPUT" && exit 0
+          fi
+          [ "$code" = "200" ] || { echo "GitHub API returned HTTP $code"; exit 1; }
+          gh release download "$BUNDLE_TAG" --repo "${{ github.repository }}" --pattern n7-loss-arrays-v1.zip --dir "$RUNNER_TEMP"
+          echo "cbe26760e2062a4cf03307d779226fa6efce8cfcfbf57b2e092bd818af80b8a9  $RUNNER_TEMP/n7-loss-arrays-v1.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/n7-loss-arrays-v1.zip" -d "$RUNNER_TEMP"
+          echo "ok=true" >> "$GITHUB_OUTPUT"
+      - name: Reproduce the analysis and compare with RESULTS.json
+        if: steps.fetch.outputs.ok == 'true'
+        run: python tools/verify_posthoc.py "$RUNNER_TEMP/n7-loss-arrays"

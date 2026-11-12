@@ -1,0 +1,7 @@
+# Exact versions with which reports/natural-text-matched-assistant-posthoc-20261111-01/ was produced.
+# PyTorch 2.7.0 matters: the batch orders are regenerated with torch.randperm and must equal those used in training.
+# Install the CPU build of PyTorch first, then the rest:
+#   pip install --index-url https://download.pytorch.org/whl/cpu torch==2.7.0
+#   pip install -r tools/requirements-posthoc.txt
+numpy==2.5.3
+torch==2.7.0

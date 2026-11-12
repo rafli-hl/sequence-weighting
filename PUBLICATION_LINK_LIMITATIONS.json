@@ -1,0 +1,27 @@
+{
+  "links": [
+    {
+      "document": "figure/INDEX.md",
+      "target": "../outputs/sequence-weighting-stage11-v0128/results-analysis-20261002-01/summaries.json",
+      "reason": "excluded, local-only or absent from source"
+    },
+    {
+      "document": "outputs/sequence-weighting-paper-track-v1/CLAIMS.md",
+      "target": "../sequence-weighting-stage6/results-stability-v07-20260929-01/panel-summary.json",
+      "reason": "excluded, local-only or absent from source"
+    },
+    {
+      "document": "outputs/sequence-weighting-paper-track-v1/LITERATURE_REVIEW.md",
+      "target": "../../HANDOFF.md",
+      "reason": "excluded, local-only or absent from source"
+    },
+    {
+      "document": "outputs/sequence-weighting-paper-track-v1/README.md",
+      "target": "../../RESEARCH_GOAL.md",
+      "reason": "excluded, local-only or absent from source"
+    }
+  ],
+  "remaining_broken_markdown_links": 0,
+  "external_links": "not comprehensively checked",
+  "scope": "The four links above were annotated as unavailable in the initial publication (6 October 2026). On 9 November 2026, tools/verify_publication.py checked every inline local Markdown link outside fenced code and inline code across the whole tree (405 links, including those added in this update) and found none broken. Links inside inline code, such as the quoted `[REPORT.md](REPORT.md)` at reports/natural-text-ladder-owner-decisions-20261029-04/OWNER_DECISIONS.md line 30, are text, not links."
+}

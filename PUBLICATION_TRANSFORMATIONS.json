@@ -1,0 +1,164 @@
+{
+  "note": "Public derivatives only. Original local records were not changed. Historical embedded hashes refer to original bytes; redacted derivatives are mapped here. Source code is retained at original relative paths. Each entry's publication_sha256 describes the file as first published on 6 October 2026 (commit 525268b); later edits to the publication copy are listed under later_revisions.",
+  "transformations": [
+    {
+      "path": "outputs/g1-clipping-diagnostic-v0130/results/DECISION_RECORD.md",
+      "kind": "personal-home-prefix-redaction",
+      "matches": 1,
+      "original_sha256": "fd951f9a2f9b287f09f8a046c517cd28cf195d930ad0a863f623e23914ad8a9b",
+      "publication_sha256": "45dfcd6d1465b9488b1acaa2f4045ff6236f78419611cfd5066f24a58478e3eb"
+    },
+    {
+      "path": "outputs/sequence-weighting-compensation-calibration-v0136/exploratory-exponent-decomposition-20261005-01/AUDITED_COMPARISON_METHODS.json",
+      "kind": "personal-home-prefix-redaction",
+      "matches": 2,
+      "original_sha256": "0e3b6051706efb23673a09e790f68c4e7c12e5fcb07fc9987b9a1a27cf568687",
+      "publication_sha256": "9a8f33fab4f8e3f71595060814da9cf88ae88d8249ab97bcb9de8ee64c5292ed"
+    },
+    {
+      "path": "figure/INDEX.md",
+      "kind": "unavailable-relative-link-annotation",
+      "before_sha256": "7e2c416bfbc894d5d7c0db930ac4b249d7b4fb6df0ef9db3cf85ba118e94602b",
+      "publication_sha256": "5f871279c6ef7259368c0e387967deba5c06e5b3440d077b0e9ab8d24a1c43b1"
+    },
+    {
+      "path": "outputs/sequence-weighting-paper-track-v1/CLAIMS.md",
+      "kind": "unavailable-relative-link-annotation",
+      "before_sha256": "0b75b828ea9f718af6e524afb39b00cf22257bfa4e8747e84b842aa9ae25bfb1",
+      "publication_sha256": "33174f821f48c364978058c6ac94cb64ef5fef741b36fe9ac22f0755d519ae7c"
+    },
+    {
+      "path": "outputs/sequence-weighting-paper-track-v1/LITERATURE_REVIEW.md",
+      "kind": "unavailable-relative-link-annotation",
+      "before_sha256": "1a2b46e91bddf618a784e3d3fd8067c26d7a0a9e10ce81bb0f642cdc65457bd0",
+      "publication_sha256": "0e8779e2df6382e926a6c9bc9addeaf67d6f7ff5c8a19cba6985bf2b44f9221d"
+    },
+    {
+      "path": "outputs/sequence-weighting-paper-track-v1/README.md",
+      "kind": "unavailable-relative-link-annotation",
+      "before_sha256": "212fe0a648dc1f9964a2396926dc6f7c0dad41767a53562832e0c4138883ec1f",
+      "publication_sha256": "171b343181d1cc35225ea34583fc962aad563ce09b400523af3ad2a81d463e28"
+    },
+    {
+      "path": "reports/natural-text-matched-result-20261105-01/RESULT.md",
+      "kind": "personal-home-prefix-redaction",
+      "matches": 1,
+      "original_sha256": "ac482f31a60d8d295a4f1e5807b5c882eea0d533f78979a44c22d64023bec3c8",
+      "publication_sha256": "8e64cc2ca39e0602cb30e7beb86815372202f54ac249799e5b678e1b2de62f45"
+    }
+  ],
+  "later_revisions": [
+    {
+      "path": "figure/INDEX.md",
+      "commits": [
+        "a232fd7 (6 Oct 2026, English polish)",
+        "a575b6b (8 Oct 2026, v0135 and v0136 catalogue)"
+      ],
+      "current_sha256": "ce78ffa0bd3484d43f0467514cf6b8251ee8f6644372fddb94536685e1e7c34a"
+    },
+    {
+      "path": "outputs/sequence-weighting-paper-track-v1/CLAIMS.md",
+      "commits": [
+        "a232fd7 (6 Oct 2026, English polish)"
+      ],
+      "current_sha256": "981bb12a9a920e210c30df2deee39c1e131c4172972dad731a8734f53470f2d7"
+    }
+  ],
+  "wording_revision_of_initial_publication": {
+    "commit": "a232fd7 (6 Oct 2026, English polish)",
+    "note": "Listed on 11 November 2026 from the Git history. This commit reworded 91 Markdown files of the initial publication in the publication copy, about four hours after they were first committed in 525268b; their manifest rows were updated in the same commit. They fall under the third kind of exception in PUBLICATION_NOTES.md (Markdown reports from the initial publication translated into English), for which no source hash is mapped, so these files should not be assumed byte-identical to a local source or to their first published form. Their earlier bytes remain in the Git history. figure/INDEX.md and outputs/sequence-weighting-paper-track-v1/CLAIMS.md also appear under later_revisions.",
+    "paths": [
+      "figure/INDEX.md",
+      "outputs/sequence-weighting-clipping-interaction-v0133-r1/FROZEN_PROTOCOL.md",
+      "outputs/sequence-weighting-clipping-interaction-v0133-r1/README.md",
+      "outputs/sequence-weighting-clipping-interaction-v0133-r1/results-fresh-clipping-interaction-v0133-20261004-02/CURRENT_RESEARCH_SYNTHESIS_20261004.md",
+      "outputs/sequence-weighting-clipping-interaction-v0133-r1/results-fresh-clipping-interaction-v0133-20261004-02/RESULT_AND_DECISION_20261004.md",
+      "outputs/sequence-weighting-clipping-interaction-v0133/FROZEN_PROTOCOL.md",
+      "outputs/sequence-weighting-clipping-interaction-v0133/README.md",
+      "outputs/sequence-weighting-compensation-calibration-v0136/FROZEN_PROTOCOL.md",
+      "outputs/sequence-weighting-compensation-calibration-v0136/PROPOSED_PROTOCOL.md",
+      "outputs/sequence-weighting-compensation-calibration-v0136/README.md",
+      "outputs/sequence-weighting-factorial-v0132/PROTOCOL.md",
+      "outputs/sequence-weighting-factorial-v0132/results-fresh-factorial-v0132-20261004-01/CURRENT_RESEARCH_SYNTHESIS_20261004.md",
+      "outputs/sequence-weighting-factorial-v0132/results-fresh-factorial-v0132-20261004-01/RESULT_AND_DECISION_20261004.md",
+      "outputs/sequence-weighting-gradient-alignment-v0134/FROZEN_PROTOCOL.md",
+      "outputs/sequence-weighting-gradient-alignment-v0134/README.md",
+      "outputs/sequence-weighting-gradient-alignment-v0134/results-existing-gradient-panel-v0134-20261004-01/CURRENT_RESEARCH_SYNTHESIS_20261005.md",
+      "outputs/sequence-weighting-gradient-alignment-v0134/results-existing-gradient-panel-v0134-20261004-01/PANEL_REPORT.md",
+      "outputs/sequence-weighting-gradient-alignment-v0134/results-existing-gradient-panel-v0134-20261004-01/RESULT_AND_DECISION_20261005.md",
+      "outputs/sequence-weighting-paper-track-v1/CLAIMS.md",
+      "outputs/sequence-weighting-paper-track-v1/NEXT_PROTOCOL_DRAFT.md",
+      "outputs/sequence-weighting-paper-track-v1/RESEARCH_NOTE.md",
+      "outputs/sequence-weighting-pilot/results-mechanism-v02/REPORT.md",
+      "outputs/sequence-weighting-preconditioning-v0135/FROZEN_PROTOCOL.md",
+      "outputs/sequence-weighting-preconditioning-v0135/README.md",
+      "outputs/sequence-weighting-preconditioning-v0135/results-fresh-preconditioning-v0135-20261005-01/RESULT_AND_DECISION_20261005.md",
+      "outputs/sequence-weighting-stage10/ANALYSIS_CHECKS-fixtures/partial/REPORT.md",
+      "outputs/sequence-weighting-stage10/PROTOCOL_STAGE10.md",
+      "outputs/sequence-weighting-stage10/SYNTHESIS_STAGE4_10.md",
+      "outputs/sequence-weighting-stage10/results-search-v011-20260930-01/PROTOCOL_STAGE10.md",
+      "outputs/sequence-weighting-stage10/results-search-v011-20260930-01/REPORT.md",
+      "outputs/sequence-weighting-stage11-v0128/PROTOCOL_STAGE11.md",
+      "outputs/sequence-weighting-stage11-v0128/README.md",
+      "outputs/sequence-weighting-stage11/PROTOCOL_STAGE11.md",
+      "outputs/sequence-weighting-stage2/LITERATURE_CHECK.md",
+      "outputs/sequence-weighting-stage2/PROTOCOL_STAGE2.md",
+      "outputs/sequence-weighting-stage2/results-generalization-v03-20260928-01-r2/REPORT.md",
+      "outputs/sequence-weighting-stage2/results-generalization-v03-20260928-01/REPORT.md",
+      "outputs/sequence-weighting-stage3/PROTOCOL_STAGE3.md",
+      "outputs/sequence-weighting-stage3/results-controls-v04-20260929-01/REPORT.md",
+      "outputs/sequence-weighting-stage4/PROTOCOL_STAGE4.md",
+      "outputs/sequence-weighting-stage4/README.md",
+      "outputs/sequence-weighting-stage4/results-baseline-v05-20260929-01-analysis-r1/REPORT.md",
+      "outputs/sequence-weighting-stage4/results-baseline-v05-20260929-01-r2/REPORT.md",
+      "outputs/sequence-weighting-stage5/LITERATURE_CHECK.md",
+      "outputs/sequence-weighting-stage5/PROTOCOL_STAGE5.md",
+      "outputs/sequence-weighting-stage5/README.md",
+      "outputs/sequence-weighting-stage5/results-utility-v06-20260929-01-r1/LITERATURE_CHECK.md",
+      "outputs/sequence-weighting-stage5/results-utility-v06-20260929-01-r1/PROTOCOL_STAGE5.md",
+      "outputs/sequence-weighting-stage5/results-utility-v06-20260929-01-r1/README.md",
+      "outputs/sequence-weighting-stage5/results-utility-v06-20260929-01-r1/REPORT.md",
+      "outputs/sequence-weighting-stage5/results-utility-v06-20260929-01/LITERATURE_CHECK.md",
+      "outputs/sequence-weighting-stage5/results-utility-v06-20260929-01/PROTOCOL_STAGE5.md",
+      "outputs/sequence-weighting-stage5/results-utility-v06-20260929-01/README.md",
+      "outputs/sequence-weighting-stage5/results-utility-v06-20260929-01/REPORT.md",
+      "outputs/sequence-weighting-stage6/LITERATURE_CHECK.md",
+      "outputs/sequence-weighting-stage6/PROTOCOL_STAGE6.md",
+      "outputs/sequence-weighting-stage6/README.md",
+      "outputs/sequence-weighting-stage6/results-stability-v07-20260929-01/LITERATURE_CHECK.md",
+      "outputs/sequence-weighting-stage6/results-stability-v07-20260929-01/PROTOCOL_STAGE6.md",
+      "outputs/sequence-weighting-stage6/results-stability-v07-20260929-01/README.md",
+      "outputs/sequence-weighting-stage6/results-stability-v07-20260929-01/REPORT.md",
+      "outputs/sequence-weighting-stage7/PROTOCOL_STAGE7.md",
+      "outputs/sequence-weighting-stage7/SYNTHESIS_STAGE4_6.md",
+      "outputs/sequence-weighting-stage7/results-estimator-v08-20260930-01-r1/PROTOCOL_STAGE7.md",
+      "outputs/sequence-weighting-stage7/results-estimator-v08-20260930-01-r1/REPORT.md",
+      "outputs/sequence-weighting-stage7/results-estimator-v08-20260930-01-r1/SYNTHESIS_STAGE4_6.md",
+      "outputs/sequence-weighting-stage7/results-estimator-v08-20260930-01/PROTOCOL_STAGE7.md",
+      "outputs/sequence-weighting-stage7/results-estimator-v08-20260930-01/REPORT.md",
+      "outputs/sequence-weighting-stage7/results-estimator-v08-20260930-01/SYNTHESIS_STAGE4_6.md",
+      "outputs/sequence-weighting-stage8/PROTOCOL_STAGE8.md",
+      "outputs/sequence-weighting-stage8/README.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01-r1/PROTOCOL_STAGE8.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01-r1/README.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01-r1/REPORT-original.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01-r1/REPORT.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01-r2/PROTOCOL_STAGE8.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01-r2/README.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01-r2/REPORT-original.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01-r2/REPORT.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01/PROTOCOL_STAGE8.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01/README.md",
+      "outputs/sequence-weighting-stage8/results-precision-v09-20260930-01/REPORT.md",
+      "outputs/sequence-weighting-stage9/PROTOCOL_STAGE9.md",
+      "outputs/sequence-weighting-stage9/README.md",
+      "outputs/sequence-weighting-stage9/results-model-precision-v010-20260930-01-r1/PROTOCOL_STAGE9.md",
+      "outputs/sequence-weighting-stage9/results-model-precision-v010-20260930-01-r1/README.md",
+      "outputs/sequence-weighting-stage9/results-model-precision-v010-20260930-01-r1/REPORT.md",
+      "outputs/sequence-weighting-stage9/results-model-precision-v010-20260930-01-r2/PROTOCOL_STAGE9.md",
+      "outputs/sequence-weighting-stage9/results-model-precision-v010-20260930-01-r2/README.md",
+      "outputs/sequence-weighting-stage9/results-model-precision-v010-20260930-01-r2/REPORT.md",
+      "outputs/v0136-planning/PROPOSED_PROTOCOL.md"
+    ]
+  }
+}

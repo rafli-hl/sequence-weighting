@@ -1,0 +1,194 @@
+POST-HOC ANALYSES OF N7 BY TRAINING EXPOSURE. Descriptive; nothing here was registered.
+NumPy 2.5.3; PyTorch 2.7.0+cu126. Contrasts are 512 minus 768; mean [95% t interval over 6 draws], draws above 0.
+
+0. CHECKS
+  bundle: 66 files match MANIFEST.json
+  refit: 240 whole-set estimates; largest |p* - POINTS.csv| = 1.3e-08
+  weights: regenerated from weight_seed as text_engine.weights does; bit-identical to the bundle in 6/6 draws
+  orders (regenerated): loss change of the sequences the order says were trained in a quarter, minus that of the others: mean -0.2257 nats, range [-0.3467, -0.1187], below -0.05 in 192/192 (interval x draw x arm)
+  orders (negative control, seed + 1): loss change of the sequences the order says were trained in a quarter, minus that of the others: mean +0.0001 nats, range [-0.0087, +0.0123], below -0.05 in 0/192 (interval x draw x arm)
+  orders: last 256 sequences trained in the quarter minus the first 256 after it: mean -0.2192 nats, below -0.05 in 168/168
+
+1. SEEN AND NOT-YET-SEEN SEQUENCES
+   p*(sequences already trained in the current epoch) - p*(sequences not yet trained in it), same model and readout.
+  512 at 1e-04:
+    epoch 0.25 (seen 1/4 of the set): +0.1475 [+0.1446, +0.1503], 6/6
+    epoch 0.5  (seen 2/4 of the set): +0.0956 [+0.0914, +0.0998], 6/6
+    epoch 2.25 (seen 1/4 of the set): +0.0605 [+0.0586, +0.0624], 6/6
+    epoch 2.5  (seen 2/4 of the set): +0.0543 [+0.0516, +0.0570], 6/6
+    epoch 2.75 (seen 3/4 of the set): +0.0502 [+0.0477, +0.0527], 6/6
+    epoch 3.25 (seen 1/4 of the set): +0.0557 [+0.0512, +0.0602], 6/6
+    epoch 3.5  (seen 2/4 of the set): +0.0505 [+0.0463, +0.0548], 6/6
+  768 at 1e-04:
+    epoch 0.25 (seen 1/4 of the set): +0.1343 [+0.1314, +0.1371], 6/6
+    epoch 0.5  (seen 2/4 of the set): +0.0865 [+0.0831, +0.0900], 6/6
+    epoch 2.25 (seen 1/4 of the set): +0.0657 [+0.0640, +0.0675], 6/6
+    epoch 2.5  (seen 2/4 of the set): +0.0591 [+0.0561, +0.0622], 6/6
+    epoch 2.75 (seen 3/4 of the set): +0.0541 [+0.0516, +0.0565], 6/6
+    epoch 3.25 (seen 1/4 of the set): +0.0616 [+0.0568, +0.0663], 6/6
+    epoch 3.5  (seen 2/4 of the set): +0.0556 [+0.0513, +0.0599], 6/6
+  512 at 3e-04:
+    epoch 0.25 (seen 1/4 of the set): +0.1977 [+0.1918, +0.2036], 6/6
+    epoch 0.5  (seen 2/4 of the set): +0.1152 [+0.1102, +0.1201], 6/6
+    epoch 2.25 (seen 1/4 of the set): +0.0828 [+0.0810, +0.0846], 6/6
+    epoch 2.5  (seen 2/4 of the set): +0.0730 [+0.0698, +0.0763], 6/6
+    epoch 2.75 (seen 3/4 of the set): +0.0659 [+0.0631, +0.0687], 6/6
+    epoch 3.25 (seen 1/4 of the set): +0.0763 [+0.0714, +0.0812], 6/6
+    epoch 3.5  (seen 2/4 of the set): +0.0686 [+0.0644, +0.0728], 6/6
+  768 at 3e-04:
+    epoch 0.25 (seen 1/4 of the set): +0.1769 [+0.1735, +0.1803], 6/6
+    epoch 0.5  (seen 2/4 of the set): +0.1027 [+0.0980, +0.1075], 6/6
+    epoch 2.25 (seen 1/4 of the set): +0.0841 [+0.0821, +0.0860], 6/6
+    epoch 2.5  (seen 2/4 of the set): +0.0718 [+0.0682, +0.0754], 6/6
+    epoch 2.75 (seen 3/4 of the set): +0.0632 [+0.0598, +0.0666], 6/6
+    epoch 3.25 (seen 1/4 of the set): +0.0780 [+0.0731, +0.0830], 6/6
+    epoch 3.5  (seen 2/4 of the set): +0.0681 [+0.0631, +0.0731], 6/6
+
+2. FIXED SETS ACROSS EACH QUARTER-EPOCH INTERVAL
+   T = the 4,096 sequences trained in the interval; O = the other 12,288. Mean p* before -> after, and the change with its interval.
+   'boundary' marks the first quarter after an epoch boundary.
+  512 at 1e-04:
+    2.0  -> 2.25 boundary: whole set +0.0114 [+0.0104, +0.0124] | T 0.0788 -> 0.1346, +0.0558 [+0.0545, +0.0571] | O 0.0792 -> 0.0742, -0.0050 [-0.0059, -0.0041], falls in 6/6
+    2.25 -> 2.5          : whole set +0.0050 [+0.0042, +0.0057] | T 0.0747 -> 0.1300, +0.0553 [+0.0545, +0.0562] | O 0.0955 -> 0.0829, -0.0127 [-0.0132, -0.0121], falls in 6/6
+    2.5  -> 2.75         : whole set +0.0040 [+0.0033, +0.0046] | T 0.0678 -> 0.1250, +0.0571 [+0.0558, +0.0584] | O 0.1040 -> 0.0903, -0.0137 [-0.0143, -0.0131], falls in 6/6
+    2.75 -> 3.0          : whole set +0.0034 [+0.0027, +0.0040] | T 0.0610 -> 0.1190, +0.0580 [+0.0566, +0.0595] | O 0.1112 -> 0.0971, -0.0141 [-0.0148, -0.0133], falls in 6/6
+    3.0  -> 3.25 boundary: whole set +0.0147 [+0.0131, +0.0162] | T 0.1019 -> 0.1581, +0.0562 [+0.0542, +0.0581] | O 0.1030 -> 0.1024, -0.0006 [-0.0017, +0.0004], falls in 4/6
+    3.25 -> 3.5          : whole set +0.0058 [+0.0051, +0.0066] | T 0.1015 -> 0.1549, +0.0534 [+0.0524, +0.0545] | O 0.1225 -> 0.1118, -0.0107 [-0.0116, -0.0097], falls in 6/6
+  768 at 1e-04:
+    2.0  -> 2.25 boundary: whole set +0.0146 [+0.0133, +0.0159] | T 0.0780 -> 0.1406, +0.0626 [+0.0609, +0.0644] | O 0.0782 -> 0.0749, -0.0033 [-0.0043, -0.0023], falls in 6/6
+    2.25 -> 2.5          : whole set +0.0060 [+0.0053, +0.0067] | T 0.0755 -> 0.1362, +0.0607 [+0.0589, +0.0625] | O 0.0982 -> 0.0851, -0.0132 [-0.0137, -0.0127], falls in 6/6
+    2.5  -> 2.75         : whole set +0.0043 [+0.0035, +0.0052] | T 0.0684 -> 0.1304, +0.0621 [+0.0611, +0.0631] | O 0.1082 -> 0.0934, -0.0148 [-0.0156, -0.0140], falls in 6/6
+    2.75 -> 3.0          : whole set +0.0042 [+0.0033, +0.0051] | T 0.0617 -> 0.1250, +0.0634 [+0.0620, +0.0648] | O 0.1157 -> 0.1011, -0.0146 [-0.0154, -0.0138], falls in 6/6
+    3.0  -> 3.25 boundary: whole set +0.0191 [+0.0169, +0.0212] | T 0.1069 -> 0.1712, +0.0642 [+0.0615, +0.0669] | O 0.1074 -> 0.1096, +0.0022 [+0.0008, +0.0037], falls in 0/6
+    3.25 -> 3.5          : whole set +0.0068 [+0.0057, +0.0079] | T 0.1085 -> 0.1673, +0.0588 [+0.0572, +0.0604] | O 0.1321 -> 0.1207, -0.0114 [-0.0126, -0.0101], falls in 6/6
+  512 at 3e-04:
+    2.0  -> 2.25 boundary: whole set +0.0170 [+0.0159, +0.0181] | T 0.0894 -> 0.1663, +0.0770 [+0.0755, +0.0784] | O 0.0897 -> 0.0835, -0.0062 [-0.0074, -0.0049], falls in 6/6
+    2.25 -> 2.5          : whole set +0.0056 [+0.0049, +0.0063] | T 0.0845 -> 0.1612, +0.0767 [+0.0753, +0.0781] | O 0.1136 -> 0.0937, -0.0198 [-0.0205, -0.0192], falls in 6/6
+    2.5  -> 2.75         : whole set +0.0040 [+0.0026, +0.0054] | T 0.0743 -> 0.1548, +0.0805 [+0.0791, +0.0819] | O 0.1238 -> 0.1021, -0.0217 [-0.0229, -0.0205], falls in 6/6
+    2.75 -> 3.0          : whole set +0.0029 [+0.0018, +0.0040] | T 0.0655 -> 0.1476, +0.0822 [+0.0803, +0.0840] | O 0.1314 -> 0.1089, -0.0225 [-0.0234, -0.0215], falls in 6/6
+    3.0  -> 3.25 boundary: whole set +0.0214 [+0.0195, +0.0234] | T 0.1184 -> 0.1956, +0.0772 [+0.0749, +0.0794] | O 0.1193 -> 0.1192, -0.0001 [-0.0013, +0.0011], falls in 3/6
+    3.25 -> 3.5          : whole set +0.0069 [+0.0057, +0.0082] | T 0.1183 -> 0.1923, +0.0740 [+0.0723, +0.0756] | O 0.1475 -> 0.1306, -0.0169 [-0.0181, -0.0157], falls in 6/6
+  768 at 3e-04:
+    2.0  -> 2.25 boundary: whole set +0.0162 [+0.0147, +0.0176] | T 0.0797 -> 0.1568, +0.0772 [+0.0760, +0.0784] | O 0.0801 -> 0.0728, -0.0073 [-0.0087, -0.0060], falls in 6/6
+    2.25 -> 2.5          : whole set +0.0046 [+0.0038, +0.0054] | T 0.0736 -> 0.1505, +0.0770 [+0.0742, +0.0798] | O 0.1034 -> 0.0820, -0.0213 [-0.0219, -0.0208], falls in 6/6
+    2.5  -> 2.75         : whole set +0.0023 [+0.0009, +0.0037] | T 0.0636 -> 0.1426, +0.0789 [+0.0775, +0.0804] | O 0.1122 -> 0.0886, -0.0235 [-0.0249, -0.0221], falls in 6/6
+    2.75 -> 3.0          : whole set +0.0022 [+0.0013, +0.0032] | T 0.0545 -> 0.1353, +0.0809 [+0.0792, +0.0825] | O 0.1177 -> 0.0945, -0.0232 [-0.0240, -0.0223], falls in 6/6
+    3.0  -> 3.25 boundary: whole set +0.0198 [+0.0179, +0.0218] | T 0.1050 -> 0.1814, +0.0764 [+0.0737, +0.0790] | O 0.1054 -> 0.1034, -0.0020 [-0.0033, -0.0006], falls in 5/6
+    3.25 -> 3.5          : whole set +0.0054 [+0.0043, +0.0065] | T 0.1020 -> 0.1761, +0.0741 [+0.0728, +0.0754] | O 0.1324 -> 0.1134, -0.0190 [-0.0202, -0.0179], falls in 6/6
+   Excess of the whole-set rise in the first quarter after a boundary over the rise in the next quarter, and the same excess for T and for O:
+    512 at 1e-04, [2.0-2.25] minus [2.25-2.5]: whole set +0.0064 [+0.0052, +0.0077]; T +0.0005 [-0.0009, +0.0019]; O +0.0076 [+0.0064, +0.0088]
+    512 at 1e-04, [3.0-3.25] minus [3.25-3.5]: whole set +0.0088 [+0.0067, +0.0109]; T +0.0028 [+0.0002, +0.0053]; O +0.0101 [+0.0082, +0.0119]
+    768 at 1e-04, [2.0-2.25] minus [2.25-2.5]: whole set +0.0086 [+0.0073, +0.0098]; T +0.0020 [+0.0007, +0.0033]; O +0.0099 [+0.0086, +0.0111]
+    768 at 1e-04, [3.0-3.25] minus [3.25-3.5]: whole set +0.0123 [+0.0096, +0.0150]; T +0.0054 [+0.0026, +0.0083]; O +0.0136 [+0.0112, +0.0160]
+    512 at 3e-04, [2.0-2.25] minus [2.25-2.5]: whole set +0.0114 [+0.0102, +0.0126]; T +0.0002 [-0.0017, +0.0022]; O +0.0137 [+0.0123, +0.0151]
+    512 at 3e-04, [3.0-3.25] minus [3.25-3.5]: whole set +0.0145 [+0.0120, +0.0170]; T +0.0032 [+0.0000, +0.0064]; O +0.0168 [+0.0149, +0.0187]
+    768 at 3e-04, [2.0-2.25] minus [2.25-2.5]: whole set +0.0116 [+0.0100, +0.0133]; T +0.0002 [-0.0025, +0.0029]; O +0.0140 [+0.0123, +0.0157]
+    768 at 3e-04, [3.0-3.25] minus [3.25-3.5]: whole set +0.0145 [+0.0119, +0.0170]; T +0.0023 [-0.0002, +0.0048]; O +0.0171 [+0.0148, +0.0193]
+
+3. EXPOSURE-MATCHED CONTRASTS: 512 AT EPOCH 3 AGAINST 768 AT EPOCH 2 + k/4
+   A sequence in quarters (a, b, c) of epochs 1-3 was trained at times a, 4 + b, 8 + c (quarter epochs).
+   whole set    : all 16,384 sequences in both models (768 has trained on only k/4 of them a third time).
+   last pass    : 768 on its quarters c <= k of epoch 3, 512 on its quarters c >= 5 - k: three passes each, and the same
+                  time since the third pass; the timing of passes 1 and 2 is not matched.
+   every pass   : 768 on sequences with a, b, c <= k, 512 on sequences with a, b, c >= 5 - k: the same time since each of
+                  the three passes. The two models' sets are different sequences (about N (k/4)^3 each).
+   k = 4 is the equal-updates comparison (S3 and S5): the same sequences, with identical exposure.
+  1e-04:
+    768 at epoch 2.25: whole set  +0.0100 [+0.0071, +0.0129], 6/6; training-loss difference -0.012 [-0.038, +0.014]
+                       last pass  -0.0216 [-0.0262, -0.0169], 0/6; training-loss difference +0.073 [+0.051, +0.095]
+                       every pass -0.0035 [-0.0258, +0.0189], 4/6; training-loss difference +0.036 [-0.026, +0.097]; sequences per draw 247 and 252
+                       whole set minus every pass +0.0135 [-0.0076, +0.0345], 5/6; last pass minus every pass -0.0181 [-0.0398, +0.0036], 1/6
+    768 at epoch 2.5 : whole set  +0.0040 [+0.0010, +0.0070], 5/6; training-loss difference +0.044 [+0.018, +0.070]
+                       last pass  -0.0156 [-0.0198, -0.0113], 0/6; training-loss difference +0.099 [+0.070, +0.127]
+                       every pass -0.0048 [-0.0121, +0.0026], 2/6; training-loss difference +0.076 [+0.045, +0.106]; sequences per draw 2045 and 2057
+                       whole set minus every pass +0.0088 [+0.0032, +0.0143], 6/6; last pass minus every pass -0.0108 [-0.0148, -0.0068], 0/6
+    768 at epoch 2.75: whole set  -0.0003 [-0.0032, +0.0025], 3/6; training-loss difference +0.099 [+0.072, +0.126]
+                       last pass  -0.0093 [-0.0127, -0.0060], 0/6; training-loss difference +0.125 [+0.099, +0.150]
+                       every pass -0.0051 [-0.0109, +0.0008], 2/6; training-loss difference +0.113 [+0.091, +0.136]; sequences per draw 6904 and 6901
+                       whole set minus every pass +0.0047 [+0.0014, +0.0081], 6/6; last pass minus every pass -0.0043 [-0.0073, -0.0012], 0/6
+    768 at epoch 3.0 : whole set  -0.0045 [-0.0079, -0.0011], 0/6; training-loss difference +0.154 [+0.129, +0.179]
+  3e-04:
+    768 at epoch 2.25: whole set  +0.0229 [+0.0199, +0.0259], 6/6; training-loss difference -0.123 [-0.151, -0.094]
+                       last pass  -0.0092 [-0.0148, -0.0036], 0/6; training-loss difference -0.038 [-0.066, -0.010]
+                       every pass +0.0126 [-0.0099, +0.0351], 5/6; training-loss difference -0.093 [-0.168, -0.017]; sequences per draw 247 and 252
+                       whole set minus every pass +0.0103 [-0.0110, +0.0317], 5/6; last pass minus every pass -0.0218 [-0.0438, +0.0002], 1/6
+    768 at epoch 2.5 : whole set  +0.0183 [+0.0155, +0.0212], 6/6; training-loss difference -0.075 [-0.108, -0.042]
+                       last pass  -0.0008 [-0.0052, +0.0035], 2/6; training-loss difference -0.024 [-0.060, +0.011]
+                       every pass +0.0126 [+0.0049, +0.0204], 6/6; training-loss difference -0.057 [-0.097, -0.016]; sequences per draw 2045 and 2057
+                       whole set minus every pass +0.0057 [-0.0004, +0.0118], 4/6; last pass minus every pass -0.0135 [-0.0175, -0.0095], 0/6
+    768 at epoch 2.75: whole set  +0.0160 [+0.0137, +0.0184], 6/6; training-loss difference -0.027 [-0.057, +0.002]
+                       last pass  +0.0076 [+0.0043, +0.0109], 6/6; training-loss difference -0.005 [-0.034, +0.024]
+                       every pass +0.0129 [+0.0072, +0.0187], 6/6; training-loss difference -0.022 [-0.048, +0.004]; sequences per draw 6904 and 6901
+                       whole set minus every pass +0.0031 [-0.0005, +0.0067], 5/6; last pass minus every pass -0.0053 [-0.0085, -0.0021], 0/6
+    768 at epoch 3.0 : whole set  +0.0138 [+0.0112, +0.0165], 6/6; training-loss difference +0.025 [+0.000, +0.050]
+   Pooled over k = 1, 2, 3 within each draw (unweighted mean of the three contrasts):
+    1e-04 whole             : +0.0046 [+0.0017, +0.0075], 5/6
+    1e-04 last              : -0.0155 [-0.0192, -0.0117], 0/6
+    1e-04 every             : -0.0044 [-0.0151, +0.0062], 2/6
+    1e-04 whole minus every : +0.0090 [+0.0002, +0.0178], 5/6
+    3e-04 whole             : +0.0191 [+0.0164, +0.0218], 6/6
+    3e-04 last              : -0.0008 [-0.0048, +0.0032], 3/6
+    3e-04 every             : +0.0127 [+0.0023, +0.0232], 5/6
+    3e-04 whole minus every : +0.0064 [-0.0025, +0.0153], 5/6
+   Within one model: does the timing of an earlier pass matter? Sequences trained a third time in quarter 1 of epoch 3,
+   read at epoch 2.25: p*(second pass in quarters 3-4 of epoch 2) - p*(second pass in quarters 1-2 of epoch 2).
+    512 at 1e-04: +0.0114 [+0.0077, +0.0152], 6/6
+    768 at 1e-04: +0.0111 [+0.0075, +0.0147], 6/6
+    512 at 3e-04: +0.0150 [+0.0106, +0.0194], 6/6
+    768 at 3e-04: +0.0145 [+0.0103, +0.0187], 6/6
+
+4. EACH WIDTH AT ITS BETTER RATE (from POINTS.csv): 512 AT 3e-4 AGAINST 768 AT 1e-4
+   Rate effects at epoch 3, 1e-4 minus 3e-4 (as RESULT.md section 6c):
+    512 training loss  : +0.1343 [+0.1289, +0.1397], 6/6
+    512 validation loss: +0.0142 [+0.0059, +0.0225], 6/6
+    512 p*             : -0.0164 [-0.0173, -0.0154], 0/6
+    768 training loss  : +0.0052 [-0.0020, +0.0123], 5/6
+    768 validation loss: -0.0212 [-0.0323, -0.0100], 0/6
+    768 p*             : +0.0020 [-0.0013, +0.0052], 5/6
+   So at epoch 3 the rate with the lower validation loss is 3e-4 for 512 and 1e-4 for 768 (of the two rates tested; neither
+   width's best rate is located). 512's training loss is also lower at 3e-4; 768's hardly differs between the rates.
+   Equal updates, 512 at 3e-4 minus 768 at 1e-4, at every readout:
+    epoch 0.25: p* +0.02508 [+0.02200, +0.02816], 6/6; training-loss difference +0.0570 [+0.0234, +0.0906]
+    epoch 0.5 : p* +0.01755 [+0.01562, +0.01947], 6/6; training-loss difference +0.0332 [+0.0017, +0.0647]
+    epoch 1.0 : p* +0.01240 [+0.01095, +0.01385], 6/6; training-loss difference +0.0141 [-0.0148, +0.0430]
+    epoch 2.0 : p* +0.01147 [+0.00862, +0.01431], 6/6; training-loss difference +0.0023 [-0.0230, +0.0276]
+    epoch 2.25: p* +0.01386 [+0.01075, +0.01697], 6/6; training-loss difference -0.0026 [-0.0281, +0.0229]
+    epoch 2.5 : p* +0.01346 [+0.01018, +0.01675], 6/6; training-loss difference +0.0039 [-0.0235, +0.0313]
+    epoch 2.75: p* +0.01316 [+0.00940, +0.01692], 6/6; training-loss difference +0.0151 [-0.0115, +0.0416]
+    epoch 3.0 : p* +0.01184 [+0.00789, +0.01578], 6/6; training-loss difference +0.0198 [-0.0056, +0.0452]
+    epoch 3.25: p* +0.01419 [+0.00968, +0.01871], 6/6; training-loss difference +0.0183 [-0.0082, +0.0448]
+    epoch 3.5 : p* +0.01434 [+0.00978, +0.01890], 6/6; training-loss difference +0.0296 [+0.0080, +0.0512]
+   Equal training loss (the registered interpolation rule applied to this pair): +0.01235 [+0.00523, +0.01947], 5/6
+     768 read at epochs m01 2.857, m02 3.017, m03 2.875, m04 2.782, m05 2.843, m06 3.083
+     with 768 read at the later end of each bracket: +0.00518 [-0.00714, +0.01751], 4/6
+
+5. THE EQUAL-UPDATES CONTRAST 512 - 768 AT EVERY READOUT (from POINTS.csv; RESULT.md section 6a)
+    epoch 0.25: 1e-04 +0.00516 [+0.00391, +0.00641], 6/6 (above 0); 3e-04 +0.00872 [+0.00630, +0.01114], 6/6 (above 0)
+    epoch 0.5 : 1e-04 +0.00551 [+0.00437, +0.00665], 6/6 (above 0); 3e-04 +0.00772 [+0.00563, +0.00980], 6/6 (above 0)
+    epoch 1.0 : 1e-04 +0.00522 [+0.00388, +0.00657], 6/6 (above 0); 3e-04 +0.00705 [+0.00570, +0.00840], 6/6 (above 0)
+    epoch 2.0 : 1e-04 +0.00095 [-0.00118, +0.00309], 5/6 (includes 0); 3e-04 +0.00958 [+0.00729, +0.01187], 6/6 (above 0)
+    epoch 2.25: 1e-04 -0.00227 [-0.00513, +0.00059], 1/6 (includes 0); 3e-04 +0.01038 [+0.00769, +0.01307], 6/6 (above 0)
+    epoch 2.5 : 1e-04 -0.00334 [-0.00638, -0.00030], 1/6 (below 0); 3e-04 +0.01143 [+0.00859, +0.01427], 6/6 (above 0)
+    epoch 2.75: 1e-04 -0.00371 [-0.00661, -0.00081], 0/6 (below 0); 3e-04 +0.01317 [+0.01006, +0.01628], 6/6 (above 0)
+    epoch 3.0 : 1e-04 -0.00454 [-0.00795, -0.00114], 0/6 (below 0); 3e-04 +0.01382 [+0.01116, +0.01648], 6/6 (above 0)
+    epoch 3.25: 1e-04 -0.00895 [-0.01306, -0.00485], 0/6 (below 0); 3e-04 +0.01542 [+0.01142, +0.01942], 6/6 (above 0)
+    epoch 3.5 : 1e-04 -0.00990 [-0.01450, -0.00529], 0/6 (below 0); 3e-04 +0.01698 [+0.01271, +0.02125], 6/6 (above 0)
+
+6. WHERE THE REGISTERED MATCHED READINGS FALL, AND VALIDATION LOSS BY QUARTER
+  P1 (1e-4): +0.00909 [+0.00400, +0.01417], 6/6; 768 read at epochs m01 2.249, m02 2.390, m03 2.302, m04 2.189, m05 2.231, m06 2.476
+     per draw: m01 +0.01171, m02 +0.01023, m03 +0.00817, m04 +0.01404, m05 +0.01037, m06 +0.00002
+     later end of each bracket: +0.00702 [+0.00216, +0.01189], 5/6; per draw: m01 +0.01165, m02 +0.00745, m03 +0.00378, m04 +0.01067, m05 +0.00916, m06 -0.00057
+  S4 (3e-4): +0.01394 [+0.00893, +0.01896], 6/6; 768 read at epochs m01 2.801, m02 2.951, m03 2.846, m04 2.732, m05 2.834, m06 3.083
+     per draw: m01 +0.01829, m02 +0.01707, m03 +0.01555, m04 +0.01292, m05 +0.01487, m06 +0.00494
+     later end of each bracket: +0.01043 [-0.00027, +0.02113], 5/6; per draw: m01 +0.01685, m02 +0.01687, m03 +0.01344, m04 +0.01265, m05 +0.01279, m06 -0.01000
+  Change of mean validation loss over each step between readouts (nats per token), from POINTS.csv:
+    512 at 1e-04: 2.0->2.25 -0.0105 (0/6 rise); 2.25->2.5 -0.0202 (0/6 rise); 2.5->2.75 -0.0246 (0/6 rise); 2.75->3.0 -0.0284 (0/6 rise); 3.0->3.25 +0.0217 (6/6 rise); 3.25->3.5 -0.0097 (0/6 rise)
+    768 at 1e-04: 2.0->2.25 -0.0048 (1/6 rise); 2.25->2.5 -0.0178 (0/6 rise); 2.5->2.75 -0.0260 (0/6 rise); 2.75->3.0 -0.0264 (0/6 rise); 3.0->3.25 +0.0315 (6/6 rise); 3.25->3.5 -0.0131 (0/6 rise)
+    512 at 3e-04: 2.0->2.25 +0.0004 (3/6 rise); 2.25->2.5 -0.0123 (1/6 rise); 2.5->2.75 -0.0144 (1/6 rise); 2.75->3.0 -0.0297 (0/6 rise); 3.0->3.25 +0.0464 (6/6 rise); 3.25->3.5 -0.0049 (3/6 rise)
+    768 at 3e-04: 2.0->2.25 +0.0050 (3/6 rise); 2.25->2.5 -0.0140 (1/6 rise); 2.5->2.75 -0.0270 (0/6 rise); 2.75->3.0 -0.0305 (0/6 rise); 3.0->3.25 +0.0416 (6/6 rise); 3.25->3.5 -0.0129 (0/6 rise)
+    512 at 1e-04, epoch 3 -> 3.25: +0.0217 [+0.0150, +0.0284], 6/6
+    768 at 1e-04, epoch 3 -> 3.25: +0.0315 [+0.0209, +0.0421], 6/6
+    512 at 3e-04, epoch 3 -> 3.25: +0.0464 [+0.0333, +0.0595], 6/6
+    768 at 3e-04, epoch 3 -> 3.25: +0.0416 [+0.0318, +0.0515], 6/6
+
+DONE

@@ -1,0 +1,50 @@
+# Local environments, packages and caches
+.venv*/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.cache/
+.matplotlib/
+.ipynb_checkpoints/
+.ruff_cache/
+# Editor and operating-system files
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+# Output of the estimator fixture when it is run in place (see README.md)
+outputs/sequence-weighting-pilot/CORE_CHECKS.json
+# Experiment storage; small published provenance exceptions remain allowed
+work/runs/
+work/wheels*/
+work/prerequisites/
+work/text-assets/model/
+work/text-assets/dataset/
+work/text-assets/*-rows.json
+work/text-assets/install-report.json
+# Bulk artifacts and generated binary/download output
+*.pt
+*.pth
+*.safetensors
+*.whl
+*.zip
+*.part
+*.exe
+*.dll
+*.so
+*.log
+bin/
+obj/
+# Private credentials and operational conversations
+.env
+.env.*
+*.pem
+*.key
+context/
+# Not ignored: outputs/, JSON and CSV tables, figures and the rest of work/ are part of the record.
+# Receipt files are selected for publication one by one.

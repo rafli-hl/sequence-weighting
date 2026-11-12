@@ -1,0 +1,88 @@
+V1  S4 (3e-4, matched training NLL) with 768 read at each end of its bracket, N7 POINTS.csv, own code
+    linear   +0.01394 [+0.00893, +0.01896] sd 0.00478 6>0/0<0  brackets {'m01': (2.75, 3.0, 2.801), 'm02': (2.75, 3.0, 2.951), 'm03': (2.75, 3.0, 2.846), 'm04': (2.5, 2.75, 2.732), 'm05': (2.75, 3.0, 2.834), 'm06': (3.0, 3.25, 3.083)}
+    earlier  +0.01636 [+0.01405, +0.01866] sd 0.00220 6>0/0<0  brackets {'m01': (2.75, 3.0, 2.801), 'm02': (2.75, 3.0, 2.951), 'm03': (2.75, 3.0, 2.846), 'm04': (2.5, 2.75, 2.732), 'm05': (2.75, 3.0, 2.834), 'm06': (3.0, 3.25, 3.083)}
+    later    +0.01043 [-0.00027, +0.02113] sd 0.01020 5>0/1<0  brackets {'m01': (2.75, 3.0, 2.801), 'm02': (2.75, 3.0, 2.951), 'm03': (2.75, 3.0, 2.846), 'm04': (2.5, 2.75, 2.732), 'm05': (2.75, 3.0, 2.834), 'm06': (3.0, 3.25, 3.083)}
+    P1 later  +0.00702 [+0.00216, +0.01189] sd 0.00464 5>0/1<0
+    m06 at 3e-4: 512 E3 train 4.105706; 768 train E3 4.120596 E3.25 4.075670; 768 p* E3 0.10389 E3.25 0.12625
+V2  coarse (E2, E3 only) against dense interpolation, N7 draws, own code
+    P1 dense +0.00909 [+0.00400, +0.01417] sd 0.00484 6>0/0<0 | coarse +0.01495 [+0.01014, +0.01976] sd 0.00458 6>0/0<0 (n=6) | coarse minus dense of the mean +0.00587
+    S1 dense +0.00808 [+0.00487, +0.01130] sd 0.00306 6>0/0<0 | coarse +0.01128 [+0.00864, +0.01392] sd 0.00252 6>0/0<0 (n=6) | coarse minus dense of the mean +0.00319
+    S4 dense +0.01394 [+0.00893, +0.01896] sd 0.00478 6>0/0<0 | coarse +0.01806 [+0.01546, +0.02067] sd 0.00227 5>0/0<0 (n=5) | coarse minus dense of the mean +0.00412
+    N6 readouts [0.25, 0.5, 1.0, 2.0, 3.0]; draws ['c01', 'c02', 'c03', 'c04', 'c05', 'c06']
+    N6 D4 matched on train, E2-E3 linear: +0.01316 [+0.01056, +0.01576] sd 0.00248 6>0/0<0 positions {'c01': (2.0, 3.0, 2.327), 'c02': (2.0, 3.0, 2.357), 'c03': (2.0, 3.0, 2.349), 'c04': (2.0, 3.0, 2.278), 'c05': (2.0, 3.0, 2.352), 'c06': (2.0, 3.0, 2.487)}
+    N7 panel p* quarter steps E2->E3.5 per arm: {(512, 'lr1e-04'): [0.01138, 0.00495, 0.00396, 0.00337, 0.01465, 0.00584], (512, 'lr3e-04'): [0.01699, 0.00563, 0.00403, 0.00288, 0.02142, 0.00693], (768, 'lr1e-04'): [0.0146, 0.00602, 0.00433, 0.0042, 0.01907, 0.00679], (768, 'lr3e-04'): [0.01619, 0.00458, 0.00229, 0.00223, 0.01983, 0.00537]}
+V4  realized spread of P1 against PROTOCOL.md section 10
+    P1 +0.00909 [+0.00400, +0.01417] sd 0.00484 6>0/0<0; realized sd / 0.0025 = 1.938; mean / 0.0132 = 0.688
+    PROTOCOL 10: **Power of P1,** from N6's spread (sd 0.0025) and the effect it was seen at (+0.0132). That effect selected this hypothesis, so it is likely flattering.
+    PROTOCOL 10: | Draws available | At +0.0132 | At half of it | At +0.0132, sd at its upper 95% limit | At half of it, sd at its upper limit |
+    PROTOCOL 10: | 6 | >0.999 | 0.999 | 0.998 | 0.703 |
+    PROTOCOL 10: | 5 | >0.999 | 0.990 | 0.985 | 0.576 |
+    PROTOCOL 10: | **P1** | >0.999, 0.999 | >0.999, 0.990 | >0.999, >0.999 | >0.999, 0.999 |
+    PROTOCOL 10: | **S1** | >0.999, 0.984 | >0.999, 0.939 | >0.999, 0.999 | >0.999, 0.983 |
+    PROTOCOL 10: | **S3** | 0.733, 0.259 | 0.606, 0.208 | >0.999, 0.983 | 0.734, 0.253 |
+    PROTOCOL 10: | **S4** | >0.999, >0.999 | >0.999, 0.999 | 0.734, 0.253 | 0.734, 0.253 |
+    PROTOCOL 10: | **S5** | >0.999, >0.999 | >0.999, 0.998 | 0.734, 0.253 | 0.734, 0.253 |
+    PROTOCOL 10: | **S2** | >0.999, 0.951 | >0.999, 0.873 | 0.734, 0.253 | 0.522, 0.148 |
+V3  how train/validation are measured: the cited lines of the sealed code (read as text)
+    matched_worker.py:190:         g.full()
+    matched_worker.py:191:         model, optimizer = self.load_adaptation_model(width, pre_result['state']['path'], pre_result['state_tensor_hashes'], seeds['init_seed'], lr)
+    matched_worker.py:192:         at = {fp.readout_update(e, n, plan.BATCH): e for e in mp.READOUTS}; last = fp.readout_update(mp.LAST_READOUT, n, plan.BATCH)
+    matched_worker.py:193:         blocks, readouts, epochs, update = [], [], [], 0
+    matched_worker.py:194:         for epoch in range(1, mp.ORDER_EPOCHS + 1):
+    matched_worker.py:195:             g.epoch(); model.train(); norms = []
+    matched_worker.py:196:             for ids in orders[epoch - 1].split(plan.BATCH):
+    matched_worker.py:197:                 norms.append(self.adaptation_step(model, optimizer, data['train'], weights, ids)); update += 1; self.counts['updates'] += 1
+    matched_worker.py:198:                 if update in at:
+    matched_worker.py:199:                     e = at[update]; va = self.evaluate(model, data['validation']); tr = self.evaluate(model, data['train'])
+    matched_worker.py:200:                     blocks.append(self.floats(tr) + self.floats(va))
+    matched_worker.py:201:                     readouts.append(dict(epoch=e, update=update, train_loss=float(tr.mean()), validation_loss=float(va.mean())))
+    matched_worker.py:202:                     model.train()
+    matched_worker.py:203:                 if update == last: break
+    matched_worker.py:204:             epochs.append(dict(epoch=epoch, updates=len(norms), gradient_norm_mean=sum(norms) / len(norms), gradient_norm_max=max(norms), clip_fraction=sum(x > plan.ADAPT['clip'] for x in norms) / len
+    matched_worker.py:205:         if update != last or any(int(s['step']) != last for s in optimizer.state.values()): raise RuntimeError('Adaptation updates')
+    matched_worker.py:206:         if [r['epoch'] for r in readouts] != list(mp.READOUTS): raise RuntimeError('Readouts')
+    text_worker.py:190:         self.counts = dict(models=0, updates=0, eval_batches=0, pretrained_states=0)
+    text_worker.py:191: 
+    text_worker.py:192:     @staticmethod
+    text_worker.py:193:     def floats(tensor): return tensor.detach().cpu().contiguous().numpy().astype('<f4').tobytes()
+    text_worker.py:194: 
+    text_worker.py:195:     def evaluate(self, model, tokens):
+    text_worker.py:196:         t = self.torch; cpu = t.get_rng_state().clone(); gpu = t.cuda.get_rng_state(0).clone(); mode = model.training
+    text_worker.py:197:         try:
+    text_worker.py:198:             with t.random.fork_rng(devices=[0]):
+    text_worker.py:199:                 out = self.engine.evaluate(model, tokens)
+    text_worker.py:200:         finally: model.train(mode)
+    text_worker.py:201:         if not t.equal(cpu, t.get_rng_state()) or not t.equal(gpu, t.cuda.get_rng_state(0)): raise RuntimeError('Evaluation changed RNG')
+    text_worker.py:202:         if not bool(t.isfinite(out).all()): raise FloatingPointError('Nonfinite evaluation loss')
+    text_worker.py:203:         self.counts['eval_batches'] += plan.eval_batches(len(tokens))
+    text_worker.py:204:         return out
+    text_worker.py:205: 
+    text_worker.py:206:     def save_state(self, relative, model):
+    text_worker.py:207:         state = self.engine.cpu_state(model)
+    text_worker.py:208:         if not all(bool(self.torch.isfinite(v).all()) for v in state.values()): raise FloatingPointError('Nonfinite state')
+    text_worker.py:209:         buffer = io.BytesIO(); self.torch.save(state, buffer); payload = buffer.getvalue()
+    text_worker.py:210:         binding = self.out.write(relative, payload)
+    text_engine.py:40:     logits = model(tokens[:, :-1])
+    text_engine.py:41:     return F.cross_entropy(logits.transpose(1, 2), tokens[:, 1:], reduction='none').mean(1)
+    text_engine.py:42: 
+    text_engine.py:43: 
+    text_engine.py:44: @torch.no_grad()
+    text_engine.py:45: def evaluate(model, tokens, device='cuda', batch=plan.EVAL_BATCH):
+    text_engine.py:46:     model.eval(); out = []
+    text_engine.py:47:     for start in range(0, len(tokens), batch):
+    text_engine.py:48:         out.append(losses(model, tokens[start:start + batch].to(device)).float().cpu())
+    text_engine.py:49:     return torch.cat(out)
+    text_engine.py:50: 
+    text_engine.py:51: 
+    text_engine.py:52: def orders(seed, n, epochs):
+    fewepoch_plan.py:66: 
+    fewepoch_plan.py:67: def rate_tag(lr): return f'lr{lr:.0e}'
+    fewepoch_plan.py:68: 
+    fewepoch_plan.py:69: 
+    fewepoch_plan.py:70: def readout_update(epoch, n, batch=16):
+    fewepoch_plan.py:71:     """The update after which readout `epoch` is taken (N must be a multiple of 64 so that quarter epochs are whole)."""
+    fewepoch_plan.py:72:     if n % (4 * batch): raise ValueError('N must be a multiple of 64')
+    fewepoch_plan.py:73:     return int(round(epoch * n / batch))
+    fewepoch_plan.py:74: 
+    fewepoch_plan.py:75: 
+    fewepoch_plan.py:76: # GPU memory: the late-turn run's guard and start-up limit (no fallback: two primaries need 768).

@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this research record, please cite it as below."
+type: dataset
+title: "Sequence weighting across model widths: research record"
+abstract: >-
+  Research record of a small-scale, preregistered study of sequence-weighting response (the fitted exponent p*)
+  across model widths, comparing models at equal updates and at equal training loss.
+authors:
+  - family-names: Pratama
+    given-names: Rafli Putra
+version: "1.2"
+license:
+  - MIT
+  - CC-BY-4.0
+repository-code: "https://github.com/rafli-hl/sequence-weighting"
+date-released: 2026-11-12
+keywords:
+  - machine learning
+  - language models
+  - data weighting
+  - sequence weighting
+  - preregistration
+  - reproducibility
