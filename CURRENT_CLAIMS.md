@@ -1,6 +1,6 @@
 # Current claims
 
-**As of 12 November 2026.** This page states what the project currently claims, in one place. It is maintained for the
+**As of 12 November 2026; wording revised 13 November 2026, with no claim, number or label changed.** This page states what the project currently claims, in one place. It is maintained for the
 publication copy and replaces nothing: the historical records it cites keep their original wording and bytes. Where
 this page and an older summary differ, this page is current.
 
@@ -26,12 +26,14 @@ on the draws analysed, but each natural-text rate was selected by validation los
 best rate is located. None of the claims concerns the models, scale or regime of the reference study, and none is a
 scaling law, a capacity mechanism, a new estimator or a practical benefit of weighting.
 
-The effective weight of a sequence is relative to its batch. Every natural-text model was trained on batches of 16
-with the weighted loss averaged over the batch and gradients clipped at norm 1, and in N7 clipping was active on
-92–99% of updates, rescaling them to a fixed norm. In N7 a sequence's loss falls faster with its own weight and slower
-with the summed weight of its 15 batch-mates, by similar amounts (post hoc;
+A sequence's influence on training depends on its batch. Every natural-text model was trained on batches of 16 with
+the loss $\frac{1}{16}\sum_i w_i \ell_i$, which is not divided by the batch's weight sum, and with the norm of the
+summed gradient clipped at 1. In N7 clipping was active on 92–99% of updates. Clipping rescales the whole update, so a
+sequence's step depends on its batch-mates' weights and gradients; this is not the same as normalising the weights by
+their batch sum. In N7 a sequence's loss falls faster with its own weight and slower with the summed weight of its 15
+batch-mates, by similar amounts (post hoc;
 [follow-up audit](reports/follow-up-audit-20261112-01/REPORT.md), AA-2). p\* describes this recipe. Both widths in
-every comparison share it, so it bears on the level of p\*, not directly on the sign of a contrast.
+every comparison share it; the record does not estimate how much it shapes the level of p\* or the contrasts.
 
 ## The estimator
 
@@ -82,14 +84,14 @@ fits), and the direction and window were first seen on an earlier ladder whose r
 WikiText-2 at 3e-5 over widths 256–768, the highest-p\* width is 768, the top of the ladder, at epoch 8, and 384 at
 epoch 32, in 4/4 draws (a shift of at least +0.909 doublings [+0.864, +0.954]; with four draws the exact sign test
 gives p = 0.125). That shift follows from C2 and is not a separate confirmation, and it is a lower bound, because the
-epoch-8 peak is at the top of the ladder. *Status:* preregistered within the project. Same sign as the reference
+epoch-8 peak is at the top of the ladder. *Status:* sealed by hash within the project before the runs, not publicly preregistered. Same sign as the reference
 study's epoch finding; not a reproduction of it. *Scope:* the movement is not monotone (on WikiText-2 the highest-p\*
 width is 512 at epochs 1–2 and 24); N1 detected no shift over widths 64–384 with per-width rates; and over three
 epochs on WikiText-103 the peak moves the other way (see the registered outcomes below).
 
 **C2. At epoch 32 of WikiText-2 training, p\* falls with width over 384–768.** At 3e-5, a rate selected only for
 widths 128–384, p\* falls with width at epoch 32, 28 epochs past the validation minimum: −0.1886 per doubling of width
-[−0.2083, −0.1688], 4/4 (N4's P1). *Status:* preregistered within the project. It is confirmed at this one readout:
+[−0.2083, −0.1688], 4/4 (N4's P1). *Status:* sealed by hash within the project before the runs, not publicly preregistered. It is confirmed at this one readout:
 N4's P2, the same slope at epoch 24, was INCONCLUSIVE, and at epochs 4–16 the slope is positive. *Alignment:* equal
 epochs. The order also holds with 768 read at 384's epoch-32 gap, and for each width's highest p\* over all readouts
 (post hoc; follow-up audit, EA-10). *Not excluded:* memorisation saturation. From 512 to 768 the total gain at epoch 32
@@ -102,7 +104,7 @@ with 768 read at the higher end of each bracket it is +0.0015 [+0.0003, +0.0027]
 read at different points of training: 384 about 0.44 epoch later than 768 at the same gap, and a curve in which p\*
 depends on the epoch alone predicts M as −0.0067. A curve with no width effect gives the same label in 96–99% of the
 protocol's fixture replicates, so M does not show capacity beyond memorisation, although its sealed label reads
-CAPACITY_BEYOND_MEMORIZATION. *Status:* preregistered within the project, as M. *Support without interpolation*
+CAPACITY_BEYOND_MEMORIZATION. *Status:* sealed by hash within the project before the runs, as M; not publicly preregistered. *Support without interpolation*
 (post hoc, N5): at epoch 2 at 3e-4, widths 512 and 768 have the same gap (768 − 512: +0.0004 [−0.0047, +0.0055]) and
 p\* differs by −0.0092 [−0.0112, −0.0072], 0/10 positive. The claim rests on that comparison as much as on M.
 
@@ -212,7 +214,8 @@ own result. All figures reproduce from the published tables (follow-up audit, EA
 
 ## Open questions, and what would settle them
 
-No further runs are authorised. Model states were deleted, so each item that needs readouts needs a new study.
+This record is closed: no further runs will be added to it. That is not a restriction on anyone else. Model states were
+deleted, so each item that needs readouts needs a new study.
 
 | Question | What would settle it | What would not |
 |---|---|---|
@@ -239,4 +242,4 @@ All reviews, audits and post-hoc analyses in this record were carried out by AI 
 reviewers. The independent review of 10 November, by a separate AI session (Claude Opus 5.5) that had no part in the
 earlier work, is not part of the record; its points were used only where they could be checked against the published
 files. See
-[`AUDIT.md`](reports/full-audit-20261108-01/AUDIT.md) and [`README.md`](README.md#how-this-work-was-done).
+[`AUDIT.md`](reports/full-audit-20261108-01/AUDIT.md) and [`README.md`](README.md#main-limitations).

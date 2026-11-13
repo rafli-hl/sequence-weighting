@@ -105,6 +105,7 @@ and N7 they are in [`preregistration/`](../preregistration/).
 | [`natural-text-correction-20261111-01`](natural-text-correction-20261111-01/) | Correction after the post-hoc analysis by exposure and an independent review: which readouts would settle S4, how P1 should be read, and the wording changed in the root pages |
 | [`follow-up-audit-20261112-01`](follow-up-audit-20261112-01/) | Follow-up audit of the studies before N7 and of alternative explanations: two auditors' reports, an independent re-check (`verify_findings.py`, `OUTPUT.txt`) and how each finding was handled |
 | [`natural-text-correction-20261112-01`](natural-text-correction-20261112-01/) | Correction after the follow-up audit: the direction of the bias in N6's matched figures, a like-for-like S4 figure, and the rewording of C1–C4 |
+| [`readme-revision-20261113-01`](readme-revision-20261113-01/NOTE.md) | Documentation revision of 13 November: two post-hoc descriptive summaries (fit diagnostics of N7, sizes and weights of the exposure-matched sets) and the checks run on the revised copy |
 
 ## Owner decisions
 

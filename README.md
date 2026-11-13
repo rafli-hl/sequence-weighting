@@ -1,199 +1,188 @@
 # Sequence weighting across model widths
 
-***In short:** p\* rises as training goes on, so models of different sizes compared after the same number of updates are also at different stages of training. In a test registered publicly before any of its runs, two widths at learning rate 1e-4 come out in opposite orders at equal updates and at equal training loss. Later analysis shows that the second comparison also differs in how recently each model saw its sequences, so the flip does not show that the order of the sizes reverses once training progress is fully matched.*
+When each training sequence carries a weight in the loss, the fitted exponent p\* summarises how a model's loss
+reduction is allocated across those weights. This record asks a narrow question about comparing p\* across model
+sizes: **does the order of two widths depend on how they are aligned, at equal updates or at equal training loss?** It
+contains small decoder-only Transformers (0.73 M–34.7 M parameters) trained on WikiText-2 and WikiText-103, and one
+study, N7, whose protocol was published before any of its runs.
 
-This repository is the research record of a small-scale study of *sequence weighting*: giving each training sequence
-a weight in the loss and measuring how strongly a model's learning follows those weights. It continues the question
-raised by Renda and Mani's
-[A study of sequence weighting at scale](https://blog.janestreet.com/a-study-of-sequence-weighting-at-scale/)
-(Jane Street, September 2026). That study summarises the response with a fitted exponent, p\*, and reports that p\*
-rises and then falls with model size.
+**Status:** closed research record. Latest release: [v1.2](https://github.com/rafli-hl/sequence-weighting/releases/tag/v1.2)
+(12 November 2026). The README and methods were revised on 13 November 2026; no result, label or sealed file changed
+([`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md)).
 
-Our main question is methodological. When p\* changes during training, models of different sizes compared after the
-same number of updates are also at different stages of training. Does the ordering of sizes depend on how they are
-aligned?
+[Current claims](CURRENT_CLAIMS.md) · [Methods](METHODS.md) · [Studies](NATURAL_TEXT_STUDIES.md) ·
+[N7 preregistration](preregistration/natural-text-matched-confirmation-20261104/README.md) ·
+[N7 result](reports/natural-text-matched-result-20261105-01/RESULT.md) · [Data availability](DATA_AVAILABILITY.md)
 
-> [!NOTE]
-> This is a closed research record, not a library. Models have at most 34.7 M parameters, and every result is a
-> small-scale finding about the estimator p\*. Nothing here replicates or tests the regime of the reference study.
-> The experiments are closed, and no further runs are authorised.
+## Main finding
 
-## p\* across width and training
+In N7 (widths 512 and 768, WikiText-103, six draws, width 512 read at epoch 3), at learning rate 1e-4 the contrast
+p\*(512) − p\*(768) is **below 0 at equal updates** (−0.0045 [−0.0079, −0.0011]) and **above 0 at equal training
+loss** (+0.0091 [+0.0040, +0.0142]). Both registered intervals exclude 0. At 3e-4, 512 is above 768 under both
+alignments.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/landscape-dark.png">
-  <img alt="Heatmaps of mean p* by model width and epochs trained, for WikiText-103 over three epochs and WikiText-2 over 32 epochs" src="docs/figures/landscape-light.png">
-</picture>
+This shows that the comparison axis can change the sign of a cross-width contrast in p\*, for this pair of widths and
+this training configuration. It does not show that 512 has the higher p\* once training progress is matched. At equal
+training loss the two models have trained on different shares of the current epoch, and post-hoc comparisons on
+sequences matched for training exposure are inconclusive. The equal-updates result is sensitive to which draws are
+included, and the order depends on the learning rate. Details are next to the table below.
 
-Like the reference study's surfaces, this shows p\* over model size and training at once, here for two of the studies. In both, p\* rises with training at every width. Which width has the highest p\* (the rings) is not fixed: over three epochs of WikiText-103 it is 512 throughout, and over 32 epochs of WikiText-2 it moves from 512 to 768, the top of that ladder, and back down to 384 by epoch 32. A statement about which size responds most therefore depends on when the sizes are compared, and that is the question N7 was built to test. Claims C1–C3 in [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md) give what these studies support, with their limits.
-
-## Main result
-
-In a confirmatory study (N7) registered publicly before any of its runs, we trained widths 512 and 768 on six fresh
-WikiText-103 draws and compared p\* at epoch 3. The first figure shows the same runs on the two axes the study compares; the second and the
-table give p\*(512) − p\*(768) draw by draw, with 95% intervals over draws.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/alignment-dark.png">
-  <img alt="p* of widths 512 and 768 against epochs trained and against training loss, at learning rates 1e-4 and 3e-4" src="docs/figures/alignment-light.png">
-</picture>
-
-Read each row left to right. At 1e-4 the two curves are almost on top of each other against epochs, and at epoch 3
-the wider model is slightly higher. Against training loss the narrower model sits above along the whole path: the
-wider model reaches any given loss earlier in training, when its p\* is still lower. At 3e-4 the narrower model is
-higher on both axes.
+The reference study ([Renda and Mani, 2026](https://blog.janestreet.com/a-study-of-sequence-weighting-at-scale/))
+already reports that p\* rises and then falls with model size and that "training for more epochs shifts the peak
+towards smaller model scales". This record does not claim that finding as new. Its own contribution is the registered
+comparison of alignments, at a far smaller scale.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/figures/result-dark.png">
-  <img alt="p*(512) − p*(768) for six draws at equal updates and at equal training loss, at two learning rates" src="docs/figures/result-light.png">
+  <img alt="Paired-draw plot of p*(512) minus p*(768) at equal updates and at equal training loss, at learning rates 1e-4 and 3e-4" src="docs/figures/result-light.png">
 </picture>
 
-| Learning rate | Equal updates (equal tokens) | Equal training loss |
+*N7, the registered contrasts. Each grey line joins one draw's contrast at equal updates to its contrast at equal
+training loss; black: mean and 95% t interval over the six draws. At 1e-4 every draw is below 0 at equal updates and
+above 0 at equal training loss, but two draws are close to 0 (m02 at −0.00014 and m06 at +0.00002). The equal-loss
+values interpolate 768's fitted p\* between readouts; they are not measured at a checkpoint.*
+
+## Key results
+
+Registered contrasts of N7, p\*(512) − p\*(768), read in the registered order P1 → S1 → S3 → S4 → S5 → S2. Mean
+and two-sided 95% t interval over six draws (df = 5), and the number of draws above 0.
+
+| Step | Rate | Alignment | Contrast | Above 0 | Label |
+|---|---|---|---|---|---|
+| **P1** (primary) | 1e-4 | equal training loss | +0.00909 [+0.00400, +0.01417] | 6/6 | REVERSAL_CONFIRMED |
+| S1 | 1e-4 | equal train–validation gap | +0.00808 [+0.00487, +0.01130] | 6/6 | CONFIRMED |
+| S3 | 1e-4 | equal updates | −0.00454 [−0.00795, −0.00114] | 0/6 | CONFIRMED (predicted below 0) |
+| S4 | 3e-4 | equal training loss | +0.01394 [+0.00893, +0.01896] | 6/6 | CONFIRMED |
+| S5 | 3e-4 | equal updates | +0.01382 [+0.01116, +0.01648] | 6/6 | CONFIRMED |
+| S2 | 1e-4 | equal validation loss | — | — | UNAVAILABLE: 3 of 6 draws had a reading; 5 were required |
+
+Sensitivity of the same contrasts. Leave-one-draw-out intervals were registered; reading 768 at the later end of each
+interpolation bracket, instead of interpolating, was added in the [9 November correction](reports/natural-text-correction-20261109-01/CORRECTION.md)
+(post hoc).
+
+| Step | Leave-one-draw-out (registered) | 768 at the later bracket end (post hoc) |
 |---|---|---|
-| 1e-4 | −0.00454 [−0.00795, −0.00114], 0/6 positive | +0.00909 [+0.00400, +0.01417], 6/6 positive |
-| 3e-4 | +0.01382 [+0.01116, +0.01648], 6/6 positive | +0.01394 [+0.00893, +0.01896], 6/6 positive\* |
+| P1 | above 0 with any one draw left out | +0.00702 [+0.00216, +0.01189] |
+| S1 | above 0 with any one draw left out | +0.00399 [+0.00099, +0.00699] |
+| S3 | **includes 0 without m03 or without m05** | not interpolated |
+| S4 | above 0 with any one draw left out | **+0.01043 [−0.00027, +0.02113], includes 0**; draw m06, read at epoch 3.08, decides it |
+| S5 | above 0 with any one draw left out | not interpolated |
 
-\*Confirmed under the registered interpolation rule. Reading width 768 at the later end of each interpolation bracket
-gives +0.01043 [−0.00027, +0.02113], an interval that includes 0. The 1e-4 equal-loss result stays above 0 under the
-same reading.
+**How to read the labels.** A step is CONFIRMED when its interval lies on the predicted side of 0 and every earlier
+step in the sequence is confirmed; this holds the chance of any false confirmation at about 2.5% under the protocol's
+assumptions. REVERSAL_CONFIRMED is P1's label for the same condition: its interval lies above 0 with at least five
+draws. The label is determined by P1 alone. The opposite order at equal updates is S3's separate result, so the change
+of sign at 1e-4 rests on P1 and S3 together, and S3 is the less robust of the two. By readout, the equal-updates
+contrast at 1e-4 is above 0 at epochs 0.25–1 and below 0 only from epoch 2.5. With six draws, the exact sign test
+for 6/6 gives p = 0.031.
 
-At 1e-4 and epoch 3, the two registered comparisons order the widths differently. At equal updates the wider model
-has the higher p\*. When the wider model is read at the training loss the narrower one reaches at epoch 3, the
-narrower model has the higher p\*. At 3e-4 the narrower model is higher on both axes. Equal updates means equal
-tokens seen, not equal compute; equal training loss is a different comparison, not one that isolates the effect of
-width.
+**What else bears on these numbers** (post hoc unless stated; descriptive and unadjusted for multiplicity):
 
-**How far this goes.** A post-hoc analysis of the per-sequence losses (11 November 2026; descriptive, not
-registered) narrows the reading of the 1e-4 row:
+- **Starting points differ.** Gains are measured from each model's own state after uniform pre-training (E0), and
+  768's E0 loss is 0.037 nats higher than 512's on average. Lowering 768's gains by that offset gives P1 = +0.0062
+  [−0.0001, +0.0126], 5/6 ([follow-up audit](reports/follow-up-audit-20261112-01/REPORT.md), AA-3).
+- **Weight range.** The signs of the five contrasts do not change on any weight sub-range tried, but on the lower half
+  of the weights alone, where gains barely change with weight, P1 (+0.0012 [−0.0009, +0.0032]) and S4 include 0
+  (AA-6).
+- **Exposure differs at equal training loss.** P1 reads 768 at epochs 2.19–2.48, when it has trained on 19–48% of the
+  draw a third time; 512 at epoch 3 has trained on all of it. Within one model, sequences already trained in the
+  current epoch have p\* higher by 0.050–0.084 than the rest. This is an alternative explanation for part of P1; a
+  difference between subgroups of one model cannot simply be subtracted from a contrast between models.
+- **Exposure-matched comparisons at 1e-4 are inconclusive.** On sequences matched for the timing of all three passes,
+  512 at epoch 3 against 768 at epochs 2.25, 2.5 and 2.75 gives −0.0035 [−0.0258, +0.0189], −0.0048
+  [−0.0121, +0.0026] and −0.0051 [−0.0109, +0.0008]. The first, nearest to equal loss, uses about 250 sequences per
+  model per draw and has power 0.14 for an effect of P1's size; the others are not matched on training loss. None of
+  these establishes that the effect is absent. At 3e-4 the same comparisons are +0.0126 to +0.0129.
+- **Learning rate.** Each comparison uses one rate for both widths, so it concerns that configuration, not equally
+  optimised models. With each width at its better rate of the two (512 at 3e-4, 768 at 1e-4), 512 is above 768 at
+  equal updates (+0.01184 [+0.00789, +0.01578]) and at equal training loss (+0.01235 [+0.00523, +0.01947]).
+- **Scale of the effect.** P1 is a difference of 0.009 in a fitted exponent whose value for 512 at epoch 3 is 0.103.
+  It is not a difference in model quality.
 
-- At equal training loss the two models differ in training exposure. The wider model is read early in its third
-  epoch, having trained on 19–48% of the sequences a third time, and the narrower one at the end of its third.
-  Within one model, sequences already trained in the current epoch have p\* higher by 0.05–0.08 than the rest.
-- On sequences matched for the timing of every pass, the narrower model's lead at 1e-4 is not seen: −0.0035
-  [−0.0258, +0.0189], −0.0048 [−0.0121, +0.0026] and −0.0051 [−0.0109, +0.0008] with the wider model at epochs 2.25,
-  2.5 and 2.75. At 3e-4 the lead remains, at about +0.013. "Not seen" is not "absent": the comparison nearest to
-  equal loss (epoch 2.25, about 250 sequences per draw) has power 0.14 for an effect of the registered size (follow-up
-  audit, 12 November).
-- With each width at its better rate of the two (512 at 3e-4, 768 at 1e-4), the narrower model is higher at equal
-  updates (+0.01184 [+0.00789, +0.01578], 6/6) and at equal training loss (+0.01235 [+0.00523, +0.01947], 5/6; like
-  the 3e-4 entry marked \* above, this interval includes 0 at the later end of each bracket).
-- At 1e-4 the wider model leads at equal updates only from epoch 2.5; in the first epoch the narrower one leads.
+These analyses and their scripts are in
+[`natural-text-matched-assistant-posthoc-20261111-01`](reports/natural-text-matched-assistant-posthoc-20261111-01/REPORT.md)
+and [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md) (claim C4).
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/exposure-dark.png">
-  <img alt="Difference in p* between sequences already trained in the current epoch and the rest, by readout, for both widths and rates" src="docs/figures/exposure-light.png">
-</picture>
+**Earlier studies.** Five earlier studies (S, N1, N3–N5) had their protocols sealed by hash within the project before
+their runs, but not published until later, and N6 was registered publicly after its data existed. Their claims C1–C3,
+with the registered outcomes that did not confirm, are in [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md). In brief: in the
+evaluated readouts of N3 and N5, the width with the highest p\* has 1.8–4.5 times the p\* of width 64, and that width
+changes with training time on WikiText-2 (figures in [`METHODS.md`](METHODS.md#10-descriptive-figures)).
 
-Within one model, sequences trained in the current epoch carry a much higher p\* than the rest (above). Equal
-training loss reads the wider model part-way through an epoch and the narrower one at its end, so the two are read with
-different shares of recently trained sequences. Every estimate, registered and post hoc, is in one place below.
+## Setup
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/figures/estimates-dark.png">
-  <img alt="Forest plot of every registered and post-hoc estimate of p*(512) − p*(768), with 95% intervals and the six draws" src="docs/figures/estimates-light.png">
-</picture>
-
-The registered result stands as measured. It is not evidence that the order of the widths reverses once training
-progress is matched; whether it would, with training loss and exposure both matched, is not determined by these data.
-Cross-size comparisons of a weighting response should state how sizes are aligned, report more than one alignment
-where the response moves with training, and state the training exposure of what is compared.
-
-**Every current claim, with its scope and qualifications, is in [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md).** The full
-result is in [`RESULT.md`](reports/natural-text-matched-result-20261105-01/RESULT.md).
-
-## Corrections
-
-**9 November 2026.** A read-only audit found that earlier matched-progress figures were biased by coarse
-interpolation (upward for the figures that motivated N7; see 12 November for the direction elsewhere), that one sentence of the final claims no longer holds, and that the S4 step of N7 depends on
-interpolation. See [`CORRECTION.md`](reports/natural-text-correction-20261109-01/CORRECTION.md). Earlier files are
-left unchanged, because their hashes are cited elsewhere in the record. The correction note says how to read them, and
-[`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md) states the result.
-
-**11 November 2026.** A post-hoc analysis by training exposure, and points raised by an independent review of the
-record, showed that `NATURAL_TEXT_STUDIES.md` misstated what would settle the S4 step
-(readouts inside epochs 3.0–3.25 at 3e-4, not 2.0–2.25), that the 1e-4 result had been read too broadly as a reversal
-between the widths, that the audit's answer to the exposure concern does not hold, and that the root pages described
-the learning rates inaccurately. See [`CORRECTION.md`](reports/natural-text-correction-20261111-01/CORRECTION.md) and the
-analysis in
-[`natural-text-matched-assistant-posthoc-20261111-01`](reports/natural-text-matched-assistant-posthoc-20261111-01/).
-No sealed label or reported number changes, and earlier files are again left unchanged.
-
-**12 November 2026.** A follow-up audit of the studies before N7 and of alternative explanations, by two fresh AI
-auditors, found no blocking problem but showed that C1–C3 were worded more strongly than their sources, that the
-registered outcomes that did not confirm were on no living page, that N6's matched figures are biased in a direction
-set by which width is interpolated, and that C4 lacked a power figure and several disclosures. See the
-[audit report](reports/follow-up-audit-20261112-01/REPORT.md) and
-[`CORRECTION.md`](reports/natural-text-correction-20261112-01/CORRECTION.md). No sealed label changes.
-
-## Where to start
-
-| If you want to... | Read |
+| | N7 |
 |---|---|
-| Know exactly what is claimed now | [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md) |
-| See every natural-text study, with protocols, results and tables | [`NATURAL_TEXT_STUDIES.md`](NATURAL_TEXT_STUDIES.md) |
-| Read the final claims and how they were reached | [`RESPONSE.md` §5](reports/adversarial-review-response-20261104-01/RESPONSE.md), with the [review](reports/adversarial-review-20261104-01/REVIEW.md) and the corrections of [9 November](reports/natural-text-correction-20261109-01/CORRECTION.md) and [11 November](reports/natural-text-correction-20261111-01/CORRECTION.md) |
-| See N7's result broken down by training exposure (post hoc) | [`natural-text-matched-assistant-posthoc-20261111-01`](reports/natural-text-matched-assistant-posthoc-20261111-01/): `REPORT.md`, the script and its output |
-| Check how N7 was registered before its runs | [`preregistration/natural-text-matched-confirmation-20261104/`](preregistration/natural-text-matched-confirmation-20261104/README.md) |
-| Read the audit of the whole record | [`AUDIT.md`](reports/full-audit-20261108-01/AUDIT.md) |
-| Know what is and is not published | [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md) |
-| See how this copy differs from the local record | [`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md) |
+| Data | WikiText-103 training articles; six fresh draws of 16,384 sequences of 129 tokens, disjoint from every earlier draw |
+| Models | Pre-LayerNorm decoder-only Transformers, 4 layers and 4 heads at every width; embedding size, head dimension and feed-forward size grow with width. Width 512: 16,870,400 parameters; width 768: 34,742,784 |
+| Training | Uniform pre-training on a shared pool (state E0), then weighted training: loss = batch mean of $w_i \ell_i$, AdamW, weight decay 0.1, batch 16, constant rate 1e-4 or 3e-4, gradient-norm clipping at 1, 3.5 epochs |
+| Weights | Log-uniform on [0.01, 10] (rescaled to mean 1 per draw), the reference study's range |
+| Readouts | E0, then 0.25, 0.5, 1, 2, 2.25, 2.5, 2.75, 3, 3.25 and 3.5 epochs; per-sequence loss on every training and validation sequence |
 
-## Repository layout
+The full specification, including the data splits and overlap rules, is in [`METHODS.md`](METHODS.md). Two features
+limit what the comparisons mean. Clipping rescales the summed gradient of each batch on 92–99% of updates, so a
+sequence's influence depends on its batch-mates; this is not the same as dividing weights by their batch sum. And there
+is no uniform-weight training arm: p\* can be estimated without one, but such an arm would be needed to separate the
+effect of the weights from generic training, or to ask whether weighting helps performance.
 
-| Path | Contents |
-|---|---|
-| `preregistration/` | Public registrations: N6 (after its data existed) and N7 (before any run) |
-| `work/*-source-*/` | Sealed protocols and source code for S, N1 and N3–N5 (N6 and N7 are under `preregistration/`) |
-| `work/` (other files) | `text-assets/`: pinned metadata of the public dataset and model; `fetch_text_assets.py`: the historical download helper; `natural-text-matched-activation-m1-*/` and `-m2-*/`: N7's two owner exit receipts |
-| [`reports/`](reports/README.md) | Seed registries, sealed analyses (`POINTS.csv`, `FITS.csv`, `ANALYSIS.json`), results, failure reports, owner decisions, the review, the response, the audit and corrections. Mapped by study in [`reports/README.md`](reports/README.md) |
-| [`outputs/`](outputs/README.md) | Earlier synthetic-task studies (Stages 1–11 and v0129–v0136) and their source, mapped in [`outputs/README.md`](outputs/README.md) |
-| `figure/` | Figure catalogue for the earlier studies, with backing tables |
-| `migration/` | Package lock (`pip freeze`) of the Linux environment after the local project moved to another drive; Stage 2's scripts read it |
-| `docs/` | The README figures (`figures/`, light and dark) and the scripts that draw them from the published tables: `make_readme_figures.py` for all five, `make_n7_figure.py` for the earlier single figure, `n7_result.png` |
-| `tools/` | `verify_publication.py` checks every file against the manifest and every local Markdown link; `verify_n7_losses.py` refits N7's estimates from the loss-array bundle; `verify_posthoc.py` reruns the post-hoc exposure analysis on the same bundle, with the versions pinned in `requirements-posthoc.txt`, and compares it with the published values |
-| `.github/workflows/` | The automated checks: `verify` runs `verify_publication.py`, the estimator fixture, the README example and `verify_n7_losses.py` on every change; `verify-posthoc` reproduces the post-hoc exposure analysis with pinned versions when its files change, weekly and on each release |
-| `LICENSE`, `LICENSE-CC-BY-4.0.md` | MIT for code; CC BY 4.0 for everything else |
-| `CURRENT_CLAIMS.md` | The current claims, with scope, status and qualifications |
-| `PUBLICATION_*.{csv,json}` | Manifest with hashes, redaction map, and lists of unavailable links and dependencies |
-| `CITATION.cff` | Citation metadata; GitHub shows it as "Cite this repository" |
+### What p\* is
 
-## The estimator
+For one model at one readout, each sequence's gain is $g_i = \ell_i^{(\mathrm{E0})} - \ell_i^{(t)}$, signed. With the
+sequences sorted by weight, the fitted exponent minimises the mean squared cumulative difference between the
+normalised gains and the normalised powered weights:
 
-Each training sequence receives a weight drawn log-uniformly on [0.01, 10]. After weighted training, the signed gain
-of a sequence is its loss before weighted training minus its loss at a readout. p\* is the estimator defined in the
-reference study's technical note,
-[An Estimator for the Effective Sequence Weight Exponent](https://blog.janestreet.com/a-study-of-sequence-weighting-at-scale/sequence-weighting-note.pdf):
-the exponent p ≥ 0 that minimises dᵀKd, where d is the difference between each sequence's share of the total gain and
-its share of the total wᵖ, and K = min(rᵢ, rⱼ) on the weight ranks. The implementation,
-[`core.py`](preregistration/natural-text-matched-confirmation-20261104/sealed-source/vendor/core.py), computes the
-equivalent mean squared cumulative discrepancy along ascending weight ranks, searches p in [0, 8], breaks ties between
-equal weights by sequence order, and returns no value when the weights are constant or the total gain is at most
-1e-10. [`core_checks.py`](outputs/sequence-weighting-pilot/core_checks.py) tests the equivalence and the recovery of
-known exponents. [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md#the-estimator) lists every implementation choice.
+```math
+\hat p^{\ast} = \underset{p \in [0,\,8]}{\arg\min} \; \frac{1}{n} \sum_{k=1}^{n}
+\Biggl( \sum_{i=1}^{k} \Bigl( \frac{g_{(i)}}{\sum_j g_j} - \frac{w_{(i)}^{\,p}}{\sum_j w_j^{\,p}} \Bigr) \Biggr)^{2} .
+```
 
-p\* is the best-fitting non-negative exponent under this objective. At p\* = 1, gains are fitted as proportional to
-the weights. A fit of 0 does not show that gains are independent of the weights, since gains that fall with the
-weight also fit at 0. Values depend on the model, the baseline and the training regime, so they should not be compared
-across studies without care.
+This is the objective of the reference study's
+[technical note](https://blog.janestreet.com/a-study-of-sequence-weighting-at-scale/sequence-weighting-note.pdf),
+implemented in [`core.py`](preregistration/natural-text-matched-confirmation-20261104/sealed-source/vendor/core.py).
+The record writes p\* for the fitted value $\hat p^{\ast}$.
+
+- It is a summary of where the loss reduction falls across weights under this objective, not a derivative of the loss
+  with respect to the weight and not an intrinsic property of a model.
+- A fit of 0 does not show that gains are independent of the weights (the search is constrained to $p \ge 0$), and a
+  fit of 1 does not show exact proportionality: N7's gains are not a power of the weight.
+- Gains are signed, so the normalised gains are not probability shares. A fit is undefined if all weights are equal
+  or the total gain is at most $10^{-10}$; fits at the upper bound are flagged. None of N7's 240 fits is undefined or
+  at a bound.
+
+[`METHODS.md`](METHODS.md#4-the-estimator) gives the search, the guards, the checks of the implementation, the
+available fit diagnostics and a conceptual example of how the fitted value can move without the underlying curvature
+changing.
+
+### Alignments
+
+Each fixes one quantity and none fixes training progress in general. Width 512 is read at epoch 3.
+
+- **Equal updates:** both widths after the same 3,072 updates, so the same tokens in the same order; not equal compute.
+- **Equal training loss:** 768 read where its mean training loss equals 512's, found by linear interpolation of 768's
+  fitted p\* between the two readouts that bracket that loss. Per-draw brackets are in
+  [`MATCHED.csv`](reports/natural-text-matched-analysis-20261105-01/MATCHED.csv).
+- **Equal train–validation gap** and **equal validation loss:** the same rule on those quantities.
+
+Equal training loss does not mean equal starting loss, equal total improvement, equal learning history or equal
+exposure.
 
 ## Reproducing the results
 
-There are three levels of reproduction:
+Tested in CI with Python 3.12. The first three steps need only the standard library.
 
-1. **Statistics from the per-readout tables**, from this repository alone. The example below recomputes N7's primary
-   contrast.
-2. **p\* from the per-sequence losses**, for N7. The [v1.2 release](https://github.com/rafli-hl/sequence-weighting/releases/tag/v1.2) attaches `n7-loss-arrays-v1.zip`: the
-   weights, the per-sequence losses before weighted training and at every readout, and the run records. With NumPy,
-   `python tools/verify_n7_losses.py path/to/n7-loss-arrays` refits all 240 estimates with its own implementation of the
-   estimator and recomputes the confirmed contrasts. With PyTorch as well,
-   `python reports/natural-text-matched-assistant-posthoc-20261111-01/posthoc_exposure.py path/to/n7-loss-arrays`
-   regenerates the batch orders, checks them against the losses and reproduces the post-hoc analysis by exposure.
-3. **Training.** Not possible from public files: model states, run folders and dataset rows are not published.
+```bash
+git -c core.autocrlf=false clone https://github.com/rafli-hl/sequence-weighting.git
+cd sequence-weighting
+python tools/verify_publication.py                      # file integrity and local links
+python outputs/sequence-weighting-pilot/core_checks.py  # estimator fixture; writes CORE_CHECKS.json beside it
+```
 
-See [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md).
+`verify_publication.py` should report every manifest row exact and no unexpected broken link. `CORE_CHECKS.json`
+should have `"status": "passed"`. On Windows, cloning without `core.autocrlf=false` changes line endings and the hashes.
 
-For example, N7's primary contrast can be recomputed from its published table with the standard library alone. Run
-this from the repository root:
+**N7's primary contrast from the published table.** The example follows the registered reading rule: the first
+bracketing interval in readout order, a flat interval read at its earlier readout, and a draw unavailable when the
+target is outside 768's epoch 2–3.5 path.
 
 ```python
 import csv, math, statistics as st
@@ -203,121 +192,116 @@ P = {(r["draw"], float(r["epoch"]), int(r["width"]), r["tag"]): r for r in rows}
 draws, rate = sorted({k[0] for k in P}), "lr1e-04"
 path = [e for e in sorted({k[1] for k in P}) if 2.0 <= e <= 3.5]
 
-def p1(d):  # p*(512) at epoch 3 minus p*(768) read at 512's epoch-3 training NLL
-    target = float(P[(d, 3.0, 512, rate)]["train"])
+def read_768(target, d):  # 768's fitted p* where its training loss equals target
     pts = [(float(P[(d, e, 768, rate)]["train"]), float(P[(d, e, 768, rate)]["p"])) for e in path]
     for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
         if min(x0, x1) <= target <= max(x0, x1):
-            return float(P[(d, 3.0, 512, rate)]["p"]) - (y0 + (target - x0) / (x1 - x0) * (y1 - y0))
+            return y0 if x1 == x0 else y0 + (target - x0) / (x1 - x0) * (y1 - y0)
+    return None  # target outside the path: the draw is unavailable
 
-v = [p1(d) for d in draws]
-half = 2.5706 * st.stdev(v) / math.sqrt(len(v))  # t(0.975, df=5)
-print(f"P1 = {st.mean(v):+.5f} [{st.mean(v) - half:+.5f}, {st.mean(v) + half:+.5f}]")
+v = []
+for d in draws:
+    p768 = read_768(float(P[(d, 3.0, 512, rate)]["train"]), d)
+    if p768 is not None:
+        v.append(float(P[(d, 3.0, 512, rate)]["p"]) - p768)
+assert len(v) >= 5, "fewer than five draws: P1 would be UNAVAILABLE"
+half = 2.5706 * st.stdev(v) / math.sqrt(len(v))  # t(0.975, df = 5)
+print(f"P1 = {st.mean(v):+.5f} [{st.mean(v) - half:+.5f}, {st.mean(v) + half:+.5f}], n = {len(v)}")
 ```
 
-It prints `P1 = +0.00909 [+0.00400, +0.01417]`. The sealed analysis code for every study is in its sealed source
-folder (for N7, `preregistration/natural-text-matched-confirmation-20261104/sealed-source/matched_analysis.py`). The
-historical environment is pinned in
-[`environment-lock-stage1.txt`](outputs/sequence-weighting-pilot/environment-lock-stage1.txt) (Python 3.12, PyTorch
-with CUDA 12.6):
+It prints `P1 = +0.00909 [+0.00400, +0.01417], n = 6`. The t value is for six draws.
 
-```sh
-python -m venv .venv
-. .venv/bin/activate   # on Windows: .venv\Scripts\activate
-python -m pip install --extra-index-url https://download.pytorch.org/whl/cu126 \
-    -r outputs/sequence-weighting-pilot/environment-lock-stage1.txt
-python outputs/sequence-weighting-pilot/core_checks.py   # estimator fixtures; writes CORE_CHECKS.json beside it
+**From the per-sequence losses.** The bundle `n7-loss-arrays-v1.zip` (SHA-256
+`cbe26760e2062a4cf03307d779226fa6efce8cfcfbf57b2e092bd818af80b8a9`) is attached to the v1.2 release.
+
+```bash
+gh release download v1.2 --repo rafli-hl/sequence-weighting --pattern n7-loss-arrays-v1.zip
+unzip n7-loss-arrays-v1.zip
+pip install numpy
+python tools/verify_n7_losses.py n7-loss-arrays       # refits all 240 estimates; prints PASS
+pip install --index-url https://download.pytorch.org/whl/cpu torch==2.7.0
+pip install -r tools/requirements-posthoc.txt
+python tools/verify_posthoc.py n7-loss-arrays         # reruns the post-hoc exposure analysis; prints PASS
 ```
 
-The estimator fixture needs only the standard library, so the last command also runs without the environment. The
-environment folder, Python's caches and `CORE_CHECKS.json` are local files: `.gitignore` lists them, and
-`tools/verify_publication.py` does not count them.
+`verify_n7_losses.py` compares the refitted estimates with `POINTS.csv` (tolerance $10^{-6}$), mean losses with the run
+records ($10^{-5}$) and the five confirmed contrasts with `ANALYSIS.json` ($10^{-6}$). `verify_posthoc.py` compares
+every published post-hoc value with `RESULTS.json` ($10^{-6}$); it needs PyTorch 2.7.0 because it regenerates the batch
+orders with `torch.randperm`. The figures are redrawn by `python docs/make_results_figures.py n7-loss-arrays` and
+`python docs/make_readme_figures.py` (NumPy, SciPy, Matplotlib, Plotly).
 
-**On Windows,** Git's usual setting there, `core.autocrlf=true`, converts line endings, which changes the bytes of most text files
-and makes their hashes differ from the manifest. Clone with `git -c core.autocrlf=false clone
-https://github.com/rafli-hl/sequence-weighting.git` to get the canonical bytes. To check a checkout, run
-`python tools/verify_publication.py`: it compares every file with `PUBLICATION_MANIFEST.csv`, reports files that differ
-only in line endings separately from real mismatches, and checks every local Markdown link.
+## What is and is not reproducible
 
-This environment specification is historical and has not been re-tested for this copy. Launch commands in historical
-READMEs contain local paths and are not portable entry points.
-
-## Limitations
-
-- **Scale.** At most 34.7 M parameters and 0.2–2.1 M training tokens per draw, on one 4 GB laptop GPU. The reference
-  study spans tens of millions to hundreds of billions of parameters.
-- **One size axis.** Width varies at a fixed depth of 4.
-- **Learning rates.** Within each comparison the widths share one rate, and no width's best rate is located. The
-  rates were selected on a tuning draw: in N7, 1e-4 was the best of five rates for width 768, and at that rate width
-  512 trains 0.134 nats behind its own 3e-4 arm. The opposite signs appear only at 1e-4; with each width at its
-  better rate of the two, 512 is above 768 on both axes (post hoc).
-- **No mechanism.** Capacity is not separated from training progress, and no uniform-weight baseline isolates the
-  effect of the weights.
-- **Shared pipeline.** Draws share a tokenizer, a pre-training pool and a validation set, so intervals cover the
-  sampling of articles, not these choices.
-- **Interpolation.** Matched comparisons interpolate between readouts. The S4 step includes 0 when the wider model is
-  read at the later end of each bracket; the draw that decides this is read just after epoch 3. See the corrections.
-- **Training exposure.** At equal training loss inside an epoch, the models compared have trained on different
-  shares of the sequences in the current epoch, and p\* depends on how recently a sequence was trained. No comparison
-  in N7 at 1e-4 matches training loss and exposure together with enough sequences to decide the sign.
-- **Post-hoc analyses.** The analyses of 11 November were chosen after the results were known, and their intervals
-  are not adjusted for that.
-- **Registration.** Only N7 was registered publicly before its data existed. Earlier studies were sealed by hash
-  within the project, and two runs were second attempts after operational failures.
-
-## How this work was done
-
-The project has one human author, who chose the questions and designs, approved every protocol and run, and ran every
-training job on their own machine. AI assistants from one model family (Anthropic's Claude), working in separate
-sessions, wrote the code, protocols and reports, ran the analyses, and carried out every review and audit in this
-record. The reviews are therefore not independent in the sense that reviews by different people would be. Safeguards
-were procedural: hash-sealed protocols and code, one-use run activations with no retries, analyses run once, and
-recomputation of key statistics from published tables by separate sessions.
-
-Later checks came from outside those sessions. An audit of the public snapshot by another AI system (OpenAI's
-Codex) led to the changes of 9 November listed in [`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md). On 10 November a
-separate AI session (Claude Opus 5.5) with no part in the earlier work reviewed the record and recomputed its
-statistics; the points it raised that the correction of 11 November takes up were each checked against the published
-files, and the review itself is not part of the record. The post-hoc analysis of 11 November was made by an AI
-assistant (Claude Fable 5.2), its main figures were recomputed with separate code by Claude Opus 5.5, and no human
-has checked it. The follow-up audit of 12 November was carried out by two further sessions of Claude Fable 5.2 with no
-part in the earlier work; Claude Opus 5.5 re-checked their main findings with separate code, which is published.
-
-## Earlier work: synthetic-task studies
-
-Before the natural-text studies, the project ran a series of synthetic-task studies of the estimator and the
-weighting response (Stages 1–11 and v0129–v0136). Their records are under `outputs/`, and
-[`outputs/README.md`](outputs/README.md) maps every folder:
-
-- [Research note, Stages 2–10](outputs/sequence-weighting-paper-track-v1/RESEARCH_NOTE.md), with its
-  [claim audit](outputs/sequence-weighting-paper-track-v1/CLAIMS.md) and
-  [literature review](outputs/sequence-weighting-paper-track-v1/LITERATURE_REVIEW.md)
-- [Stage 1 report](outputs/sequence-weighting-pilot/results-mechanism-v02/REPORT.md) and
-  [Stage 10 synthesis](outputs/sequence-weighting-stage10/SYNTHESIS_STAGE4_10.md)
-- [v0135 preconditioning result](outputs/sequence-weighting-preconditioning-v0135/results-fresh-preconditioning-v0135-20261005-01/RESULT_AND_DECISION_20261005.md)
-  (numerical audit passed; scientific gates failed) and
-  [v0136 calibration result](outputs/sequence-weighting-compensation-calibration-v0136/results-fresh-compensation-calibration-v0136-20261005-01/RESULT_AND_DECISION_20261005.md)
-  (CALIBRATION_FAILED)
-- [Figure catalogue](figure/INDEX.md), including the
-  [v0136 component and exponent accounting](figure/INDEX.md#descriptive-component-and-exponent-accounting)
-
-## Where this record was built
-
-This repository starts from a single commit of the finished record (version 1.2). The record was built before that in
-another repository, `rafli-hl/sequence-weighting-research`, through reviewed pull requests, and that repository is now
-private. Its full history is archived at [Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/rafli-hl/sequence-weighting-research), including the commits signed by GitHub that
-register N6 and N7 ([`NATURAL_TEXT_STUDIES.md`](NATURAL_TEXT_STUDIES.md) shows how to check them against this
-repository). Historical records link to the old repository; this is where those links lead now:
-
-| Link in a historical record | Where to find it |
+| Level | Status |
 |---|---|
-| The repository itself | This repository, or the archived history |
-| A pull request (`/pull/N`) | The copies in [`github-pr-snapshots-20261111-01`](reports/github-pr-snapshots-20261111-01/README.md) (PR #1, #4, #5, #6) and [`pr3-gh-snapshot-20261104`](reports/natural-text-peak-result-20261103-01/pr3-gh-snapshot-20261104/) (PR #3); PR #3 and PR #5 are also in the Wayback Machine |
-| A commit | `https://archive.softwareheritage.org/swh:1:rev:<full commit hash>` |
-| The v1.0 release | The [v1.2 release](https://github.com/rafli-hl/sequence-weighting/releases/tag/v1.2), which attaches the same bundle with the same SHA-256 |
+| 1. File integrity | Yes: `tools/verify_publication.py` checks every file against [`PUBLICATION_MANIFEST.csv`](PUBLICATION_MANIFEST.csv) |
+| 2. Statistics from published tables | Yes, for every study: per-readout p\* and losses are in each analysis folder's `POINTS.csv` |
+| 3. p\* from released losses | N7 only: from the v1.2 bundle. The earlier studies' per-sequence losses are not published |
+| 4. Losses from model evaluation | No. Natural-text model states were hashed and deleted during the runs, and no model state of any study is published |
+| 5. Training from scratch | Not demonstrated. Code, protocols, seeds, article partitions and data hashes are published, and WikiText is public. The blockers are practical: the corpus files and tokenizer must be rebuilt and checked against their pinned hashes; the sealed launcher and worker run only from the original machine's one-use activation folders and refuse any other GPU, PyTorch or cuDNN version, so they must be adapted; and deterministic algorithms were not enforced, so bit-identical losses are not expected even on the original hardware. No one has attempted it |
 
-Version 1.0 was released in the old repository. Version 1.1 was a version of the files only, with no release of its
-own. Version 1.2 adds the follow-up audit and correction of 12 November and the links above.
+[`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md) lists what is published and what is not, and why.
+
+## Main limitations
+
+1. **Scale and architecture.** At most 34.7 M parameters, on one 4 GB laptop GPU. Width varies at fixed depth 4 and
+   4 heads, so head dimension changes with width. The reference study's models span tens of millions to hundreds of
+   billions of parameters; its regimes are not tested here.
+2. **One recipe.** Batch 16, AdamW, constant learning rate, clipping at norm 1 and log-uniform weights on [0.01, 10].
+   The level of p\* depends on these choices, and two rates were run with no width's best rate located.
+3. **Alignment is not progress.** Every alignment fixes one quantity. At equal training loss inside an epoch, exposure
+   differs between the models, and the exposure-matched comparisons have small sets and low power near equal loss.
+4. **Interpolation.** Matched readings interpolate fitted p\* between readouts a quarter epoch apart. The later-end
+   readings are a sensitivity check, not a bound on the unobserved trajectory. S4's sign depends on this.
+5. **Few draws.** Six draws, df = 5, normality assumed. S3's interval includes 0 when one of two draws is left out.
+   Intervals cover variation in articles, weights and seeds, not the shared tokenizer, pre-training pool, validation
+   set or recipe.
+6. **Registration.** Only N7 was publicly preregistered. N6 was registered publicly after its data existed; the other
+   studies were sealed within the project, and their protocols and all results were published from 9 November 2026,
+   after the runs.
+7. **Post-hoc analyses** were chosen after the results were known; their intervals are not adjusted for that or for
+   multiplicity.
+8. **Review.** Reviews and audits in this record were carried out by AI systems. There has been no independent human
+   review and no independent replication.
+
+Open questions, and what would settle each, are in
+[`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md#open-questions-and-what-would-settle-them).
+
+## Further reading
+
+| To find | Read |
+|---|---|
+| The current claims, their scope and the registered outcomes that did not confirm | [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md) |
+| Data, model, training, estimator, alignments, interpolation, statistics, figures | [`METHODS.md`](METHODS.md) |
+| Every study, with protocols, results, tables and incidents | [`NATURAL_TEXT_STUDIES.md`](NATURAL_TEXT_STUDIES.md) |
+| N7's registration, sealed source and seed registry | [`preregistration/natural-text-matched-confirmation-20261104/`](preregistration/natural-text-matched-confirmation-20261104/README.md) |
+| N7's result, as written when the analysis ran | [`RESULT.md`](reports/natural-text-matched-result-20261105-01/RESULT.md) |
+| The post-hoc exposure analysis | [`natural-text-matched-assistant-posthoc-20261111-01`](reports/natural-text-matched-assistant-posthoc-20261111-01/REPORT.md) |
+| Audits and corrections | [8 November audit](reports/full-audit-20261108-01/AUDIT.md), [12 November audit](reports/follow-up-audit-20261112-01/REPORT.md); corrections of [9](reports/natural-text-correction-20261109-01/CORRECTION.md), [11](reports/natural-text-correction-20261111-01/CORRECTION.md) and [12 November](reports/natural-text-correction-20261112-01/CORRECTION.md) |
+| What is published, and how this copy differs from the local record | [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md), [`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md) |
+| Map of the folders | [`reports/README.md`](reports/README.md), [`outputs/README.md`](outputs/README.md) and the table below |
+
+| Path | Contents |
+|---|---|
+| `preregistration/` | Public registrations of N6 and N7, each with sealed source and seed registry |
+| `work/*-source-*/` | Sealed protocols and source of S, N1 and N3–N5; `work/text-assets/` holds pinned dataset metadata |
+| `reports/` | Seed registries, sealed analyses (`POINTS.csv`, `FITS.csv`, `MATCHED.csv`, `ANALYSIS.json`), results, reviews, audits, corrections |
+| `outputs/`, `figure/`, `migration/` | Earlier synthetic-task studies, their figure catalogue, and an environment lock their scripts read |
+| `docs/` | Figure scripts and figures, drawn from published tables and the N7 bundle |
+| `tools/` | `verify_publication.py`, `verify_n7_losses.py`, `verify_posthoc.py`; run by the workflows in `.github/workflows/` |
+
+Files whose hashes are cited elsewhere are never edited; corrections are dated notes. The history of this copy is in
+[`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md).
+
+### Where this record was built
+
+This repository starts from a single commit of the finished record (version 1.2). The record was built in an earlier
+repository, now private, whose full history, including the GitHub-signed commits that register N6 and N7, is archived at
+[Software Heritage](https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/rafli-hl/sequence-weighting-research).
+Historical records link to the old repository; its pull requests are copied in
+[`github-pr-snapshots-20261111-01`](reports/github-pr-snapshots-20261111-01/README.md) and
+[`pr3-gh-snapshot-20261104`](reports/natural-text-peak-result-20261103-01/pr3-gh-snapshot-20261104/), and its commits
+are at `https://archive.softwareheritage.org/swh:1:rev:<full commit hash>`.
 
 ## Citation
 
@@ -331,12 +315,11 @@ own. Version 1.2 adds the follow-up audit and correction of 12 November and the 
 }
 ```
 
-## License
+## Licence
 
-Code (`*.py`, `*.ps1`, `*.sh`, `*.ipynb`) is licensed under the [MIT licence](LICENSE). Everything else, including
-reports, tables, figures and the loss-array bundle, is licensed under
-[CC BY 4.0](LICENSE-CC-BY-4.0.md). Upstream assets keep their own terms. The text is
-WikiText-2 and WikiText-103 (Merity et al., 2017), from the Hugging Face dataset `Salesforce/wikitext`, whose pinned
-metadata records CC BY-SA 3.0 and GFDL. Stage 1's public-text check used the model `EleutherAI/pythia-70m`
-(Biderman et al., 2023), whose pinned metadata records Apache-2.0. No model weights or dataset rows are included; see
+Code (`*.py`, `*.ps1`, `*.sh`, `*.ipynb`) is under the [MIT licence](LICENSE); everything else, including reports,
+tables, figures and the loss-array bundle, is under [CC BY 4.0](LICENSE-CC-BY-4.0.md). Upstream assets keep their own
+terms: WikiText-2 and WikiText-103 (Merity et al., 2017; Hugging Face dataset `Salesforce/wikitext`, recorded as
+CC BY-SA 3.0 and GFDL) and, for Stage 1's public-text check, `EleutherAI/pythia-70m` (Biderman et al., 2023;
+Apache-2.0). No model weights or dataset rows are included; see
 [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md#public-assets-and-their-terms).

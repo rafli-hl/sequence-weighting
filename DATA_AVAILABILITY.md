@@ -11,7 +11,7 @@ This page says what the repository contains, what it leaves out, and what can be
 - **Results.** Compact CSV and JSON outputs of every sealed analysis (per-readout p\*, losses and fits), results
   reports and their verification records, failure reports, and figures with their backing tables.
 - **Review records.** The adversarial review, the response to it, the owner's design decisions for the natural-text
-  studies, the audit of 8 November 2026 (its report and findings), and the corrections of 9 and 11 November 2026.
+  studies, the audits of 8 and 12 November 2026, and the corrections of 9, 11 and 12 November 2026.
 - **Post-hoc analysis.** The analysis of N7 by training exposure of 11 November 2026: its report, script, exact output
   and per-draw values.
 - **Asset metadata.** Pinned revisions, file names and hashes of the public model and tokenizer
@@ -36,26 +36,43 @@ No external hosting of datasets or checkpoints is offered.
 
 ## What can be reproduced
 
-There are three levels of reproduction. The repository supports the first for every study, and the second for N7:
+Five levels, from the weakest to the strongest:
 
-1. **Statistics from the published tables.** Every reported statistic can be recomputed from the per-readout tables.
-2. **p\* from per-sequence losses.** N7's loss arrays, weights and run records are attached to the v1.2 release, and
-   `tools/verify_n7_losses.py` refits all 240 of its estimates. The earlier studies' arrays are not published.
-   The same bundle supports analyses of N7 by training exposure. The bundle does not record which sequences were
-   trained when, but it holds each draw's seeds, and the sealed source gives the rule that turns them into batch
-   orders. `reports/natural-text-matched-assistant-posthoc-20261111-01/posthoc_exposure.py` regenerates the orders
-   with PyTorch, checks them against the losses, and reproduces the post-hoc analysis.
-3. **Training.** This needs the datasets, model states and run folders, and the original hardware.
+| Level | Possible from this repository | How, or what blocks it |
+|---|---|---|
+| 1. File integrity | Yes | `python tools/verify_publication.py` compares every file with `PUBLICATION_MANIFEST.csv` and checks every local Markdown link (see [Checking the files](#checking-the-files)) |
+| 2. Statistics from the published tables | Yes, for every study | Each analysis folder's `POINTS.csv` holds per-draw, per-readout p\* and losses; N7's `MATCHED.csv` holds each draw's interpolation bracket. See the example in [`README.md`](README.md#reproducing-the-results) |
+| 3. p\* from released per-sequence losses | N7 only | The v1.2 release bundle `n7-loss-arrays-v1.zip`; `tools/verify_n7_losses.py` refits all 240 estimates with NumPy. The earlier studies' per-sequence arrays are not published |
+| 4. Losses from model evaluation | No | Each natural-text model state was hashed and then deleted during its run (each protocol's stage rule), and no model state of any study is published, so no model can be evaluated again |
+| 5. Training from scratch | Not demonstrated | See below |
 
+Level 3 also covers analyses of N7 by training exposure. The bundle does not record which sequences were trained when,
+but it holds each draw's seeds, and the sealed source gives the rule that turns them into batch orders.
+`reports/natural-text-matched-assistant-posthoc-20261111-01/posthoc_exposure.py` regenerates the orders with PyTorch,
+stops if they do not match the losses, and reproduces the post-hoc analysis; `tools/verify_posthoc.py` reruns it with
+the versions pinned in `tools/requirements-posthoc.txt` and compares every per-draw value with `RESULTS.json`. The
+orders are regenerated, not recorded: the bundle holds no hash of them. Self-contained fixtures such as
+`outputs/sequence-weighting-pilot/core_checks.py` need only the standard library; fixtures that import PyTorch need
+the environment.
 
-| Task | Possible from this repository |
-|---|---|
-| Read the code, protocols and reported outcomes | Yes |
-| Recompute every reported statistic from the per-readout tables | Yes. See the example in [`README.md`](README.md#reproducing-the-results) |
-| Run the self-contained mathematical fixtures, such as `outputs/sequence-weighting-pilot/core_checks.py` | Yes. `core_checks.py` needs only the standard library; fixtures that import PyTorch need the environment |
-| Recompute p\* from per-sequence losses | For N7, yes: from the v1.2 release bundle with `tools/verify_n7_losses.py`. For the earlier studies, no |
-| Recompute p\* for subsets of N7's sequences defined by when they were trained | Yes, with NumPy and PyTorch: `posthoc_exposure.py` regenerates the batch orders from the seeds in the bundle and stops if they do not match the losses. The orders are regenerated, not recorded: the bundle holds no hash of them. `tools/verify_posthoc.py` reruns the analysis with the versions pinned in `tools/requirements-posthoc.txt` and compares every per-draw value with `RESULTS.json`; the `verify-posthoc` workflow runs it |
-| Retrain any model and reproduce a result bit for bit | No. Datasets must be fetched, and states, run folders and the original hardware are not available |
+**Training from scratch.** Missing checkpoints do not by themselves prevent retraining: the protocols, sealed source,
+hyperparameters, seed registries, article partitions (`PARTITION.json`) and the hashes of the data and tokenizer are
+published, and WikiText is public. What stands in the way:
+
+- **The corpus files.** The tokenizer, the corpus manifest and the tokenized sequence files are not published. They
+  would have to be rebuilt from the pinned WikiText rows with the sealed acquisition code (it ran under WSL with
+  `tokenizers` 0.21.4) and checked against the pinned hashes, for example the tokenizer's SHA-256 in
+  `acquire_plan.py`.
+- **The launch guards.** The sealed worker runs only from a one-use activation folder bound to an approval record and to
+  the hashes of the original corpus manifest, registries and partition; the Windows launcher names the original
+  machine's paths; and `text_framework_setup.py` refuses any Python, PyTorch, CUDA or cuDNN version or GPU model other
+  than those in `ORIGINAL_ENVIRONMENT.json`. A retraining needs an adapted copy of this code, which would then no
+  longer be the sealed source.
+- **Numerics.** Deterministic algorithms were not enforced, so losses are not expected to be bit-identical even on the
+  original hardware. A retraining would be a replication, compared with the published values within a tolerance that
+  has not been set.
+
+No one has attempted a retraining, and no runtime or memory figures beyond the original hardware are recorded.
 
 Scripts that read saved run directories need those original inputs. Some scripts also contain the original machine's
 absolute paths and must be edited before use.

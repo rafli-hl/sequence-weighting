@@ -1,0 +1,31 @@
+$ python reports/readme-revision-20261113-01/describe_fits.py
+fits: 240; defined: 240; undefined reasons: none
+at the lower bound: 0; at the upper bound: 0
+fitted exponent: 0.0384 to 0.1489
+objective at the fit / objective at p = 0: median 0.053, range 0.029 to 0.076
+fraction of sequences with negative gain: 0.0000 to 0.0394
+total gain (nats, summed over 16,384 sequences): smallest 6027
+
+$ python reports/readme-revision-20261113-01/matched_set_weights.py path/to/n7-loss-arrays   # NumPy 2.5.3, PyTorch 2.7.0
+draw  k   whole-draw median log10 w   512 set: n, median   768 set: n, median
+m01   1   -0.682                      247, -0.809          263, -0.653
+m01   2   -0.682                     2018, -0.656         2048, -0.653
+m01   3   -0.682                     6901, -0.660         6913, -0.699
+m02   1   -0.651                      272, -0.694          263, -0.627
+m02   2   -0.651                     2042, -0.640         2050, -0.647
+m02   3   -0.651                     6893, -0.648         6903, -0.657
+m03   1   -0.672                      249, -0.771          226, -0.627
+m03   2   -0.672                     2078, -0.655         2062, -0.663
+m03   3   -0.672                     6910, -0.678         6901, -0.667
+m04   1   -0.663                      238, -0.643          262, -0.697
+m04   2   -0.663                     2049, -0.681         2116, -0.700
+m04   3   -0.663                     6883, -0.667         6897, -0.664
+m05   1   -0.663                      245, -0.757          252, -0.724
+m05   2   -0.663                     2048, -0.629         2028, -0.671
+m05   3   -0.663                     6903, -0.657         6892, -0.671
+m06   1   -0.661                      232, -0.713          247, -0.589
+m06   2   -0.661                     2035, -0.653         2036, -0.658
+m06   3   -0.661                     6931, -0.674         6901, -0.644
+k = 1: set sizes 226-272; largest |median log10 w (set) - median log10 w (draw)| = 0.127
+k = 2: set sizes 2018-2116; largest |median log10 w (set) - median log10 w (draw)| = 0.037
+k = 3: set sizes 6883-6931; largest |median log10 w (set) - median log10 w (draw)| = 0.022

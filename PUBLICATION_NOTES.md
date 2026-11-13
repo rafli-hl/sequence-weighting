@@ -12,7 +12,7 @@ made and how it has changed, newest first.
   - Markdown reports from the initial publication translated into English.
 
   The first two kinds are mapped in [`PUBLICATION_TRANSFORMATIONS.json`](PUBLICATION_TRANSFORMATIONS.json).
-- **Root pages.** The four root pages (`README.md`, `NATURAL_TEXT_STUDIES.md`, `DATA_AVAILABILITY.md` and this file),
+- **Root pages.** The root pages (`README.md`, `METHODS.md`, `NATURAL_TEXT_STUDIES.md`, `DATA_AVAILABILITY.md` and this file),
   the two folder maps (`reports/README.md`, `outputs/README.md`), `CURRENT_CLAIMS.md`, `CITATION.cff`, the licence
   files, the two workflows, and the files in `docs/` and `tools/` are written for the publication copy. The root pages
   replace the local operational pages.
@@ -22,8 +22,50 @@ made and how it has changed, newest first.
   are limited to syntax, imports, links and bounded scans for credentials and personal paths, which cannot guarantee
   that no private information remains. The exceptions are dated below: the automated checks of versions 1.0 and 1.1,
   which run the estimator fixture and refit published data, the post-hoc analysis of 11 November, and the re-check of
-  the follow-up audit of 12 November.
+  the follow-up audit of 12 November, and the checks and two descriptive summaries of 13 November.
 - **Licence.** From 9 November 2026: MIT for code; CC BY 4.0 for everything else (`LICENSE`, `LICENSE-CC-BY-4.0.md`).
+
+## 13 November 2026: README and methods revised (documentation only, unreleased)
+
+An editorial and scientific revision of the living pages. No study, registered rule, label, sealed file, historical
+record or published number changed, and no hash cited elsewhere changed. Changes:
+
+- **`README.md` restructured** as an entry point: the question; the main finding with its qualifications; N7's
+  paired-contrast figure; the registered results with their sensitivity analyses (leave-one-draw-out, later bracket
+  end, the E0 offset, weight range, exposure matching, learning rate); the setup and an operational definition of p\*;
+  reproduction; five reproducibility levels; limitations; links. Removed or corrected: "the complete record" (some
+  artefacts are not published); "every figure and number below is a measured result" (some values are interpolated or
+  derived); "only the first kind is a test of a hypothesis"; "p\* grows over training at every size" (some paths dip
+  or fall); "at every training budget" (now limited to the evaluated readouts); "a higher p\* than it started with"
+  (now: last readout against first readout); "parameter counts are exact" beside rounded values (exact counts are now
+  given); "only the width changes" (head dimension, embedding and feed-forward sizes change with width); a causal
+  "which is why" in a post-hoc caption; and the "Strong" evidence label. The reference study's report that more epochs
+  move the peak to smaller sizes is now credited to it, and the README no longer presents that pattern as a finding of
+  this record.
+- **`METHODS.md` added.** It gathers material moved out of the README, with corrections: each study's registration
+  type; data, splits and overlap rules; the full model and training specification (exact parameter counts, weights
+  rescaled to mean 1, clipping of the summed gradient, the original environment); the estimator, its guards, checks and
+  interpretation; alignments and baselines; what is interpolated (fitted p\*, not losses); the statistics; a corrected
+  comparison with the reference study; and the descriptive figures with corrected captions.
+- **New descriptive summaries, post hoc.** `reports/readme-revision-20261113-01/` holds two scripts and their output:
+  `describe_fits.py` summarises N7's `FITS.csv` (no fit undefined or at a bound; objective at the fit 2.9–7.6% of its
+  value at p = 0; negative gains for at most 3.9% of sequences), and `matched_set_weights.py` gives the sizes and weight
+  medians of the exposure-matched sets of 11 November. They test nothing and move no label.
+- **`CURRENT_CLAIMS.md`:** the paragraph on batch-relative weighting now says that clipping rescales the summed gradient
+  and is not equivalent to normalising weights by their batch sum; C1–C3's status reads "sealed by hash within the
+  project before the runs, not publicly preregistered"; "No further runs are authorised" now says the record is closed
+  and that this restricts no one else; a broken README anchor is fixed.
+- **`NATURAL_TEXT_STUDIES.md`:** the same closing sentence, and a note that internally sealed protocols were not public
+  until 9 November. **`DATA_AVAILABILITY.md`:** five reproducibility levels and the practical blockers to retraining
+  (corpus files, launch guards, numerics); the list of review records now includes 12 November.
+- **Figures.** `docs/make_results_figures.py` labels its footnote "Fitted at evaluated readouts only" instead of
+  "Measured results", and spaces the panels of `pstar-vs-training` so that labels no longer overlap; its four figures
+  were redrawn. The plotted values are unchanged.
+- **The `verify` workflow** runs the README's example as now written, which follows the registered reading rule for
+  flat intervals and unavailable draws; its output and assertion are unchanged apart from the added draw count.
+- **Checks run** on this copy: `tools/verify_publication.py`, `core_checks.py`, the README example,
+  `tools/verify_n7_losses.py` and `tools/verify_posthoc.py` on the v1.2 bundle. Results are in
+  `reports/readme-revision-20261113-01/CHECKS.md`.
 
 ## 12 November 2026: version 1.2, prepared for the final repository
 

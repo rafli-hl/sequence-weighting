@@ -35,17 +35,22 @@ jobs:
           P = {(r["draw"], float(r["epoch"]), int(r["width"]), r["tag"]): r for r in rows}
           draws, rate = sorted({k[0] for k in P}), "lr1e-04"
           path = [e for e in sorted({k[1] for k in P}) if 2.0 <= e <= 3.5]
-          def p1(d):
-              target = float(P[(d, 3.0, 512, rate)]["train"])
+          def read_768(target, d):
               pts = [(float(P[(d, e, 768, rate)]["train"]), float(P[(d, e, 768, rate)]["p"])) for e in path]
               for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
                   if min(x0, x1) <= target <= max(x0, x1):
-                      return float(P[(d, 3.0, 512, rate)]["p"]) - (y0 + (target - x0) / (x1 - x0) * (y1 - y0))
-          v = [p1(d) for d in draws]
+                      return y0 if x1 == x0 else y0 + (target - x0) / (x1 - x0) * (y1 - y0)
+              return None
+          v = []
+          for d in draws:
+              p768 = read_768(float(P[(d, 3.0, 512, rate)]["train"]), d)
+              if p768 is not None:
+                  v.append(float(P[(d, 3.0, 512, rate)]["p"]) - p768)
+          assert len(v) >= 5, "fewer than five draws: P1 would be UNAVAILABLE"
           half = 2.5706 * st.stdev(v) / math.sqrt(len(v))
-          out = f"{st.mean(v):+.5f} [{st.mean(v) - half:+.5f}, {st.mean(v) + half:+.5f}]"
+          out = f"{st.mean(v):+.5f} [{st.mean(v) - half:+.5f}, {st.mean(v) + half:+.5f}], n = {len(v)}"
           print("P1 =", out)
-          assert out == "+0.00909 [+0.00400, +0.01417]", out
+          assert out == "+0.00909 [+0.00400, +0.01417], n = 6", out
           PY
 
   loss-arrays:

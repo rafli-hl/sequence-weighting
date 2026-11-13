@@ -21,7 +21,9 @@ All models are decoder-only Transformers of depth 4 and width at most 768 (at mo
 to hundreds of billions of parameters. This work is therefore a small-scale methodological study of the estimator p\*
 under training-progress and learning-rate confounds, not a replication.
 
-"Pre-registered" in these records means specified and sealed by hash within the project before the data existed.
+"Pre-registered" in these records means specified and sealed by hash within the project before the data existed;
+such protocols were not public until the record was published, from 9 November 2026. [`METHODS.md`](METHODS.md)
+tabulates how each study was registered.
 Two studies were also registered publicly. N6 was registered only after its data existed (see
 [PR #3](reports/natural-text-peak-result-20261103-01/pr3-gh-snapshot-20261104/) and
 [`NOTE_PUBLIC_REGISTRATION_EDITS.md`](reports/natural-text-peak-result-20261103-01/NOTE_PUBLIC_REGISTRATION_EDITS.md)).
@@ -175,7 +177,7 @@ capacity mechanism, and nothing about the reference study's scale follows. Open 
 - the learning rates: two were run, and no width's best rate is located.
 
 [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md#open-questions-and-what-would-settle-them) lists what would settle each. No
-further runs are authorised.
+further runs will be added to this record; that is not a restriction on anyone else.
 
 ## Not included
 
