@@ -4,15 +4,20 @@ When each training sequence carries a weight in the loss, the fitted exponent p\
 reduction is allocated across those weights. This record asks a narrow question about comparing p\* across model
 sizes: **does the order of two widths depend on how they are aligned, at equal updates or at equal training loss?** It
 contains small decoder-only Transformers (0.73 M–34.7 M parameters) trained on WikiText-2 and WikiText-103, and one
-study, N7, whose protocol was published before any of its runs.
+study, N7, whose protocol was published before any of its runs. Beside it is N8, a dense-readout replication of
+N7: its protocol and sealed source were registered publicly before any of its runs; its runs have not started, and it
+has no results yet.
 
-**Status:** closed research record. Latest release: [v1.2](https://github.com/rafli-hl/sequence-weighting/releases/tag/v1.2)
-(12 November 2026). The README and methods were revised on 13 November 2026; no result, label or sealed file changed
+**Status:** research record. It was closed after N7 and reopened on 14 November 2026 for one registered study, N8
+([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)). Latest release:
+[v1.2](https://github.com/rafli-hl/sequence-weighting/releases/tag/v1.2) (12 November 2026). The README
+and methods were revised on 13 November 2026; no result, label or sealed file changed
 ([`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md)).
 
 [Current claims](CURRENT_CLAIMS.md) · [Methods](METHODS.md) · [Studies](NATURAL_TEXT_STUDIES.md) ·
 [N7 preregistration](preregistration/natural-text-matched-confirmation-20261104/README.md) ·
-[N7 result](reports/natural-text-matched-result-20261105-01/RESULT.md) · [Data availability](DATA_AVAILABILITY.md)
+[N7 result](reports/natural-text-matched-result-20261105-01/RESULT.md) · [N8 preregistration](preregistration/natural-text-dense-replication-20261114/README.md) ·
+[Data availability](DATA_AVAILABILITY.md)
 
 ## Main finding
 

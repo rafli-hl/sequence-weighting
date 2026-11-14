@@ -25,6 +25,29 @@ made and how it has changed, newest first.
   the follow-up audit of 12 November, and the checks and two descriptive summaries of 13 November.
 - **Licence.** From 9 November 2026: MIT for code; CC BY 4.0 for everything else (`LICENSE`, `LICENSE-CC-BY-4.0.md`).
 
+## 14 November 2026: N8 registered (the record reopened)
+
+The record is reopened for one study, N8, a dense-readout replication of N7 on 24 fresh WikiText-103 draws. Its
+protocol, sealed source and seeds are published before any of its runs, in
+[`preregistration/natural-text-dense-replication-20261114/`](preregistration/natural-text-dense-replication-20261114/README.md).
+No study, registered rule, label or sealed file of N1–N7 changed, and no hash cited elsewhere changed. Changes:
+
+- **Added:** the N8 folder, 74 files. 72 are byte-for-byte copies of the local study folder, at their relative paths,
+  and `HASHES.json` binds them. The folder's `README.md` and `.gitattributes` are written for this copy. The
+  `.gitattributes` turns off line-ending conversion in the folder, because three sealed files, byte copies of N7's,
+  have CRLF line endings that a conversion would change.
+- **Not published:** N7's loss arrays and regenerated batch orders, which N8's analysis tests read (the arrays are the
+  v1.2 release's `n7-loss-arrays-v1.zip`); the owner's draw command; and the retired test of the draw command.
+  `HASHES.json` names each by hash. The draw command and its test hold a local home path, so they are left out rather
+  than redacted, which would change their hashes. The owner's pilot command holds none, and is published.
+- **Runs:** none for this copy. N8's pilot (13 November) and seed draw (14 November) ran on the research machine
+  before the copy was made; their records are in the folder.
+- **Living pages:** `README.md`, `CURRENT_CLAIMS.md` and `NATURAL_TEXT_STUDIES.md` no longer say that no further runs
+  will be added; each carries a dated note that the record is reopened for N8, and `README.md` names N8 beside N7.
+  `reports/README.md` says where N8's protocol and source are. `CITATION.cff` is set to version 2.0, released
+  15 November 2026.
+- **Checks run** on this copy: `tools/verify_publication.py`.
+
 ## 13 November 2026: README and methods revised (documentation only, unreleased)
 
 An editorial and scientific revision of the living pages. No study, registered rule, label, sealed file, historical
