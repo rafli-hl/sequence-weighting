@@ -214,8 +214,9 @@ own result. All figures reproduce from the published tables (follow-up audit, EA
 
 ## Open questions, and what would settle them
 
-This record is closed: no further runs will be added to it. That is not a restriction on anyone else. Model states were
-deleted, so each item that needs readouts needs a new study.
+This record was closed after N7. On 14 November 2026 it was reopened for one registered study, N8, a dense-readout
+replication of N7 on fresh draws ([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)), which has no results yet.
+That is not a restriction on anyone else. Model states were deleted, so each item that needs readouts needs a new study.
 
 | Question | What would settle it | What would not |
 |---|---|---|

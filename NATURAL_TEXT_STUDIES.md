@@ -176,8 +176,10 @@ capacity mechanism, and nothing about the reference study's scale follows. Open 
   determined;
 - the learning rates: two were run, and no width's best rate is located.
 
-[`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md#open-questions-and-what-would-settle-them) lists what would settle each. No
-further runs will be added to this record; that is not a restriction on anyone else.
+[`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md#open-questions-and-what-would-settle-them) lists what would settle each. The
+record was closed after N7; on 14 November 2026 it was reopened for one registered study, N8, a dense-readout
+replication of N7 on fresh draws ([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)), which has no results yet.
+That is not a restriction on anyone else.
 
 ## Not included
 

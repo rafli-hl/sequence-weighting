@@ -1,0 +1,18 @@
+{
+  "approval_id": "OWNER-20261114-N8-SEEDS-01",
+  "corpus_manifest_path": "D:\\sequence-weighting-research\\work\\runs\\natural-text-corpus-wt103-20261101-01\\CORPUS_MANIFEST.json",
+  "disclosure_script_sha256": "81def4810a31ccdbd710aa68ec895fd39ec6777a6d0aac5912f6777e7fd5bd85",
+  "draw_script_sha256": "7eb284b11d8118ea3478924e23b925e533c95b9dde7d6f34707cd4b6ada05c0d",
+  "finished_local": "2026-11-14 01:09:29",
+  "guard": {
+    "manifest_reads": 4,
+    "stopped_at": null
+  },
+  "partition_sha256": "15c1d59876fa0c09b5e34c62f1d0ed278db37c69c878667142da1b297183f42a",
+  "post_draw_all_pass": true,
+  "purpose": "The owner-run seed draw of N8: what ran, and what the hook saw",
+  "python": "3.12.10",
+  "registry_sha256": "7628c80950fe14e130336909d3fb995fa35dcad3f836d2fd90ddd8071c96fd3e",
+  "schema": 1,
+  "source_subject_sha256": "9209b566d3a7a97b54b079aaea6ec5d72ab0e0178755e9b6c8260f980dc57986"
+}

@@ -1,0 +1,60 @@
+{
+ "assigned_articles": {
+  "all": 13511,
+  "n5_and_n6": 11099,
+  "n7": 2412
+ },
+ "corpus_manifest_sha256": "be911db7a63238a205fc74c5732f78431befd61ba7d26af48202a31163df39ea",
+ "draws": 24,
+ "fits_whatever_the_shuffle": true,
+ "kind": "N8 fresh-pool count (step 3)",
+ "largest_fresh_article_sequences": 328,
+ "mean_sequences_per_fresh_article": 41.49889593275874,
+ "n7_pool_matches_its_registry": true,
+ "n7_pool_recount": {
+  "articles_sha256": "c84ef5ecdbdfa36fa86d6474e2d24bd8fa7d07e07a02576002241d043d7b1a44",
+  "assigned_articles": 11099,
+  "eligible_articles": 27859,
+  "fresh_articles": 16451,
+  "fresh_sequences": 681075,
+  "removed_repeats_inside_the_pool": 215,
+  "removed_text_duplicates_of_assigned": 94,
+  "sets_of_repeats_inside_the_pool": 107,
+  "unused_articles": 16760
+ },
+ "n8_fresh_pool": {
+  "articles_sha256": "c6762dd7fa53e361e95eaa38ae2ab9b71baae8ab5fa995f0382ef1fe4fc58c5a",
+  "assigned_articles": 13511,
+  "eligible_articles": 27859,
+  "fresh_articles": 14039,
+  "fresh_sequences": 582603,
+  "removed_repeats_inside_the_pool": 215,
+  "removed_text_duplicates_of_assigned": 94,
+  "sets_of_repeats_inside_the_pool": 107,
+  "unused_articles": 14348
+ },
+ "n8_pool_is_n7_pool_less_n7_articles": true,
+ "n_train": 16384,
+ "partition_pins": {
+  "few": "ccba750a3201fa4e390f1e00b408256c2cbcf02894a3145d10a5fe3133bee119",
+  "n7": "b7eb3d3ba200b86046c6d731d2f0200ff657b6c2aaeebd43423cd4aec530e33b",
+  "peak": "3ba24bff0c38612d7d1751505edf8c5e02e9a98e46ff24165195c1199571ab85"
+ },
+ "registries_sha256": {
+  "few": "75db913de7b1860cd269ce262144859334b61e8248ebad5c00b47caaa60106af",
+  "n7": "bee578826fbdb5e66fbb36d577e45929af756e05b12b62d6cd141b4b5da7ea64",
+  "peak": "0e8b05285a6ad98a32a2041f0907e423c9c8d85fa6408e6a90be9acfb8c326dd"
+ },
+ "schema": 1,
+ "sequences_needed": 393216,
+ "sequences_needed_whatever_the_shuffle": 401064,
+ "source_sha256": {
+  "fewepoch_data.py": "ac7ef04d9e80421fe6416c7bb217c07cafc2afc0df6c8d95fe572f0e087f245d",
+  "matched_data.py": "1f9b8d322462de6ee265d24775f8850acef64e2bb573c34c030ad1ebbb4f2de3",
+  "n7_matched_data.py": "b634f4b74157d1270e257434ab1624e801389b794109e278c33fbec8afdcb481",
+  "peak_data.py": "7557f326609bbd398663e6c97ca170588b89dc39fc924208b31ea8ebfd3c07c7",
+  "text_data.py": "0caa3cabe3a60a7b6bb0b08ce327a4bf96e8ef7adedbe1efe60de02e6b7d2e5d",
+  "wt103_corpus.py": "9c76eec785d54e5044fe5ffaa68f809b1806b21039b6f9879fd136ad6da174d1"
+ },
+ "tool_sha256": "c8bd9a590a74588385e36078fb2f37c88a50be51cc45f11e6dfa02d4b0c20b64"
+}

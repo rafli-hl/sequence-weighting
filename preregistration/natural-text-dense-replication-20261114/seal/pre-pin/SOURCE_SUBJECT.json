@@ -1,0 +1,227 @@
+{
+  "bound_records": {
+    "reports/natural-text-fewepoch-seed-registry-20261101-01/REGISTRY.json": "75db913de7b1860cd269ce262144859334b61e8248ebad5c00b47caaa60106af",
+    "reports/natural-text-matched-analysis-20261105-01/ANALYSIS.json": "a4af7bad78fdf9f4fe34317f73e6a1932fd0d29367b5da188b79ae73db95ce65",
+    "reports/natural-text-matched-seed-registry-20261104-01/REGISTRY.json": "bee578826fbdb5e66fbb36d577e45929af756e05b12b62d6cd141b4b5da7ea64",
+    "reports/natural-text-peak-analysis-approval-20261103-01/pinned-records/LR_SELECTION.json": "fa760ba0d693518ba1b98a40f366899ebec3a013ff03863284a3ac2c32b5ad01",
+    "reports/natural-text-peak-seed-registry-20261103-01/REGISTRY.json": "0e8b05285a6ad98a32a2041f0907e423c9c8d85fa6408e6a90be9acfb8c326dd"
+  },
+  "byte_copies_of_n7_source": {
+    "GPU_CHECK.json": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "ORIGINAL_ENVIRONMENT.json": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "a1_download.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "a2_rows.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "acquire_common.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "acquire_plan.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "fewepoch_analysis.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "fewepoch_data.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "fewepoch_plan.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "fewepoch_registry.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "fewepoch_worker.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "gpu_check.ps1": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "peak_data.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "power_gate.ps1": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "text_analysis.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "text_data.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "text_engine.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "text_framework_setup.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "text_model.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "text_plan.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "text_registry.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "text_worker.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "vendor/core.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "wt103_corpus.py": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56"
+  },
+  "byte_copy_of_n7_matched_data": {
+    "n7_path": "matched_data.py",
+    "n7_subject": "7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56",
+    "path": "n7_matched_data.py"
+  },
+  "changed_from_n7": [
+    "matched_plan.py",
+    "matched_data.py",
+    "matched_registry.py",
+    "matched_worker.py",
+    "MATCHED_OWNER_RUN.ps1",
+    "README.md"
+  ],
+  "disabled_authorization_sha256": "7b862b6d77e0f8040ecc91ad762a23d4307d6de5ca8fed29cfe048103b6d20b8",
+  "dropped_from_n7": [
+    "matched_analysis.py",
+    "PROTOCOL.md"
+  ],
+  "files": [
+    {
+      "bytes": 842,
+      "path": "GPU_CHECK.json",
+      "sha256": "f492d8390c167b10b27c02a825589685d112ce4770cef189f083b2452d031254"
+    },
+    {
+      "bytes": 13529,
+      "path": "MATCHED_OWNER_RUN.ps1",
+      "sha256": "acb4105df83d5ed3db97df4a6369c16595a1247241d68ea9383f3c46425835fb"
+    },
+    {
+      "bytes": 1402,
+      "path": "ORIGINAL_ENVIRONMENT.json",
+      "sha256": "1135b25931539053ee092fbe8160b04b389004d0551d814abd29823be76659fa"
+    },
+    {
+      "bytes": 2559,
+      "path": "README.md",
+      "sha256": "8b79735a7dd14037b94b57386bc76b4adebef31870041dcd75f94414cd06310b"
+    },
+    {
+      "bytes": 7380,
+      "path": "a1_download.py",
+      "sha256": "26823ddd98054ef989ca452228fe1d3b8ca36791cce52283d397bc3a9580dd90"
+    },
+    {
+      "bytes": 6850,
+      "path": "a2_rows.py",
+      "sha256": "e6bb7d6e64c61d68bd7729c9508d9c0d0d5a6b69ebc9362c50447f80215bc8e1"
+    },
+    {
+      "bytes": 3763,
+      "path": "acquire_common.py",
+      "sha256": "aebc39d47460591cb49707b3f04ab3bdb43f039258a80526000dc088ee933e90"
+    },
+    {
+      "bytes": 4180,
+      "path": "acquire_plan.py",
+      "sha256": "5752be05713ca2fb7839497218151be04e1bb400adce1891c4967932793acbff"
+    },
+    {
+      "bytes": 27977,
+      "path": "fewepoch_analysis.py",
+      "sha256": "fab5df60ab9d0acb66de225d3e04eb23b3ad442becaa5562d6a1d421ba63402b"
+    },
+    {
+      "bytes": 3039,
+      "path": "fewepoch_data.py",
+      "sha256": "ac7ef04d9e80421fe6416c7bb217c07cafc2afc0df6c8d95fe572f0e087f245d"
+    },
+    {
+      "bytes": 6907,
+      "path": "fewepoch_plan.py",
+      "sha256": "1b943a554c396570277f186f515369e86286f37eb8cc010c684c689027d52e34"
+    },
+    {
+      "bytes": 14128,
+      "path": "fewepoch_registry.py",
+      "sha256": "6ba3314a89e3a63fa6e3abb0a7fab7b2d429820260eb7121533ee7c46d89f557"
+    },
+    {
+      "bytes": 34875,
+      "path": "fewepoch_worker.py",
+      "sha256": "b0f71fbc45df405aa74678ef9a9ca50120645d2fbe964119ae3024cf0fd198a1"
+    },
+    {
+      "bytes": 9015,
+      "path": "gpu_check.ps1",
+      "sha256": "e51669cb4f18dec918ce9db947a8c8b223bb203a2773ba9c448542294d99840f"
+    },
+    {
+      "bytes": 5428,
+      "path": "matched_data.py",
+      "sha256": "1f9b8d322462de6ee265d24775f8850acef64e2bb573c34c030ad1ebbb4f2de3"
+    },
+    {
+      "bytes": 4368,
+      "path": "matched_plan.py",
+      "sha256": "7fd34874b45e42e3dd8efe7d2cd61e8df40290f0851da4a48fa5914f776f820c"
+    },
+    {
+      "bytes": 19836,
+      "path": "matched_registry.py",
+      "sha256": "690586a7459c74db0f6cd7bbf946d68bb1f436b7c77380ce164b7b92186f4207"
+    },
+    {
+      "bytes": 30934,
+      "path": "matched_worker.py",
+      "sha256": "362734d06555ea98e67ad49bd001f7f89b98587376804be3bfd548d4e1d3f457"
+    },
+    {
+      "bytes": 5163,
+      "path": "n7_matched_data.py",
+      "sha256": "b634f4b74157d1270e257434ab1624e801389b794109e278c33fbec8afdcb481"
+    },
+    {
+      "bytes": 5705,
+      "path": "peak_data.py",
+      "sha256": "7557f326609bbd398663e6c97ca170588b89dc39fc924208b31ea8ebfd3c07c7"
+    },
+    {
+      "bytes": 8515,
+      "path": "power_gate.ps1",
+      "sha256": "53b882b297392f633ce9b9d19670d677e25ff39aba43af04242cc46d4ddee971"
+    },
+    {
+      "bytes": 33519,
+      "path": "text_analysis.py",
+      "sha256": "f53cf877b57ea424f49dffd13212bfecc713d0019c75ebf7c3d2179a9645f07f"
+    },
+    {
+      "bytes": 5606,
+      "path": "text_data.py",
+      "sha256": "0caa3cabe3a60a7b6bb0b08ce327a4bf96e8ef7adedbe1efe60de02e6b7d2e5d"
+    },
+    {
+      "bytes": 2607,
+      "path": "text_engine.py",
+      "sha256": "c94b60af0577141da2693724369282e40aaada42ef6fed1dc1156caf0eb3c722"
+    },
+    {
+      "bytes": 1888,
+      "path": "text_framework_setup.py",
+      "sha256": "4a502d067022e1d943943e0a8b8469d895d158f5e46c18f49f99b6744ac0605f"
+    },
+    {
+      "bytes": 2004,
+      "path": "text_model.py",
+      "sha256": "619d83285dab6008f1f11381173b69ef745f62bc660796e5f2d54c196a01ba9e"
+    },
+    {
+      "bytes": 5786,
+      "path": "text_plan.py",
+      "sha256": "99f6e484c093ef7410e452f3518b0fc86bf174f309e1aefdbbf5441c32f1b343"
+    },
+    {
+      "bytes": 11833,
+      "path": "text_registry.py",
+      "sha256": "1ea87bb7c4bf328b084d3622117674d3753dfb965e90f6143ec280631be41464"
+    },
+    {
+      "bytes": 43215,
+      "path": "text_worker.py",
+      "sha256": "4a1ef8e847ae907273778d76b9214050b9c179964aa5f0567f19c5d79427cf37"
+    },
+    {
+      "bytes": 3657,
+      "path": "vendor/core.py",
+      "sha256": "f9320bae147f01bc8da1747a85f7ee45c7797da2e977147775a1089e30285a0c"
+    },
+    {
+      "bytes": 15289,
+      "path": "wt103_corpus.py",
+      "sha256": "9c76eec785d54e5044fe5ffaa68f809b1806b21039b6f9879fd136ad6da174d1"
+    }
+  ],
+  "has_run": false,
+  "kind": "dense-readout replication source, N8 (WikiText-103, widths 512 and 768 at 1e-4, 3.5 epochs, readouts every 64 updates from update 2,048 to 3,584; H1 and H2)",
+  "new_files": [
+    "n7_matched_data.py"
+  ],
+  "pins_pending": true,
+  "runtime_authorized": false,
+  "schema": 1,
+  "seed_registry_and_partition": {
+    "draw_sha256": null,
+    "exclusions_sha256": null,
+    "partition_sha256": null,
+    "policy_sha256": "6dde3e233abaa644df4a04df364542f42e67e57a97418faea17dc2e4d6209943",
+    "registry_sha256": null,
+    "status": "PENDING_OWNER_DRAW"
+  },
+  "status": "SEALED_DISABLED"
+}

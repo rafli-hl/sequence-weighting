@@ -1,0 +1,467 @@
+{
+ "schema": 1,
+ "purpose": "Post-draw checks and disclosure of the N8 seed draw (the brief, step 5). Outcome-blind; from the corpus manifest only.",
+ "fixture": false,
+ "all_pass": true,
+ "checks": {
+  "no REGISTRY_STOPPED.json": {
+   "ok": true
+  },
+  "validate() re-derives the registry from its own bytes, under the pins": {
+   "ok": true
+  },
+  "registry: FROZEN_DRAWN, the frozen policy, the manifest, and the three earlier registries and partitions": {
+   "ok": true
+  },
+  "claim: this approval, the same policy and manifest": {
+   "ok": true,
+   "detail": "OWNER-20261114-N8-SEEDS-01"
+  },
+  "every registry-source hash in the claim and the registry equals the source": {
+   "ok": true
+  },
+  "98 distinct values, each more than 2,048 from every exclusion and each other; every N5, N6 and N7 value and the five pilot seeds excluded": {
+   "ok": true,
+   "detail": {
+    "nearest_exclusion": 37913,
+    "nearest_other_role": 112876,
+    "exclusions": 4370,
+    "unreadable_in_the_closed_record": 515,
+    "census": 4365
+   }
+  },
+  "the study folder's census: this folder, read in full": {
+   "ok": true,
+   "detail": {
+    "root": "D:\\sequence-weighting-n8",
+    "json_files_with_values": 3,
+    "values": 36
+   }
+  },
+  "the sealed rule re-derives the draw's own PARTITION.json, and the registry records its hash": {
+   "ok": true,
+   "detail": "15c1d59876fa0c09b5e34c62f1d0ed278db37c69c878667142da1b297183f42a"
+  },
+  "matched_data.disjoint passes on the partition": {
+   "ok": true
+  },
+  "an independent implementation from the policy text gives the same draws, with N7's articles from N7's own PARTITION.json": {
+   "ok": true,
+   "detail": {
+    "fresh_articles": 14039,
+    "n7_partition_sha256": "b7eb3d3ba200b86046c6d731d2f0200ff657b6c2aaeebd43423cd4aec530e33b"
+   }
+  },
+  "the fresh pool has the size N7's draw left unused": {
+   "ok": true,
+   "detail": {
+    "expected": 14039,
+    "fresh_articles": 14039
+   }
+  },
+  "the fresh pool equals the owner's count of 13 November and the registry's record: articles, sequences and the list's hash": {
+   "ok": true,
+   "detail": {
+    "articles": 14039,
+    "sequences": 582603
+   }
+  },
+  "24 draws of exactly N sequences": {
+   "ok": true,
+   "detail": {
+    "n01": {
+     "articles": 395,
+     "sequences": 16384
+    },
+    "n02": {
+     "articles": 415,
+     "sequences": 16384
+    },
+    "n03": {
+     "articles": 388,
+     "sequences": 16384
+    },
+    "n04": {
+     "articles": 363,
+     "sequences": 16384
+    },
+    "n05": {
+     "articles": 413,
+     "sequences": 16384
+    },
+    "n06": {
+     "articles": 396,
+     "sequences": 16384
+    },
+    "n07": {
+     "articles": 391,
+     "sequences": 16384
+    },
+    "n08": {
+     "articles": 378,
+     "sequences": 16384
+    },
+    "n09": {
+     "articles": 382,
+     "sequences": 16384
+    },
+    "n10": {
+     "articles": 400,
+     "sequences": 16384
+    },
+    "n11": {
+     "articles": 398,
+     "sequences": 16384
+    },
+    "n12": {
+     "articles": 416,
+     "sequences": 16384
+    },
+    "n13": {
+     "articles": 418,
+     "sequences": 16384
+    },
+    "n14": {
+     "articles": 388,
+     "sequences": 16384
+    },
+    "n15": {
+     "articles": 390,
+     "sequences": 16384
+    },
+    "n16": {
+     "articles": 398,
+     "sequences": 16384
+    },
+    "n17": {
+     "articles": 408,
+     "sequences": 16384
+    },
+    "n18": {
+     "articles": 411,
+     "sequences": 16384
+    },
+    "n19": {
+     "articles": 361,
+     "sequences": 16384
+    },
+    "n20": {
+     "articles": 401,
+     "sequences": 16384
+    },
+    "n21": {
+     "articles": 410,
+     "sequences": 16384
+    },
+    "n22": {
+     "articles": 407,
+     "sequences": 16384
+    },
+    "n23": {
+     "articles": 379,
+     "sequences": 16384
+    },
+    "n24": {
+     "articles": 394,
+     "sequences": 16384
+    }
+   }
+  },
+  "no article of N5, N6 or N7 (the pilot's m01 among them), no text of theirs and no excluded article, counted separately": {
+   "ok": true,
+   "detail": {
+    "assigned_articles": 13511,
+    "n5": 8692,
+    "n6": 2407,
+    "n7": 2412,
+    "pilot_m01": 407
+   }
+  },
+  "disjoint by article and by sequence, counted separately": {
+   "ok": true,
+   "detail": {
+    "articles": 9500,
+    "sequences": 393216
+   }
+  },
+  "the tied values of every draw are within the limit of n / 1,024": {
+   "ok": true,
+   "detail": {
+    "limit": 16,
+    "ties": {
+     "n01": 4,
+     "n02": 3,
+     "n03": 2,
+     "n04": 6,
+     "n05": 2,
+     "n06": 5,
+     "n07": 1,
+     "n08": 2,
+     "n09": 3,
+     "n10": 2,
+     "n11": 2,
+     "n12": 2,
+     "n13": 1,
+     "n14": 2,
+     "n15": 0,
+     "n16": 3,
+     "n17": 2,
+     "n18": 3,
+     "n19": 4,
+     "n20": 1,
+     "n21": 3,
+     "n22": 2,
+     "n23": 0,
+     "n24": 2
+    }
+   }
+  }
+ },
+ "registry_sha256": "7628c80950fe14e130336909d3fb995fa35dcad3f836d2fd90ddd8071c96fd3e",
+ "exclusions_sha256": "232e3e60235e82e302905ece260c19148c0f7e44f2f58cd9cf7a951d58ad4555",
+ "draw_sha256": "58489c76bbcd9989527cc0377aa154aaac2a6733b2de623f278576e7784bdcda",
+ "partition_sha256": "15c1d59876fa0c09b5e34c62f1d0ed278db37c69c878667142da1b297183f42a",
+ "partition_bytes": 6467222,
+ "policy_sha256": "6dde3e233abaa644df4a04df364542f42e67e57a97418faea17dc2e4d6209943",
+ "corpus_manifest_sha256": "be911db7a63238a205fc74c5732f78431befd61ba7d26af48202a31163df39ea",
+ "registry_source_sha256": {
+  "a1_download.py": "26823ddd98054ef989ca452228fe1d3b8ca36791cce52283d397bc3a9580dd90",
+  "a2_rows.py": "e6bb7d6e64c61d68bd7729c9508d9c0d0d5a6b69ebc9362c50447f80215bc8e1",
+  "acquire_common.py": "aebc39d47460591cb49707b3f04ab3bdb43f039258a80526000dc088ee933e90",
+  "acquire_plan.py": "5752be05713ca2fb7839497218151be04e1bb400adce1891c4967932793acbff",
+  "fewepoch_data.py": "ac7ef04d9e80421fe6416c7bb217c07cafc2afc0df6c8d95fe572f0e087f245d",
+  "fewepoch_plan.py": "1b943a554c396570277f186f515369e86286f37eb8cc010c684c689027d52e34",
+  "matched_data.py": "1f9b8d322462de6ee265d24775f8850acef64e2bb573c34c030ad1ebbb4f2de3",
+  "matched_registry.py": "690586a7459c74db0f6cd7bbf946d68bb1f436b7c77380ce164b7b92186f4207",
+  "n7_matched_data.py": "b634f4b74157d1270e257434ab1624e801389b794109e278c33fbec8afdcb481",
+  "peak_data.py": "7557f326609bbd398663e6c97ca170588b89dc39fc924208b31ea8ebfd3c07c7",
+  "text_data.py": "0caa3cabe3a60a7b6bb0b08ce327a4bf96e8ef7adedbe1efe60de02e6b7d2e5d",
+  "text_plan.py": "99f6e484c093ef7410e452f3518b0fc86bf174f309e1aefdbbf5441c32f1b343",
+  "wt103_corpus.py": "9c76eec785d54e5044fe5ffaa68f809b1806b21039b6f9879fd136ad6da174d1"
+ },
+ "approval_id": "OWNER-20261114-N8-SEEDS-01",
+ "pool": {
+  "eligible_articles": 27859,
+  "assigned_articles": 13511,
+  "unused_articles": 14348,
+  "removed_text_duplicates_of_assigned": 94,
+  "removed_repeats_inside_the_pool": 215,
+  "sets_of_repeats_inside_the_pool": 107,
+  "fresh_articles": 14039,
+  "fresh_sequences": 582603
+ },
+ "left_over_articles": 4539,
+ "per_group": {
+  "n01": {
+   "articles": 395,
+   "sequences": 16384
+  },
+  "n02": {
+   "articles": 415,
+   "sequences": 16384
+  },
+  "n03": {
+   "articles": 388,
+   "sequences": 16384
+  },
+  "n04": {
+   "articles": 363,
+   "sequences": 16384
+  },
+  "n05": {
+   "articles": 413,
+   "sequences": 16384
+  },
+  "n06": {
+   "articles": 396,
+   "sequences": 16384
+  },
+  "n07": {
+   "articles": 391,
+   "sequences": 16384
+  },
+  "n08": {
+   "articles": 378,
+   "sequences": 16384
+  },
+  "n09": {
+   "articles": 382,
+   "sequences": 16384
+  },
+  "n10": {
+   "articles": 400,
+   "sequences": 16384
+  },
+  "n11": {
+   "articles": 398,
+   "sequences": 16384
+  },
+  "n12": {
+   "articles": 416,
+   "sequences": 16384
+  },
+  "n13": {
+   "articles": 418,
+   "sequences": 16384
+  },
+  "n14": {
+   "articles": 388,
+   "sequences": 16384
+  },
+  "n15": {
+   "articles": 390,
+   "sequences": 16384
+  },
+  "n16": {
+   "articles": 398,
+   "sequences": 16384
+  },
+  "n17": {
+   "articles": 408,
+   "sequences": 16384
+  },
+  "n18": {
+   "articles": 411,
+   "sequences": 16384
+  },
+  "n19": {
+   "articles": 361,
+   "sequences": 16384
+  },
+  "n20": {
+   "articles": 401,
+   "sequences": 16384
+  },
+  "n21": {
+   "articles": 410,
+   "sequences": 16384
+  },
+  "n22": {
+   "articles": 407,
+   "sequences": 16384
+  },
+  "n23": {
+   "articles": 379,
+   "sequences": 16384
+  },
+  "n24": {
+   "articles": 394,
+   "sequences": 16384
+  }
+ },
+ "disclosure": {
+  "N": 16384,
+  "identical_text": {
+   "sets_across_fresh_groups": 0,
+   "fresh_texts_equal_to_an_assigned_article": 0,
+   "repeated_inside_a_group": 0
+  },
+  "titles": {
+   "sets_across_fresh_groups": 1,
+   "fresh_articles_sharing_a_title_with_an_assigned_article": 0
+  },
+  "tied_weights": {
+   "limit": 16,
+   "by_group": {
+    "n01": {
+     "before_division": 3,
+     "after_division_numpy_mean": 4
+    },
+    "n02": {
+     "before_division": 2,
+     "after_division_numpy_mean": 3
+    },
+    "n03": {
+     "before_division": 2,
+     "after_division_numpy_mean": 2
+    },
+    "n04": {
+     "before_division": 4,
+     "after_division_numpy_mean": 6
+    },
+    "n05": {
+     "before_division": 2,
+     "after_division_numpy_mean": 2
+    },
+    "n06": {
+     "before_division": 5,
+     "after_division_numpy_mean": 5
+    },
+    "n07": {
+     "before_division": 0,
+     "after_division_numpy_mean": 1
+    },
+    "n08": {
+     "before_division": 2,
+     "after_division_numpy_mean": 2
+    },
+    "n09": {
+     "before_division": 2,
+     "after_division_numpy_mean": 3
+    },
+    "n10": {
+     "before_division": 2,
+     "after_division_numpy_mean": 2
+    },
+    "n11": {
+     "before_division": 2,
+     "after_division_numpy_mean": 2
+    },
+    "n12": {
+     "before_division": 2,
+     "after_division_numpy_mean": 2
+    },
+    "n13": {
+     "before_division": 1,
+     "after_division_numpy_mean": 1
+    },
+    "n14": {
+     "before_division": 2,
+     "after_division_numpy_mean": 2
+    },
+    "n15": {
+     "before_division": 0,
+     "after_division_numpy_mean": 0
+    },
+    "n16": {
+     "before_division": 3,
+     "after_division_numpy_mean": 3
+    },
+    "n17": {
+     "before_division": 1,
+     "after_division_numpy_mean": 2
+    },
+    "n18": {
+     "before_division": 3,
+     "after_division_numpy_mean": 3
+    },
+    "n19": {
+     "before_division": 4,
+     "after_division_numpy_mean": 4
+    },
+    "n20": {
+     "before_division": 1,
+     "after_division_numpy_mean": 1
+    },
+    "n21": {
+     "before_division": 2,
+     "after_division_numpy_mean": 3
+    },
+    "n22": {
+     "before_division": 2,
+     "after_division_numpy_mean": 2
+    },
+    "n23": {
+     "before_division": 0,
+     "after_division_numpy_mean": 0
+    },
+    "n24": {
+     "before_division": 2,
+     "after_division_numpy_mean": 2
+    }
+   }
+  },
+  "token_level": "not measured: it would read the corpus split files, and this step may open only the manifest"
+ },
+ "seconds": 0.9
+}

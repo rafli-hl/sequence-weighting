@@ -30,8 +30,8 @@ Folder names follow the pattern `<study>-<kind>-<date>-<n>`. `<date>` is the day
 | `assistant-recompute`, `assistant-posthoc` | Work by an AI assistant after a sealed result: a recomputation, or a post-hoc analysis. Never a sealed result |
 | `correction` | A dated note that corrects earlier statements without editing the files that made them |
 
-Protocols and sealed source code are not in this folder. For S, N1 and N3–N5 they are in `work/*-source-*/`; for N6
-and N7 they are in [`preregistration/`](../preregistration/).
+Protocols and sealed source code are not in this folder. For S, N1 and N3–N5 they are in `work/*-source-*/`; for N6,
+N7 and N8 they are in [`preregistration/`](../preregistration/). N8, registered on 14 November 2026, has no folder here yet.
 
 ## By study
 

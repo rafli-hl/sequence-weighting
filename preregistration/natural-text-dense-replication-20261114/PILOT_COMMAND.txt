@@ -1,0 +1,23 @@
+& {
+  $ErrorActionPreference = 'Stop'
+  $study = 'D:\sequence-weighting-n8'; $src = "$study\source"
+  # The pilot script and every file of the N8 source, against their hashes.
+  if ((Get-FileHash -LiteralPath "$study\tools\n8_pilot.py" -Algorithm SHA256).Hash.ToLower() -ne '6394fc2f1d7d0c5e334f91110e822c39d0020f7b238ba93c02c798d30d4128f2') { throw 'Hash differs: tools\n8_pilot.py' }
+  if ((Get-FileHash -LiteralPath "$src\SOURCE_SUBJECT.json" -Algorithm SHA256).Hash.ToLower() -ne '9743b179e3c2b809add53cfe6d706c189634e22b3776bec843a180f0675e6941') { throw 'Hash differs: source\SOURCE_SUBJECT.json' }
+  foreach ($row in (Get-Content -LiteralPath "$src\SOURCE_SUBJECT.json" -Raw -Encoding UTF8 | ConvertFrom-Json).files) { if ((Get-FileHash -LiteralPath (Join-Path $src $row.path) -Algorithm SHA256).Hash.ToLower() -ne $row.sha256) { throw ('Changed source ' + $row.path) } }
+  foreach ($d in "$src\__pycache__", "$src\vendor\__pycache__", "$study\tools\__pycache__") { if (Test-Path -LiteralPath $d) { throw "Bytecode folder exists: $d" } }
+  'All files match'
+  # Once only, with room on D: for the pilot's states and the guard's 2 GiB reserve.
+  if (Test-Path -LiteralPath "$study\pilot") { throw 'The pilot folder exists; the pilot runs once' }
+  if ((Get-PSDrive D).Free -lt 3GB) { throw 'At least 3 GB must be free on D:' }
+  # The GPU idle and the laptop on AC power, as the owner script checks before a run.
+  . "$src\gpu_check.ps1"; . "$src\power_gate.ps1"
+  $gpu = Read-GpuConfig "$src\GPU_CHECK.json"; $smi = [string]$gpu.nvidia_smi
+  if (-not (Test-Path -LiteralPath $smi)) { throw ('nvidia-smi not found at ' + $smi) }
+  $pre = Invoke-GpuCheck $gpu 'prestart' $smi @(); $power = Get-PowerSample
+  if ($pre.verdict -ne 'IDLE') { throw ('GPU not idle: ' + (Format-GpuCheck $pre) + '. Close games and other GPU apps, then run this again.') }
+  if ($power.power -ne 'AC') { throw ('Not on AC power: ' + (Format-PowerSample $power) + '. Plug in the charger and keep the lid open, then run this again.') }
+  'GPU idle and on AC power. Starting the pilot; keep this window open until it prints its result.'
+  wsl.exe -d Ubuntu --exec /mnt/d/sequence-weighting-research/work/.venv-wsl/bin/python -I -B /mnt/d/sequence-weighting-n8/tools/n8_pilot.py --approval-id pilot-20261113-01 --expected-subject 9743b179e3c2b809add53cfe6d706c189634e22b3776bec843a180f0675e6941 --init-seed 1188503724 --weight-seed 1894175819 --pretrain-order-seed 46458185 --adapt-order-seed 90809628 --benchmark-seed 578352808
+  "pilot exit=$LASTEXITCODE"
+}
