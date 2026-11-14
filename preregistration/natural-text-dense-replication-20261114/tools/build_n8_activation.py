@@ -27,8 +27,8 @@ from pathlib import Path
 ROOT = Path(r'D:\sequence-weighting-research')          # the closed record: earlier registries and the corpus, read only
 STUDY = Path(r'D:\sequence-weighting-n8')
 SOURCE = STUDY / 'source'
-EXPECTED_SUBJECT = None                                  # PENDING: the sealed subject, set when the source is sealed (step 6)
-PUBLIC_REGISTRATION = None                               # PENDING: dict(url, merge_commit, tag, source_subject_sha256, pilot_log_sha256), after the merge
+EXPECTED_SUBJECT = '9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b'   # the sealed subject, recorded by registration/apply_registration.py
+PUBLIC_REGISTRATION = {'url': 'https://github.com/rafli-hl/sequence-weighting/pull/1', 'merge_commit': 'c6f98b26669f5d29f30c576b6d800c1fc82c98eb', 'tag': 'n8-registration', 'source_subject_sha256': '9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b', 'pilot_log_sha256': '251d0951e30250afa16cb998b06550358c09234d8a24c45166b08d0642347db6', 'pr_record_sha256': 'e8d92b7ec779ca63015ea857500ab887dd3d89611680e3fa8d4e5aa11e36f381'}   # recorded by registration/apply_registration.py
 PILOT_LOG = STUDY / 'pilot' / 'PILOT_LOG.json'
 sys.path.insert(0, str(SOURCE))
 import fewepoch_plan as fp, matched_plan as mp, matched_data as md, matched_registry as mr, wt103_corpus as wc     # stdlib; the framework is never imported

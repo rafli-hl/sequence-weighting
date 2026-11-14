@@ -10,7 +10,7 @@ has no results yet.
 
 **Status:** research record. It was closed after N7 and reopened on 14 November 2026 for one registered study, N8
 ([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)). Latest release:
-[v1.2](https://github.com/rafli-hl/sequence-weighting/releases/tag/v1.2) (12 November 2026). The README
+[v2.0](https://github.com/rafli-hl/sequence-weighting/releases/tag/v2.0) (15 November 2026). The README
 and methods were revised on 13 November 2026; no result, label or sealed file changed
 ([`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md)).
 

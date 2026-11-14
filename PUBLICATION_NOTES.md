@@ -25,6 +25,27 @@ made and how it has changed, newest first.
   the follow-up audit of 12 November, and the checks and two descriptive summaries of 13 November.
 - **Licence.** From 9 November 2026: MIT for code; CC BY 4.0 for everything else (`LICENSE`, `LICENSE-CC-BY-4.0.md`).
 
+## 15 November 2026: version 2.0, a wording note on N8's protocol, and the recorded builder
+
+N8 was registered by pull request #1, merged as `c6f98b26669f5d29f30c576b6d800c1fc82c98eb` (signed by GitHub) and
+tagged `n8-registration`. Its runs have not started, and it has no results yet. No study, registered rule, label, sealed
+file or published number changed. Changes:
+
+- **A wording note on N8's protocol.** The registered protocol's title ("Protocol draft") and its sentence "This is a
+  new study in a new record. It reuses N7's sealed code and recipe, and adds nothing to the closed `sequence-weighting`
+  record" predate the decision to register N8 inside the reopened record. Its status line governs: "FINAL, 14 November
+  2026. Registered by the merge into `rafli-hl/sequence-weighting` and the tag `n8-registration`." The registered file
+  is not edited. The same note is in
+  [the N8 folder's README](preregistration/natural-text-dense-replication-20261114/README.md#notes-after-registration).
+- **The recorded builder.** After the merge, the activation builder records the merge commit and the tag, as the
+  folder's `HASHES.json` said it would. The published `tools/build_n8_activation.py` is now that recorded builder,
+  SHA-256 `c31fd4aa32873a1d025621f06bcc66e289c16ad86f64612c00dad76b1fd62904`. It differs from the registered builder
+  that `HASHES.json` names (`30765693bd8bb4929ba060c193a610ecc987413d0c83b8035c6a9044228471d3`) only in its two lines
+  `EXPECTED_SUBJECT` and `PUBLIC_REGISTRATION`. No other registered file changed.
+- **Version 2.0.** `README.md` names v2.0 as the latest release. `CITATION.cff` has carried version 2.0, released
+  15 November 2026, since the registration.
+- **Checks run** on this copy: `tools/verify_publication.py`.
+
 ## 14 November 2026: N8 registered (the record reopened)
 
 The record is reopened for one study, N8, a dense-readout replication of N7 on 24 fresh WikiText-103 draws. Its

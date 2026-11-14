@@ -10,6 +10,11 @@ This folder publishes the protocol, the sealed code and the seeds of one study *
 - **The pilot passed** on 13 November 2026: one draw, N7's m01 with throwaway seeds, ran through the N8 worker on the GPU and was then discarded ([`pilot/PILOT_LOG.json`](pilot/PILOT_LOG.json)). It read no loss and fitted no p\*. It ran on source subject `9743b179…` ([`seal/pilot/`](seal/pilot/)), which differs from the sealed source only in the pins of `matched_plan.py` and `matched_registry.py`, the hours in `MATCHED_OWNER_RUN.ps1` and the source README. Its five seeds are among the registry's exclusions.
 - **The activation builder refuses** until the merge commit and tag of this registration are recorded in it. Runs come only after that.
 
+## Notes after registration
+
+- **15 November 2026, wording.** The registered protocol's title ("Protocol draft") and its sentence "This is a new study in a new record. It reuses N7's sealed code and recipe, and adds nothing to the closed `sequence-weighting` record" predate the decision to register N8 inside the reopened record. Its status line governs: "FINAL, 14 November 2026. Registered by the merge into `rafli-hl/sequence-weighting` and the tag `n8-registration`." The registered file is not edited.
+- **15 November 2026, the registration recorded.** The merge commit `c6f98b26669f5d29f30c576b6d800c1fc82c98eb` (pull request #1, signed by GitHub) and the tag `n8-registration` are recorded in the activation builder. [`tools/build_n8_activation.py`](tools/build_n8_activation.py) here is that recorded builder, SHA-256 `c31fd4aa…`. It differs from the registered builder that `HASHES.json` names (`30765693…`) only in its two lines `EXPECTED_SUBJECT` and `PUBLIC_REGISTRATION`, as `HASHES.json`'s `activation_builder_note` says.
+
 ## The question
 
 In N7, at learning rate 1e-4, the contrast p\*(512) − p\*(768) was below 0 at equal updates and above 0 at equal training loss. Width 768 was read by interpolating between readouts a quarter epoch apart, and the equal-update result was fragile. N8 asks whether, on fresh draws and with readouts dense enough that interpolation hardly matters, the order of the two widths again differs between the two alignments.
