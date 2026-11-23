@@ -15,7 +15,7 @@ linked in [`NATURAL_TEXT_STUDIES.md`](NATURAL_TEXT_STUDIES.md). Current claims a
 | N3 | WikiText-2 | 64–768 | 3e-5 | 32 | 10 | sealed by hash within the project |
 | N4 | WikiText-2 | 256–768 | 3e-5 | 32 | 4 | sealed by hash within the project |
 | N5 | WikiText-103 | 64–768 | 3e-4 | 3 | 10 | sealed by hash within the project |
-| N6 | WikiText-103 | 512, 768 | 1e-4, 3e-4 | 3 | 6 | registered publicly after its data existed (merge commit `58240f0`, 3 Nov 2026) |
+| N6 | WikiText-103 | 384, 512, 768 | 3e-4 (all three); 1e-4 (512 and 768) | 3 | 6 | registered publicly after its data existed (merge commit `58240f0`, 3 Nov 2026) |
 | N7 | WikiText-103 | 512, 768 | 1e-4, 3e-4 | 3.5 | 6 | registered publicly before any run (merge commit `f3a2571`, 5 Nov 2026) |
 
 "Sealed by hash within the project" means the protocol and source were hashed and frozen before the runs, but not
@@ -176,8 +176,13 @@ establish how much, and a subgroup difference within one model cannot be subtrac
 
 **Exposure-matched comparison (post hoc).** Batch orders are regenerated from the seeds. For 768 read at epoch 2 + k/4,
 the matched set is the sequences trained in quarters 1..k of each of epochs 1–3; for 512 at epoch 3, those trained in
-quarters 5−k..4, so that every pass is equally long ago in both. The two models' sets are different sequences. Script
-and per-draw values:
+quarters 5−k..4: matched recency windows, in which each pass of both sets falls in the same quarters before the
+readout. The realised recencies are not identical: the largest difference between the two sets in the mean age of a
+pass, over draws and passes, is 14.1, 8.4 and 7.0 updates at k = 1, 2 and 3, and the largest total-variation distance
+between their joint distributions over quarter cells is 0.000, 0.037 and 0.037 (the audit of 13 November, reproduced
+by N8's [`test_on_n7.py`](preregistration/natural-text-dense-replication-20261114/analysis/test_on_n7.py); [23 November
+correction](reports/natural-text-correction-20261123-01/CORRECTION.md), F3). The two models' sets are different
+sequences. Script and per-draw values:
 [`natural-text-matched-assistant-posthoc-20261111-01`](reports/natural-text-matched-assistant-posthoc-20261111-01/REPORT.md).
 
 Set sizes and weight distributions (post hoc, 13 November;
@@ -214,7 +219,11 @@ trajectory. S2 lost three of six draws this way.
 
 The sensitivity analyses read 768 at the later end of each bracket instead of interpolating. Since the fitted exponent
 mostly rises inside a bracket, this shows how the contrast moves if the true value lies near that end; it is not a
-bound on the unobserved trajectory.
+bound on the unobserved trajectory. Nor is it the least favourable reading for the interval: with each draw read at
+either end of its bracket (64 combinations), the lowest lower t limits are +0.0000764 for P1, −0.0000507 for S1 and
+−0.000268 for S4, against +0.00216, +0.00099 and −0.00027 with every draw at the later end. These are envelopes of
+plug-in limits, conditional on p\* staying between the bracketing readouts
+([23 November correction](reports/natural-text-correction-20261123-01/CORRECTION.md), F1).
 
 ## 7. Statistics
 
@@ -229,7 +238,9 @@ bound on the unobserved trajectory.
   p-value is 0.031.
 - **Fixed sequence.** P1 → S1 → S3 → S4 → S5 → S2: a step is read as a confirmation only while every earlier step is
   confirmed. The protocol's simulation gives a 2.5% chance of any false confirmation (5% counting errors on either
-  side), assuming valid constituent tests and the registered order.
+  side), assuming valid constituent tests and the registered order. That simulation is in N7's planning and review
+  records, which are not published (N7's `HASHES.json` names the review record by hash only), so the figure cannot be
+  checked from public files ([23 November correction](reports/natural-text-correction-20261123-01/CORRECTION.md)).
 - **Leave-one-draw-out** intervals are reported for every statistic.
 - **Figure bands** are pointwise 95% intervals at each readout, not simultaneous bands.
 - **Post-hoc analyses** are descriptive; their intervals are unadjusted for multiplicity and for the choices made after

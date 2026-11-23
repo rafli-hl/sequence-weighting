@@ -22,14 +22,53 @@ made and how it has changed, newest first.
   are limited to syntax, imports, links and bounded scans for credentials and personal paths, which cannot guarantee
   that no private information remains. The exceptions are dated below: the automated checks of versions 1.0 and 1.1,
   which run the estimator fixture and refit published data, the post-hoc analysis of 11 November, and the re-check of
-  the follow-up audit of 12 November, and the checks and two descriptive summaries of 13 November.
+  the follow-up audit of 12 November, the checks and two descriptive summaries of 13 November, and the descriptive scale
+  of 23 November.
 - **Licence.** From 9 November 2026: MIT for code; CC BY 4.0 for everything else (`LICENSE`, `LICENSE-CC-BY-4.0.md`).
+
+## 23 November 2026: a correction after the external audit of 13 November, and N8 paused
+
+No registered number, label, sealed file or historical file changed, and no hash cited elsewhere changed. Changes:
+
+- **Audit.** [`reports/external-audit-20261113-01/`](reports/external-audit-20261113-01/README.md) holds the audit
+  report of 13 November, post hoc and AI-made (an AI reviewer, OpenAI Codex, auditing commit `fee55ea`). It is filed
+  byte for byte as received, with a README that says how each finding was handled.
+- **Correction.** [`reports/natural-text-correction-20261123-01/`](reports/natural-text-correction-20261123-01/CORRECTION.md):
+  `CORRECTION.md` (F1–F4, the tokenizer rebuild and the unpublished familywise simulation), `gap_scale.py` and its
+  output `GAP_SCALE.txt`.
+  - F2's scale is computed from N5's published `POINTS.csv`.
+  - The F1 envelope and the F3 recency figures are cited from N8's published `test_on_n7.py`, not rerun here.
+- **Living pages.**
+  - `CURRENT_CLAIMS.md`: C3 says "a similar gap" with the scale; C4's table gives the 64-combination envelope;
+    "matched recency windows"; the training row is split into the README's levels 4 and 5, with the audit's
+    tokenizer result; N8's pause.
+  - `METHODS.md`: N6's width 384 at 3e-4; matched recency windows with the largest mean-age differences; the envelope
+    in §6; the familywise simulation is unpublished.
+  - `README.md`: N8's pause; a note under the sensitivity table; the familywise caveat; the tokenizer in level 5; the
+    new audit and correction in the links.
+  - `NATURAL_TEXT_STUDIES.md`: the audit, the correction and N8's pause.
+  - `reports/README.md`: the two new folders.
+- **N8 paused.** Training is paused on 23 November 2026 after 6 of 24 draws (n01–n06; n06 completed in the retry run
+  X2).
+  - R3–R8 have not started. No p\* has been computed or examined, and the per-sequence losses stay unpublished until
+    the sealed analysis.
+  - Resuming continues with R3 under the registered protocol. If fewer than 20 draws are ever completed, the
+    registered INCOMPLETE rule applies.
+  - The same statement is in `README.md`, `NATURAL_TEXT_STUDIES.md`, `CURRENT_CLAIMS.md` and the N8 folder's README.
+  - "Its runs have not started" is replaced in `README.md` and in the entry of 15 November below.
+- **N8's operational record.** The N8 folder gains `OPERATIONAL_NOTES.md`, a byte copy of the study folder's file: the
+  operational events of R1, R2 and X2, the known gap in the terminal's inventory, and the precautions taken after R2.
+  The folder's README gains a status of 23 November and the note of 15 November on the two empty folders created
+  before R1's build. These change no file that `HASHES.json` binds.
+- **Runs:** none for this copy.
+- **Checks run** on this copy: `gap_scale.py`, `tools/verify_publication.py`, and a simulation of the commit's line
+  endings (a throwaway git index: every file's committed bytes equal the bytes on disk).
 
 ## 15 November 2026: version 2.0, a wording note on N8's protocol, and the recorded builder
 
 N8 was registered by pull request #1, merged as `c6f98b26669f5d29f30c576b6d800c1fc82c98eb` (signed by GitHub) and
-tagged `n8-registration`. Its runs have not started, and it has no results yet. No study, registered rule, label, sealed
-file or published number changed. Changes:
+tagged `n8-registration`. It has no results yet; its runs and their pause are in the entry of 23 November 2026. No
+study, registered rule, label, sealed file or published number changed. Changes:
 
 - **A wording note on N8's protocol.** The registered protocol's title ("Protocol draft") and its sentence "This is a
   new study in a new record. It reuses N7's sealed code and recipe, and adds nothing to the closed `sequence-weighting`

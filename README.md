@@ -5,14 +5,20 @@ reduction is allocated across those weights. This record asks a narrow question 
 sizes: **does the order of two widths depend on how they are aligned, at equal updates or at equal training loss?** It
 contains small decoder-only Transformers (0.73 M–34.7 M parameters) trained on WikiText-2 and WikiText-103, and one
 study, N7, whose protocol was published before any of its runs. Beside it is N8, a dense-readout replication of
-N7: its protocol and sealed source were registered publicly before any of its runs; its runs have not started, and it
-has no results yet.
+N7: its protocol and sealed source were registered publicly before any of its runs. Its training was paused on
+23 November 2026 after 6 of its 24 draws, and no p\* of it has been computed or examined.
 
 **Status:** research record. It was closed after N7 and reopened on 14 November 2026 for one registered study, N8
 ([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)). Latest release:
 [v2.0](https://github.com/rafli-hl/sequence-weighting/releases/tag/v2.0) (15 November 2026). The README
-and methods were revised on 13 November 2026; no result, label or sealed file changed
-([`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md)).
+and methods were revised on 13 November 2026, and corrected on 23 November 2026 after an external audit; no registered
+result, label or sealed file changed ([`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md)).
+
+**N8, paused on 23 November 2026.**
+- Training stopped after 6 of 24 draws: n01–n06, with n06 completed in the retry run X2. R3–R8 have not started.
+- No p\* has been computed or examined, and the per-sequence losses stay unpublished until the sealed analysis.
+- Resuming continues with R3 under the registered protocol. If fewer than 20 draws are ever completed, the registered
+  INCOMPLETE rule applies: no statistic and no label.
 
 [Current claims](CURRENT_CLAIMS.md) · [Methods](METHODS.md) · [Studies](NATURAL_TEXT_STUDIES.md) ·
 [N7 preregistration](preregistration/natural-text-matched-confirmation-20261104/README.md) ·
@@ -73,9 +79,15 @@ interpolation bracket, instead of interpolating, was added in the [9 November co
 | S4 | above 0 with any one draw left out | **+0.01043 [−0.00027, +0.02113], includes 0**; draw m06, read at epoch 3.08, decides it |
 | S5 | above 0 with any one draw left out | not interpolated |
 
+The later bracket end gives the lowest mean, not the lowest interval. With each draw read at either end of its bracket
+(64 combinations, if p\* stays between the bracketing readouts), the lowest lower limits are +0.0000764 for P1, barely
+above 0, and −0.0000507 for S1 and −0.000268 for S4, below 0
+([23 November correction](reports/natural-text-correction-20261123-01/CORRECTION.md)). The labels are unchanged.
+
 **How to read the labels.** A step is CONFIRMED when its interval lies on the predicted side of 0 and every earlier
 step in the sequence is confirmed; this holds the chance of any false confirmation at about 2.5% under the protocol's
-assumptions. REVERSAL_CONFIRMED is P1's label for the same condition: its interval lies above 0 with at least five
+assumptions. That figure comes from the protocol's simulation, which is not published, so it cannot be checked from
+public files. REVERSAL_CONFIRMED is P1's label for the same condition: its interval lies above 0 with at least five
 draws. The label is determined by P1 alone. The opposite order at equal updates is S3's separate result, so the change
 of sign at 1e-4 rests on P1 and S3 together, and S3 is the less robust of the two. By readout, the equal-updates
 contrast at 1e-4 is above 0 at epochs 0.25–1 and below 0 only from epoch 2.5. With six draws, the exact sign test
@@ -243,7 +255,7 @@ orders with `torch.randperm`. The figures are redrawn by `python docs/make_resul
 | 2. Statistics from published tables | Yes, for every study: per-readout p\* and losses are in each analysis folder's `POINTS.csv` |
 | 3. p\* from released losses | N7 only: from the v1.2 bundle. The earlier studies' per-sequence losses are not published |
 | 4. Losses from model evaluation | No. Natural-text model states were hashed and deleted during the runs, and no model state of any study is published |
-| 5. Training from scratch | Not demonstrated. Code, protocols, seeds, article partitions and data hashes are published, and WikiText is public. The blockers are practical: the corpus files and tokenizer must be rebuilt and checked against their pinned hashes; the sealed launcher and worker run only from the original machine's one-use activation folders and refuse any other GPU, PyTorch or cuDNN version, so they must be adapted; and deterministic algorithms were not enforced, so bit-identical losses are not expected even on the original hardware. No one has attempted it |
+| 5. Training from scratch | Not demonstrated. Code, protocols, seeds, article partitions and data hashes are published, and WikiText is public. The blockers are practical: the corpus files and tokenizer must be rebuilt and checked against their pinned hashes; the sealed launcher and worker run only from the original machine's one-use activation folders and refuse any other GPU, PyTorch or cuDNN version, so they must be adapted; and deterministic algorithms were not enforced, so bit-identical losses are not expected even on the original hardware. No one has attempted it. The audit of 13 November reports rebuilding the tokenizer from the pinned public WikiText-2 parquet with its pinned SHA-256 (the audit's result, not rerun here; [`AUDIT.md`](reports/external-audit-20261113-01/AUDIT.md)) |
 
 [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md) lists what is published and what is not, and why.
 
@@ -282,7 +294,7 @@ Open questions, and what would settle each, are in
 | N7's registration, sealed source and seed registry | [`preregistration/natural-text-matched-confirmation-20261104/`](preregistration/natural-text-matched-confirmation-20261104/README.md) |
 | N7's result, as written when the analysis ran | [`RESULT.md`](reports/natural-text-matched-result-20261105-01/RESULT.md) |
 | The post-hoc exposure analysis | [`natural-text-matched-assistant-posthoc-20261111-01`](reports/natural-text-matched-assistant-posthoc-20261111-01/REPORT.md) |
-| Audits and corrections | [8 November audit](reports/full-audit-20261108-01/AUDIT.md), [12 November audit](reports/follow-up-audit-20261112-01/REPORT.md); corrections of [9](reports/natural-text-correction-20261109-01/CORRECTION.md), [11](reports/natural-text-correction-20261111-01/CORRECTION.md) and [12 November](reports/natural-text-correction-20261112-01/CORRECTION.md) |
+| Audits and corrections | [8 November audit](reports/full-audit-20261108-01/AUDIT.md), [12 November audit](reports/follow-up-audit-20261112-01/REPORT.md), [13 November external audit](reports/external-audit-20261113-01/README.md); corrections of [9](reports/natural-text-correction-20261109-01/CORRECTION.md), [11](reports/natural-text-correction-20261111-01/CORRECTION.md), [12](reports/natural-text-correction-20261112-01/CORRECTION.md) and [23 November](reports/natural-text-correction-20261123-01/CORRECTION.md) |
 | What is published, and how this copy differs from the local record | [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md), [`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md) |
 | Map of the folders | [`reports/README.md`](reports/README.md), [`outputs/README.md`](outputs/README.md) and the table below |
 

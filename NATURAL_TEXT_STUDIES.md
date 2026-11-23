@@ -136,6 +136,13 @@ seeds. Neither failed attempt was analysed.
   direction of the bias in N6's matched figures; a like-for-like S4 figure; C1–C3 reworded to carry their sources'
   qualifications; the registered outcomes that did not confirm, now listed in `CURRENT_CLAIMS.md`; and C4's power,
   E0-offset, multiplicity and batch-relative-weighting disclosures.
+- **External audit, 13 November.** [`README.md`](reports/external-audit-20261113-01/README.md): an audit of the
+  record at commit `fee55ea` by an AI reviewer (OpenAI Codex), post hoc and AI-made, filed as received.
+- **Correction, 23 November.** [`CORRECTION.md`](reports/natural-text-correction-20261123-01/CORRECTION.md): the
+  later bracket end is not the least favourable reading (S1's lowest lower limit over all 64 bracket-end combinations is
+  below 0, and P1's barely above it); C3's "same gap" becomes "similar gap", with a descriptive scale; the
+  exposure-matched sets have matched recency windows, not equal recencies; N6's width 384; the audit's tokenizer
+  rebuild; and the unpublished simulation behind the "about 2.5%" familywise rate.
 
 ## Status
 
@@ -180,6 +187,14 @@ capacity mechanism, and nothing about the reference study's scale follows. Open 
 record was closed after N7; on 14 November 2026 it was reopened for one registered study, N8, a dense-readout
 replication of N7 on fresh draws ([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)), which has no results yet.
 That is not a restriction on anyone else.
+
+**N8, paused on 23 November 2026.**
+- Training stopped after 6 of its 24 draws: n01–n06, with n06 completed in the retry run X2. R3–R8 have not started.
+- No p\* has been computed or examined, and the per-sequence losses stay unpublished until the sealed analysis.
+- Resuming continues with R3 under the registered protocol. If fewer than 20 draws are ever completed, the registered
+  INCOMPLETE rule applies: no statistic and no label.
+- The operational events of R1, R2 and X2 are in
+  [`OPERATIONAL_NOTES.md`](preregistration/natural-text-dense-replication-20261114/OPERATIONAL_NOTES.md).
 
 ## Not included
 

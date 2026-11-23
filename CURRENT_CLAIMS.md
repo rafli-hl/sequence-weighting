@@ -105,8 +105,12 @@ read at different points of training: 384 about 0.44 epoch later than 768 at the
 depends on the epoch alone predicts M as −0.0067. A curve with no width effect gives the same label in 96–99% of the
 protocol's fixture replicates, so M does not show capacity beyond memorisation, although its sealed label reads
 CAPACITY_BEYOND_MEMORIZATION. *Status:* sealed by hash within the project before the runs, as M; not publicly preregistered. *Support without interpolation*
-(post hoc, N5): at epoch 2 at 3e-4, widths 512 and 768 have the same gap (768 − 512: +0.0004 [−0.0047, +0.0055]) and
-p\* differs by −0.0092 [−0.0112, −0.0072], 0/10 positive. The claim rests on that comparison as much as on M.
+(post hoc, N5): at epoch 2 at 3e-4, widths 512 and 768 have a similar gap (768 − 512: +0.0004 [−0.0047, +0.0055]; an
+interval containing 0 does not establish equal gaps) and p\* differs by −0.0092 [−0.0112, −0.0072], 0/10 positive. For
+scale only: near epoch 2, p\* rises by about 0.15–0.19 per nat of gap within either width, so a gap difference of
+0.0055 nats corresponds to about 0.001 of p\* (descriptive, not an equivalence test; [23 November
+correction](reports/natural-text-correction-20261123-01/CORRECTION.md), F2). The claim rests on that comparison as much
+as on M.
 
 **C4. At epoch 3 and 1e-4, widths 512 and 768 are ordered one way at equal updates and the other way at equal overall
 training loss; at 3e-4 the order is the same on both.** On six fresh WikiText-103 draws (N7), with 512 read at
@@ -115,10 +119,10 @@ below.
 
 | Learning rate | Comparison | Contrast | Status and qualification |
 |---|---|---|---|
-| 1e-4 | equal training loss (P1, primary) | +0.00909 [+0.00400, +0.01417], 6/6 | Preregistered publicly, confirmed. Stays above 0 with 768 read at the later end of each interpolation bracket (+0.00702 [+0.00216, +0.01189], 5/6), if p\* stays between bracketing readouts. A comparison of whole-set p\* in which 768 is read at epochs 2.19–2.48: see "How to read C4" |
-| 1e-4 | equal train–validation gap (S1) | +0.00808 [+0.00487, +0.01130], 6/6 | Confirmed. Later bracket end: +0.00399 [+0.00099, +0.00699], 5/6 |
+| 1e-4 | equal training loss (P1, primary) | +0.00909 [+0.00400, +0.01417], 6/6 | Preregistered publicly, confirmed. Stays above 0 with 768 read at the later end of each interpolation bracket (+0.00702 [+0.00216, +0.01189], 5/6), if p\* stays between bracketing readouts. Over all 64 combinations of bracket ends, its lowest lower limit is +0.0000764, barely above 0. A comparison of whole-set p\* in which 768 is read at epochs 2.19–2.48: see "How to read C4" |
+| 1e-4 | equal train–validation gap (S1) | +0.00808 [+0.00487, +0.01130], 6/6 | Confirmed. Later bracket end: +0.00399 [+0.00099, +0.00699], 5/6. **Over all 64 combinations of bracket ends, the lowest lower limit is −0.0000507**: the later end is not the least favourable reading ([23 November correction](reports/natural-text-correction-20261123-01/CORRECTION.md), F1) |
 | 1e-4 | equal updates, equivalently equal tokens (S3) | −0.00454 [−0.00795, −0.00114], 0/6 | Confirmed, at epoch 3. The interval spans 0 when draw m03 or m05 is left out. By readout, the contrast is above 0 at epochs 0.25–1 and below 0 only from epoch 2.5 |
-| 3e-4 | equal training loss (S4) | +0.01394 [+0.00893, +0.01896], 6/6 | Confirmed under the registered interpolation. **At the later bracket end the interval includes 0** (+0.01043 [−0.00027, +0.02113]). One draw decides this: m06, read at epoch 3.083 |
+| 3e-4 | equal training loss (S4) | +0.01394 [+0.00893, +0.01896], 6/6 | Confirmed under the registered interpolation. **At the later bracket end the interval includes 0** (+0.01043 [−0.00027, +0.02113]). One draw decides this: m06, read at epoch 3.083. Over all 64 combinations of bracket ends, the lowest lower limit is −0.000268 |
 | 3e-4 | equal updates (S5) | +0.01382 [+0.01116, +0.01648], 6/6 | Confirmed |
 | 1e-4 | equal validation loss (S2) | — | Unavailable: three draws had a reading, five were needed |
 
@@ -144,7 +148,7 @@ only. Their script and exact output are in
   sequences already trained in the current epoch have p\* higher by 0.050–0.084 than those not yet trained in it, at
   every readout inside an epoch from epoch 2 (20 of 20 arm-readouts, 6/6 draws each).
 - **On exposure-matched sequences at 1e-4, the lead of 512 is not seen.** For 512 at epoch 3 against 768 at epochs
-  2.25, 2.5 and 2.75, on sequences matched for the timing of all three passes, the contrasts are −0.0035
+  2.25, 2.5 and 2.75, on sequences in matched recency windows for all three passes, the contrasts are −0.0035
   [−0.0258, +0.0189] (4/6), −0.0048 [−0.0121, +0.0026] (2/6) and −0.0051 [−0.0109, +0.0008] (2/6). Each interval
   includes 0. The whole-set contrasts at the same readouts, +0.0100, +0.0040 and −0.0003, exceed them by +0.0135
   [−0.0076, +0.0345], +0.0088 [+0.0032, +0.0143] and +0.0047 [+0.0014, +0.0081]; with a Bonferroni adjustment over
@@ -216,7 +220,10 @@ own result. All figures reproduce from the published tables (follow-up audit, EA
 
 This record was closed after N7. On 14 November 2026 it was reopened for one registered study, N8, a dense-readout
 replication of N7 on fresh draws ([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)), which has no results yet.
-That is not a restriction on anyone else. Model states were deleted, so each item that needs readouts needs a new study.
+That is not a restriction on anyone else. N8's training was paused on 23 November 2026 after 6 of its 24 draws
+(n01–n06; n06 was completed in the retry run X2). R3–R8 have not started, and no p\* of N8 has been computed or
+examined. Resuming continues with R3 under the registered protocol; if fewer than 20 draws are ever completed, its
+registered INCOMPLETE rule applies. Model states were deleted, so each item that needs readouts needs a new study.
 
 | Question | What would settle it | What would not |
 |---|---|---|
@@ -237,7 +244,8 @@ That is not a restriction on anyone else. Model states were deleted, so each ite
 | p\* from the per-sequence losses | Public for N7. The loss arrays are attached to the [v1.2 release](https://github.com/rafli-hl/sequence-weighting/releases/tag/v1.2), and `tools/verify_n7_losses.py` refits all 240 estimates with its own implementation (largest difference from `POINTS.csv` 2.9e-9) and recomputes the confirmed contrasts. An earlier AI audit (OpenAI Codex) reached the same result with separately written code |
 | Post-hoc exposure analysis of 11 November | Public for N7. `posthoc_exposure.py` in [`natural-text-matched-assistant-posthoc-20261111-01`](reports/natural-text-matched-assistant-posthoc-20261111-01/) reproduces every figure from the same bundle and `POINTS.csv`. It needs PyTorch to regenerate the batch orders, which it checks against the losses. A second model (Claude Opus 5.5, the session supervising the check) recomputed the main figures with separate code, which is not published |
 | Follow-up audit of 12 November | Public. Two fresh AI auditors (Claude Fable 5.2) audited the earlier studies and alternative explanations; their reports are in [`follow-up-audit-20261112-01`](reports/follow-up-audit-20261112-01/). The supervising session (Claude Opus 5.5) re-checked the main findings with separate code, `verify_findings.py`, which is published with its output; AA-5 was not re-checked |
-| Training | Not reproducible from public files: model states, run folders and dataset rows are not published |
+| Losses from model evaluation | Not possible: no model state of any study is published (README's level 4) |
+| Training from scratch | Not demonstrated (README's level 5). Code, protocols, seeds, partitions and data hashes are published; the corpus files must be rebuilt and checked against their pinned hashes, and the sealed launcher adapted. The audit of 13 November reports rebuilding the tokenizer from the pinned public WikiText-2 parquet with its pinned SHA-256 ([`AUDIT.md`](reports/external-audit-20261113-01/AUDIT.md); the audit's result, not rerun here). No one has attempted a retraining |
 
 All reviews, audits and post-hoc analyses in this record were carried out by AI systems, not by independent human
 reviewers. The independent review of 10 November, by a separate AI session (Claude Opus 5.5) that had no part in the

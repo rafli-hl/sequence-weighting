@@ -2,6 +2,21 @@
 
 This folder publishes the protocol, the sealed code and the seeds of one study **before any of its training runs**. It reopens the closed record for this study only. Its purpose is to let anyone check that the hypotheses, the analysis and the readings were fixed before any result existed.
 
+## Status, 23 November 2026: training paused
+
+- **Training is paused after 6 of 24 draws:** n01–n06, with n06 completed in the retry run X2. R3–R8 have not started.
+- **No p\* has been computed or examined.** The per-sequence losses stay unpublished until the sealed analysis.
+- **Resuming continues with R3** under the registered protocol. If fewer than 20 draws are ever completed, the
+  registered INCOMPLETE rule applies (protocol section 6): no statistic and no label.
+- **The operational events** of R1, R2 and X2 and the known gaps are in
+  [`OPERATIONAL_NOTES.md`](OPERATIONAL_NOTES.md):
+  - R1 completed;
+  - R2 stopped in n06 when GPU memory in use outside the worker tripped the worker's guard (another app, as the owner
+    reports);
+  - X2 completed n06.
+
+  None changes a registered file or is a protocol deviation.
+
 ## Status when published
 
 - **No study data exists.** No activation has been built and no run of this study has started. No model has trained on any of its 24 draws, and no loss, gain or p\* of this study exists.
@@ -14,6 +29,7 @@ This folder publishes the protocol, the sealed code and the seeds of one study *
 
 - **15 November 2026, wording.** The registered protocol's title ("Protocol draft") and its sentence "This is a new study in a new record. It reuses N7's sealed code and recipe, and adds nothing to the closed `sequence-weighting` record" predate the decision to register N8 inside the reopened record. Its status line governs: "FINAL, 14 November 2026. Registered by the merge into `rafli-hl/sequence-weighting` and the tag `n8-registration`." The registered file is not edited.
 - **15 November 2026, the registration recorded.** The merge commit `c6f98b26669f5d29f30c576b6d800c1fc82c98eb` (pull request #1, signed by GitHub) and the tag `n8-registration` are recorded in the activation builder. [`tools/build_n8_activation.py`](tools/build_n8_activation.py) here is that recorded builder, SHA-256 `c31fd4aa…`. It differs from the registered builder that `HASHES.json` names (`30765693…`) only in its two lines `EXPECTED_SUBJECT` and `PUBLIC_REGISTRATION`, as `HASHES.json`'s `activation_builder_note` says.
+- **15 November 2026, operational: two empty folders before R1.** The first build of R1's activation stopped with `FileNotFoundError` at `target.mkdir()` in `tools/build_n8_activation.py`. The builder makes the activation folder but not its parent, `activations\`, which did not exist in the study folder. It stopped before writing anything: no activation, approval record or claim was made, and nothing ran. The worker likewise makes its run folder but not its parent, `runs\`, and its first admission check reads the free space of `runs\`. In a run, that check comes after the owner script's claim, and the owner script does not look for the folder. So the two empty folders `activations\` and `runs\` are created in the study folder before the build, and the owner's commands for each run check that both exist. A test on N7's test doubles reproduces the failure and the fix. No registered file changes, so this is not a protocol deviation.
 
 ## The question
 
@@ -56,6 +72,7 @@ Sensitivity and secondary analyses, the reading rules carried over from N7, powe
 | [`pilot/PILOT_LOG.json`](pilot/PILOT_LOG.json) | The pilot's log: timings, memory, the start-up benchmark, the checks and its five seeds |
 | [`PILOT_COMMAND.txt`](PILOT_COMMAND.txt) | The owner's command that ran the pilot: its hash checks, its GPU and power checks, and the pilot's command line with the approval id and the five throwaway seeds |
 | [`data-count/FRESH_POOL_COUNT.json`](data-count/FRESH_POOL_COUNT.json) | The owner's count of the fresh pool, made before the draw |
+| [`OPERATIONAL_NOTES.md`](OPERATIONAL_NOTES.md) | Dated operational events of the runs (R1, R2, X2), known gaps and precautions, copied from the study folder. It names the owner's run commands and the completeness check, `check_run.py`, which are not published |
 | [`seal/`](seal/) | `pilot/`: the source subject the pilot ran on. `pre-pin/`: the pending seal before the draw, with the three files the post-draw revision changed |
 | `.gitattributes` | Keeps every file in this folder byte for byte: git converts no line endings here. Three sealed files, byte copies of N7's, have CRLF line endings |
 
