@@ -121,7 +121,7 @@ seeds. Neither failed attempt was analysed.
   [`natural-text-matched-assistant-posthoc-20261111-01`](reports/natural-text-matched-assistant-posthoc-20261111-01/).
   From N7's per-sequence losses and the batch orders regenerated from the sealed code, it compares sequences by when
   they were trained: seen and not-yet-seen sequences, fixed sets across each quarter epoch, and the two widths on
-  sequences matched for the timing of every pass. From `POINTS.csv` it adds each width at its better rate and the
+  sequences in matched recency windows for every pass. From `POINTS.csv` it adds each width at its better rate and the
   equal-updates contrast at every readout. It is descriptive and not registered, and was made and checked by AI
   models only.
 - **Correction, 11 November.** [`CORRECTION.md`](reports/natural-text-correction-20261111-01/CORRECTION.md): which
@@ -159,7 +159,7 @@ loss, is unavailable.
 - P1 compares models with different training exposure: 768 is read at epochs 2.19–2.48, having trained on 19–48% of
   the set a third time. Within one model, sequences already trained in the current epoch have p\* higher by
   0.050–0.084 than those not yet trained in it.
-- On sequences matched for the timing of every pass, the contrast at 1e-4 for 512 at epoch 3 against 768 at epochs
+- On sequences in matched recency windows for every pass, the contrast at 1e-4 for 512 at epoch 3 against 768 at epochs
   2.25, 2.5 and 2.75 is −0.0035 [−0.0258, +0.0189], −0.0048 [−0.0121, +0.0026] and −0.0051 [−0.0109, +0.0008]: the
   lead of 512 is not seen, and every interval includes 0. At 3e-4 the matched contrasts are about +0.013.
 - With each width at its better rate of the two (512 at 3e-4, 768 at 1e-4), 512 is above 768 at equal updates

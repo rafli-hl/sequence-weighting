@@ -8,12 +8,12 @@ abstract: >-
 authors:
   - family-names: Pratama
     given-names: Rafli Putra
-version: "2.0"
+version: "2.1"
 license:
   - MIT
   - CC-BY-4.0
 repository-code: "https://github.com/rafli-hl/sequence-weighting"
-date-released: 2026-11-15
+date-released: 2026-11-23
 keywords:
   - machine learning
   - language models

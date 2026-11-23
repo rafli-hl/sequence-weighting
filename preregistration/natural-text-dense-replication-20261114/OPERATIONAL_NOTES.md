@@ -19,7 +19,7 @@ Dated operational events, known gaps and precautions of the runs. None changes a
 | R2 | 1 file, 2,355 bytes | yes (n04 and n05; n06 has no receipt) | 90 ms after | yes |
 | X2 | 1 file, 2,355 bytes | yes (n06) | 302 ms after | yes |
 
-X2's row comes from file sizes, the terminal and the n06 receipt. `check_run.py X2`, which also reads every data file to hash it, had not been run by 23 November 2026.
+`check_run.py X2`, run on 23 November 2026, confirms X2's row (Events, 16 November).
 
 ## Operational precautions
 
@@ -75,6 +75,10 @@ X2's row comes from file sizes, the terminal and the n06 receipt. `check_run.py 
     - w512 is ABSENT: R2 left none.
     - This comparison is reported, not gating. Deterministic algorithms were not enforced, so bit-identical arrays were not expected. How much they differ is not examined here, since that needs the loss values.
   - The inventory shows the known gap above.
+  - `check_run.py X2` (run on 23 November 2026): 31 passed, 1 failed, the failure being the known gap above.
+    - n06 passes every check of a complete draw, its arrays' hashes, layout and finiteness included.
+    - Against R2: X2's copy of R2's terminal is byte for byte the one R2 wrote, and n06 has the same seeds and saved orders as R2's n06 (orders `19c09770…`).
+    - The receipt's E0 comparison recomputes exactly from the arrays' SHA-256.
 - **23 November 2026, training paused after 6 of 24 draws.**
   - n01–n06 are complete; n06 was completed in the retry X2. R3–R8 have not started.
   - No p\* has been computed or examined, and the per-sequence losses stay unpublished until the sealed analysis.

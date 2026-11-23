@@ -85,9 +85,9 @@ largest total-variation distance between the sets' joint distributions over quar
 
 These are the audit's figures. `test_on_n7.py` reproduces them within 5e-6 from N7's regenerated batch orders.
 
-**What changes:** `METHODS.md` now says "matched recency windows" and gives these differences. C4 in
-`CURRENT_CLAIMS.md` says "in matched recency windows for all three passes" instead of "matched for the timing of all
-three passes".
+**What changes:** `METHODS.md` now says "matched recency windows" and gives these differences. `CURRENT_CLAIMS.md`
+(C4), `README.md` and `NATURAL_TEXT_STUDIES.md` say "in matched recency windows" for every pass instead of "matched for
+the timing" of every pass.
 
 ## 4. F4: N6's width 384, and the training statement
 
@@ -121,4 +121,5 @@ diagnostics) and F6 (estimator edge-case fixtures) are not adopted in this updat
 Living pages changed:
 - `CURRENT_CLAIMS.md`: C3, C4's table and exposure bullet, and the training row;
 - `METHODS.md`: §1's table, §5's exposure-matched comparison, §6 and §7;
-- `README.md`: the sensitivity table's note, the familywise rate and the training level.
+- `README.md`: the sensitivity table's note, the familywise rate, matched recency windows and the training level;
+- `NATURAL_TEXT_STUDIES.md`: matched recency windows.

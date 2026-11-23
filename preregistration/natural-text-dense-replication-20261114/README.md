@@ -72,11 +72,14 @@ Sensitivity and secondary analyses, the reading rules carried over from N7, powe
 | [`pilot/PILOT_LOG.json`](pilot/PILOT_LOG.json) | The pilot's log: timings, memory, the start-up benchmark, the checks and its five seeds |
 | [`PILOT_COMMAND.txt`](PILOT_COMMAND.txt) | The owner's command that ran the pilot: its hash checks, its GPU and power checks, and the pilot's command line with the approval id and the five throwaway seeds |
 | [`data-count/FRESH_POOL_COUNT.json`](data-count/FRESH_POOL_COUNT.json) | The owner's count of the fresh pool, made before the draw |
-| [`OPERATIONAL_NOTES.md`](OPERATIONAL_NOTES.md) | Dated operational events of the runs (R1, R2, X2), known gaps and precautions, copied from the study folder. It names the owner's run commands and the completeness check, `check_run.py`, which are not published |
+| [`OPERATIONAL_NOTES.md`](OPERATIONAL_NOTES.md) | Dated operational events of the runs (R1, R2, X2), known gaps and precautions, copied from the study folder |
+| [`check_run.py`](check_run.py) | The completeness check run after each run (`check_run.py R<k>` or `X<k>`): structure, sizes, counts and hashes, with an audit hook that confines it to that run's folders and refuses every write. It fits nothing and prints no loss value |
+| [`X2_COMMAND.txt`](X2_COMMAND.txt) | The owner's command for the retry run X2: its hash and tag checks, R2's FAILED exit receipt and terminal, the build with the approval id and text, and the GPU memory check before the claim |
+| [`RUN_COMMAND.ps1`](RUN_COMMAND.ps1) | The owner's command for R3–R8, not yet used: the approval checked before anything is read, the build checks, R<k−1>'s retry first if R<k−1> did not complete, and the GPU memory check before the claim. It mentions `R2_COMMAND.txt`, which is not published |
 | [`seal/`](seal/) | `pilot/`: the source subject the pilot ran on. `pre-pin/`: the pending seal before the draw, with the three files the post-draw revision changed |
 | `.gitattributes` | Keeps every file in this folder byte for byte: git converts no line endings here. Three sealed files, byte copies of N7's, have CRLF line endings |
 
-**Not included, by design:** the corpus, which is not redistributed here; N7's loss arrays and regenerated batch orders, which the analysis tests read (N7's arrays are the v1.2 release's `n7-loss-arrays-v1.zip`); the owner's draw command, `DRAW_COMMAND.txt`, and its retired test, which hold a local home path. `HASHES.json` names each of them by hash. Paths inside the code refer to the original research machine and are not portable entry points.
+**Not included, by design:** the corpus, which is not redistributed here; N7's loss arrays and regenerated batch orders, which the analysis tests read (N7's arrays are the v1.2 release's `n7-loss-arrays-v1.zip`); the owner's draw command, `DRAW_COMMAND.txt`, and its retired test, which hold a local home path. `HASHES.json` names each of them by hash. Paths inside the code refer to the original research machine and are not portable entry points. Of the operational files written after registration, only those that `OPERATIONAL_NOTES.md` cites are published: the notes themselves, `check_run.py`, `X2_COMMAND.txt` and `RUN_COMMAND.ps1`. The owner's commands for R1 and R2, and the tests of the commands and of `check_run.py`, are not published.
 
 ## How to verify
 

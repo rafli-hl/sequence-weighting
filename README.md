@@ -10,7 +10,7 @@ N7: its protocol and sealed source were registered publicly before any of its ru
 
 **Status:** research record. It was closed after N7 and reopened on 14 November 2026 for one registered study, N8
 ([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)). Latest release:
-[v2.0](https://github.com/rafli-hl/sequence-weighting/releases/tag/v2.0) (15 November 2026). The README
+[v2.1](https://github.com/rafli-hl/sequence-weighting/releases/tag/v2.1) (23 November 2026). The README
 and methods were revised on 13 November 2026, and corrected on 23 November 2026 after an external audit; no registered
 result, label or sealed file changed ([`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md)).
 
@@ -105,8 +105,8 @@ for 6/6 gives p = 0.031.
   draw a third time; 512 at epoch 3 has trained on all of it. Within one model, sequences already trained in the
   current epoch have p\* higher by 0.050–0.084 than the rest. This is an alternative explanation for part of P1; a
   difference between subgroups of one model cannot simply be subtracted from a contrast between models.
-- **Exposure-matched comparisons at 1e-4 are inconclusive.** On sequences matched for the timing of all three passes,
-  512 at epoch 3 against 768 at epochs 2.25, 2.5 and 2.75 gives −0.0035 [−0.0258, +0.0189], −0.0048
+- **Exposure-matched comparisons at 1e-4 are inconclusive.** On sequences in matched recency windows for all three
+  passes, 512 at epoch 3 against 768 at epochs 2.25, 2.5 and 2.75 gives −0.0035 [−0.0258, +0.0189], −0.0048
   [−0.0121, +0.0026] and −0.0051 [−0.0109, +0.0008]. The first, nearest to equal loss, uses about 250 sequences per
   model per draw and has power 0.14 for an effect of P1's size; the others are not matched on training loss. None of
   these establishes that the effect is absent. At 3e-4 the same comparisons are +0.0126 to +0.0129.
@@ -326,7 +326,7 @@ are at `https://archive.softwareheritage.org/swh:1:rev:<full commit hash>`.
 @misc{pratama2026sequenceweighting,
   author       = {Rafli Putra Pratama},
   title        = {Sequence weighting across model widths: research record},
-  version      = {1.2},
+  version      = {2.1},
   year         = {2026},
   howpublished = {\url{https://github.com/rafli-hl/sequence-weighting}}
 }

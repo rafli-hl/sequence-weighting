@@ -1,0 +1,73 @@
+# Run X2 of N8: the one retry of Run R2's draw n06 (protocol section 8), admitted on R2's terminal
+# 2a02e9573e4009c066d43bbf9e7d25d588dc10bd763865828cc8e59007607fe8 (FAILED in n06; n04 and n05 COMPLETE). Two steps, each pasted into
+# Windows PowerShell on its own.
+# Step 1 builds the one-use activation: native Python, no GPU. The builder admits X2 only on R2's terminal (not complete, the same subject
+# and inputs) and binds it; the activation lists the draw R2 did not complete, n06, which X2 repeats from scratch with the same seeds.
+# It reads and checks the corpus, which lies in the closed record's work/runs/, so only the owner runs it.
+& {
+  $ErrorActionPreference = 'Stop'
+  $study = 'D:\sequence-weighting-n8'; $src = "$study\source"
+  # The builder with the registration recorded, the registered source and the pilot's log, against their hashes.
+  if ((Get-FileHash -LiteralPath "$study\tools\build_n8_activation.py" -Algorithm SHA256).Hash.ToLower() -ne 'c31fd4aa32873a1d025621f06bcc66e289c16ad86f64612c00dad76b1fd62904') { throw 'Hash differs: tools\build_n8_activation.py' }
+  if ((Get-FileHash -LiteralPath "$src\SOURCE_SUBJECT.json" -Algorithm SHA256).Hash.ToLower() -ne '9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b') { throw 'Hash differs: source\SOURCE_SUBJECT.json' }
+  foreach ($row in (Get-Content -LiteralPath "$src\SOURCE_SUBJECT.json" -Raw -Encoding UTF8 | ConvertFrom-Json).files) { if ((Get-FileHash -LiteralPath (Join-Path $src $row.path) -Algorithm SHA256).Hash.ToLower() -ne $row.sha256) { throw ('Changed source ' + $row.path) } }
+  if ((Get-FileHash -LiteralPath "$study\pilot\PILOT_LOG.json" -Algorithm SHA256).Hash.ToLower() -ne '251d0951e30250afa16cb998b06550358c09234d8a24c45166b08d0642347db6') { throw 'Hash differs: pilot\PILOT_LOG.json' }
+  foreach ($d in "$src\__pycache__", "$src\vendor\__pycache__", "$study\tools\__pycache__") { if (Test-Path -LiteralPath $d) { throw "Bytecode folder exists: $d" } }
+  'All files match'
+  # The registration is public: GitHub has the tag n8-registration at the merge commit (protocol section 10, step 5).
+  $tag = @(git -C 'C:\Users\rafli\sequence-weighting' ls-remote origin 'refs/tags/n8-registration' 'refs/tags/n8-registration^{}')
+  if (-not ($tag | Where-Object { "$_".StartsWith('c6f98b26669f5d29f30c576b6d800c1fc82c98eb') })) { throw 'GitHub has no tag n8-registration at the merge commit c6f98b26669f5d29f30c576b6d800c1fc82c98eb. Push it first: git -C C:\Users\rafli\sequence-weighting push origin refs/tags/n8-registration' }
+  'GitHub has the tag n8-registration at the merge commit'
+  # Once only: X2's activation and run folders do not exist yet.
+  foreach ($d in "$study\activations\n8-x2", "$study\runs\n8-x2") { if (Test-Path -LiteralPath $d) { throw "Exists already: $d. X2 is built and run once" } }
+  # The two parent folders must exist: the builder makes only the activation folder, and the worker only its run folder.
+  foreach ($d in "$study\activations", "$study\runs") { if (-not (Test-Path -LiteralPath $d -PathType Container)) { throw "Missing folder: $d, which holds the earlier runs' folders. Stop and report it; nothing was built" } }
+  # The first attempt: Run R2 ended FAILED, and its terminal is the one its owner script recorded.
+  $terminal = '2a02e9573e4009c066d43bbf9e7d25d588dc10bd763865828cc8e59007607fe8'
+  if (-not (Test-Path -LiteralPath "$study\activations\n8-r2\OWNER_EXIT_RECEIPT.json" -PathType Leaf)) { throw 'Run R2 has not ended: activations\n8-r2 has no OWNER_EXIT_RECEIPT.json. Stop and report it; nothing was built' }
+  $first = Get-Content -LiteralPath "$study\activations\n8-r2\OWNER_EXIT_RECEIPT.json" -Raw -Encoding UTF8 | ConvertFrom-Json
+  if ($first.status -ne 'FAILED' -or $first.mode -ne 'R2' -or $first.terminal_sha256 -ne $terminal) { throw "Run R2's exit receipt is not the FAILED one with terminal $terminal. Stop and report it; nothing was built" }
+  if ((Get-FileHash -LiteralPath "$study\runs\n8-r2\TERMINAL.json" -Algorithm SHA256).Hash.ToLower() -ne $terminal) { throw "Hash differs: runs\n8-r2\TERMINAL.json is not R2's terminal $terminal. Stop and report it; nothing was built" }
+  'Run R2 ended FAILED, with the terminal its owner script recorded'
+  # Room on D:: every run but the first needs at least 3 GiB free (the worker's admission rule); its owner script checks again before its claim.
+  $free = (Get-PSDrive D).Free
+  if ($free -lt 3GB) { throw ('Run X2 needs at least 3 GiB free on D:; free now ' + [math]::Round($free / 1GB, 2) + ' GiB') }
+  'Building the activation of Run X2 (n06). It checks every corpus file, which takes a few minutes; keep this window open.'
+  & 'C:\Users\rafli\AppData\Local\Programs\Python\Python312\python.exe' -I -B "$study\tools\build_n8_activation.py" --mode X2 --approval-id OWNER-20261116-N8-X2-01 --user-text 'I approve N8 Run X2 (draw n06, the retry of Run R2) under OWNER-20261116-N8-X2-01.'
+  "build exit=$LASTEXITCODE"
+}
+
+# Step 2, only after step 1 printed "status": "ARMED_UNUSED", "stages": ["n06"] and build exit=0: the run. GPU, one draw: R2's draws took
+# 2,792 and 2,816 s on the worker clock, so about an hour of wall time with the benchmark (at most 6 h on the worker clock). The owner
+# script prints its fixed text "about 2.3 h", which is for three draws. On AC power with the lid open; close games, browsers, video and
+# other GPU apps before it, and open none until it ends: another app's GPU memory stopped R2. Keep the window open.
+& {
+  $ErrorActionPreference = 'Stop'
+  $study = 'D:\sequence-weighting-n8'; $activation = "$study\activations\n8-x2"
+  # The worker makes its run folder inside runs, and the owner script claims before the worker starts, so runs must exist first.
+  if (-not (Test-Path -LiteralPath "$study\runs" -PathType Container)) { throw "Missing folder: $study\runs, which holds the earlier runs. Stop and report it; nothing was claimed" }
+  if (-not (Test-Path -LiteralPath "$activation\AUTHORIZATION.json" -PathType Leaf)) { throw "Run X2 is not built: $activation has no AUTHORIZATION.json. Do step 1 first; nothing was claimed" }
+  # GPU memory before the claim (an operational precaution of 16 November 2026, OPERATIONAL_NOTES.md; no sealed file changes). Read only:
+  # five nvidia-smi readings of the GPU memory used, 1 s apart; if any is over 600 MiB, nothing is claimed. Either way it lists the
+  # processes on the GPU, with the dedicated GPU memory Windows counts for each, so you can close them.
+  $smi = 'C:\Windows\System32\nvidia-smi.exe'
+  if (-not (Test-Path -LiteralPath $smi -PathType Leaf)) { throw "nvidia-smi not found at $smi. Nothing was claimed" }
+  $used = @(foreach ($i in 1..5) {
+    if ($i -gt 1) { Start-Sleep -Seconds 1 }
+    $r = @(& $smi '--query-gpu=memory.used' '--format=csv,noheader,nounits')
+    if ($LASTEXITCODE -ne 0 -or $r.Count -ne 1 -or "$($r[0])".Trim() -notmatch '^[0-9]+$') { throw 'nvidia-smi did not report the memory used of one GPU. Nothing was claimed' }
+    [int]"$($r[0])".Trim()
+  })
+  $gpuMib = @{}
+  try { foreach ($s in (Get-Counter '\GPU Process Memory(*)\Dedicated Usage' -ErrorAction Stop).CounterSamples) { if ($s.InstanceName -match '^pid_([0-9]+)_') { $gpuMib[[int]$Matches[1]] += $s.CookedValue / 1MB } } } catch {}
+  $apps = @(& $smi '--query-compute-apps=pid,process_name' '--format=csv,noheader' | Where-Object { "$_".Trim() } | ForEach-Object {
+    $f = "$_".Split(',', 2); $appId = 0; [void][int]::TryParse($f[0].Trim(), [ref]$appId); $name = if ($f.Count -gt 1) { $f[1].Trim() } else { '' }
+    if (-not $name -or $name.StartsWith('[')) { try { $name = (Get-Process -Id $appId -ErrorAction Stop).ProcessName } catch {} }
+    [pscustomobject]@{ PID = $appId; MiB = $(if ($gpuMib.ContainsKey($appId)) { [math]::Round($gpuMib[$appId]) } else { $null }); Process = $name }
+  })
+  'GPU memory used before the claim: ' + ($used -join ', ') + ' MiB (limit 600 MiB). Processes on the GPU (nvidia-smi), with the dedicated GPU memory in MiB that Windows counts for each:'
+  if ($apps.Count -gt 0) { ($apps | Sort-Object MiB -Descending | Format-Table -AutoSize | Out-String -Width 250).TrimEnd() } else { '  none listed' }
+  $top = ($used | Measure-Object -Maximum).Maximum
+  if ($top -gt 600) { throw ('The GPU has ' + $top + ' MiB in use, over the 600 MiB limit. Close the apps listed above that you opened (games, browsers, video, GPU tools), then run the same command again. Nothing was claimed') }
+  & "$activation\MATCHED_OWNER_RUN.ps1" -ExpectedSubject '9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b'
+}

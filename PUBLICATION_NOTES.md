@@ -26,7 +26,7 @@ made and how it has changed, newest first.
   of 23 November.
 - **Licence.** From 9 November 2026: MIT for code; CC BY 4.0 for everything else (`LICENSE`, `LICENSE-CC-BY-4.0.md`).
 
-## 23 November 2026: a correction after the external audit of 13 November, and N8 paused
+## 23 November 2026: version 2.1, N8 paused; corrections of 23 November
 
 No registered number, label, sealed file or historical file changed, and no hash cited elsewhere changed. Changes:
 
@@ -44,9 +44,10 @@ No registered number, label, sealed file or historical file changed, and no hash
     tokenizer result; N8's pause.
   - `METHODS.md`: N6's width 384 at 3e-4; matched recency windows with the largest mean-age differences; the envelope
     in §6; the familywise simulation is unpublished.
-  - `README.md`: N8's pause; a note under the sensitivity table; the familywise caveat; the tokenizer in level 5; the
-    new audit and correction in the links.
-  - `NATURAL_TEXT_STUDIES.md`: the audit, the correction and N8's pause.
+  - `README.md`: N8's pause; a note under the sensitivity table; the familywise caveat; matched recency windows; the
+    tokenizer in level 5; the new audit and correction in the links.
+  - `NATURAL_TEXT_STUDIES.md`: the audit, the correction, matched recency windows and N8's pause. No living page now
+    says that the exposure-matched sets are matched "for the timing" of every pass.
   - `reports/README.md`: the two new folders.
 - **N8 paused.** Training is paused on 23 November 2026 after 6 of 24 draws (n01–n06; n06 completed in the retry run
   X2).
@@ -56,11 +57,21 @@ No registered number, label, sealed file or historical file changed, and no hash
     registered INCOMPLETE rule applies.
   - The same statement is in `README.md`, `NATURAL_TEXT_STUDIES.md`, `CURRENT_CLAIMS.md` and the N8 folder's README.
   - "Its runs have not started" is replaced in `README.md` and in the entry of 15 November below.
-- **N8's operational record.** The N8 folder gains `OPERATIONAL_NOTES.md`, a byte copy of the study folder's file: the
-  operational events of R1, R2 and X2, the known gap in the terminal's inventory, and the precautions taken after R2.
-  The folder's README gains a status of 23 November and the note of 15 November on the two empty folders created
-  before R1's build. These change no file that `HASHES.json` binds.
-- **Runs:** none for this copy.
+- **N8's operational record.** The N8 folder gains four byte copies from the study folder:
+  - `OPERATIONAL_NOTES.md`: the operational events of R1, R2 and X2, the known gap in the terminal's inventory, the
+    precautions taken after R2, and each run's completeness check;
+  - `check_run.py`: the completeness check;
+  - `X2_COMMAND.txt`: the owner's command for the retry run X2;
+  - `RUN_COMMAND.ps1`: the owner's command for R3–R8, not yet used.
+
+  Their local paths, including the Windows user name, are published unchanged, at the owner's instruction. The
+  folder's README lists them, gains a status of 23 November and keeps the note of 15 November on the two empty folders
+  created before R1's build. None of this changes a file that `HASHES.json` binds.
+- **Version 2.1.** `README.md` names v2.1 as the latest release. `CITATION.cff` carries version 2.1, released
+  23 November 2026, and the README's citation block, which still said 1.2, now says 2.1.
+- **Runs:** none for this copy. On the research machine, `check_run.py X2` checked X2's outputs on 23 November: 31
+  passed, and 1 failed, the known gap. It fits nothing and prints no loss value. Its result is in
+  `OPERATIONAL_NOTES.md`.
 - **Checks run** on this copy: `gap_scale.py`, `tools/verify_publication.py`, and a simulation of the commit's line
   endings (a throwaway git index: every file's committed bytes equal the bytes on disk).
 
