@@ -1,0 +1,1 @@
+2026-11-16 12:34:36  Check before n06: IDLE (GPU IDLE: mean utilization 0.6% (limit 12%), max memory used 377 MiB (recorded, not gated); power AC, battery 80%, plan Turbo)

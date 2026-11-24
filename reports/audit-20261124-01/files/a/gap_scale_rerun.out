@@ -1,0 +1,9 @@
+POINTS.csv 9a2baad33a711901..., 10 draws
+E2, 768 - 512: gap +0.00039 [-0.00472, +0.00551] nats; p* -0.00924 [-0.01123, -0.00724]; draw gap differences -0.00925 to +0.01450
+width 512, E1 to E2: slope of p* on gap 0.157 per nat (draws 0.139 to 0.190)
+width 512, E2 to E3: slope of p* on gap 0.185 per nat (draws 0.172 to 0.195)
+width 512, E1 to E3: slope of p* on gap 0.171 per nat (draws 0.156 to 0.193)
+width 768, E1 to E2: slope of p* on gap 0.149 per nat (draws 0.128 to 0.173)
+width 768, E2 to E3: slope of p* on gap 0.167 per nat (draws 0.150 to 0.184)
+width 768, E1 to E3: slope of p* on gap 0.158 per nat (draws 0.143 to 0.173)
+neighbouring-readout slopes, means: 0.149 to 0.185 per nat; a gap difference of 0.0055 nats (the upper limit) corresponds to 0.0008 to 0.0010 of p*

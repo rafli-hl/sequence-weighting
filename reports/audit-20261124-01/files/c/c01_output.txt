@@ -1,0 +1,73 @@
+n8_analysis.py sha256 37b32fc547bb09f987f3131157f94ad171b5822b9d87d488bced3ae448f38538
+exponent         vs N7 vendor/core.py         text identical: True; AST identical: True
+exponent_upper   vs N7 text_analysis.py       text identical: True; AST identical: True
+objective_at     vs N7 text_analysis.py       text identical: True; AST identical: True
+read_along       vs N7 matched_analysis.py    text identical: False; AST identical: False
+      --- N7
+      +++ N8
+      @@ -2 +2 @@
+      -    """path_rows: (readout, value, p) in readout order along MATCH_PATH. The first interval whose two values hold the target gives the
+      +    """path_rows: (readout, value, p) in readout order along the match path. The first interval whose two values hold the target gives the
+_betacf          vs N7 fewepoch_analysis.py   text identical: True; AST identical: True
+betai            vs N7 fewepoch_analysis.py   text identical: True; AST identical: True
+p_two_sided      vs N7 fewepoch_analysis.py   text identical: False; AST identical: False
+      --- N7
+      +++ N8
+      @@ -1 +1,3 @@
+      -def p_two_sided(t, df): return betai(df / 2, 0.5, df / (df + t * t))
+      +def p_two_sided(t, df):
+      +    """P(|T| >= |t|) for Student's t with df degrees of freedom."""
+      +    return betai(df / 2, 0.5, df / (df + t * t))
+side             vs N7 matched_analysis.py    text identical: True; AST identical: True
+sign_test        vs N7 matched_analysis.py    text identical: False; AST identical: False
+      --- N7
+      +++ N8
+      @@ -2 +2 @@
+      -    """The exact two-sided sign test; zeros are dropped. None if every value is zero."""
+      +    """The exact two-sided sign test; zeros are dropped. p is None if every value is zero."""
+      @@ -4,2 +4,2 @@
+      -    if n == 0: return dict(positive=pos, negative=neg, p=None)
+      -    return dict(positive=pos, negative=neg, p=min(1.0, 2 * math.fsum(math.comb(n, k) for k in range(min(pos, neg) + 1)) / 2 ** n))
+      +    if n == 0: return dict(positive=pos, negative=neg, zeros=len(values), p=None)
+      +    return dict(positive=pos, negative=neg, zeros=len(values) - n, p=min(1.0, 2 * math.fsum(math.comb(n, k) for k in range(min(pos, neg) + 1)) / 2 ** n))
+draw_row         vs N7 matched_analysis.py    text identical: False; AST identical: False
+      --- N7
+      +++ N8
+      @@ -1,5 +1,5 @@
+      -def draw_row(per_d, spec):
+      -    """One draw of one statistic: the reading of the second arm, and the contrast with the first arm at E3."""
+      -    a, b = spec['first'], spec['second']; p_first = per_d[a][FINAL]['p']
+      -    if spec['kind'] == 'matched':
+      -        rows = [(e, per_d[b][e][spec['key']], per_d[b][e]['p']) for e in mp.MATCH_PATH]; r = read_along(rows, per_d[a][FINAL][spec['key']])
+      +def draw_row(per_d, first, second, kind, key, final, path):
+      +    """One draw of one contrast: the reading of the second arm, and p*(first, final) minus it (N7's draw_row)."""
+      +    p_first = per_d[first][final]['p']
+      +    if kind == 'matched':
+      +        r = read_along([(e, per_d[second][e][key], per_d[second][e]['p']) for e in path], per_d[first][final][key])
+      @@ -7 +7 @@
+      -        p = per_d[b][FINAL]['p']; r = dict(status='READ', p_read=p, read_at_readout=FINAL) if p is not None else dict(status='UNDEFINED_FIT', read_at_readout=FINAL)
+      +        p = per_d[second][final]['p']; r = dict(status='READ', p_read=p, read_at_readout=final) if p is not None else dict(status='UNDEFINED_FIT', read_at_readout=final)
+leave_one_out    vs N7 matched_analysis.py    text identical: False; AST identical: False
+      --- N7
+      +++ N8
+      @@ -1 +1 @@
+      -def leave_one_out(values):
+      +def leave_one_out(values, confidence=CONFIDENCE):
+      @@ -5 +5,2 @@
+      -        t = ta.tint([v for k, v in values.items() if k != d]); s = side(t); out[d] = dict(mean=t['mean'], interval=t['interval'], df=t['df'], side=s, excludes_zero=s != 'SPANS')
+      +        t = t_interval([v for k, v in values.items() if k != d], confidence); s = side(t)
+      +        out[d] = dict(mean=t['mean'], interval=t['interval'], df=t['df'], side=s, excludes_zero=s != 'SPANS')
+fits_used        vs N7 matched_analysis.py    text identical: False; AST identical: False
+      --- N7
+      +++ N8
+      @@ -1,4 +1,3 @@
+      -def fits_used(spec, row):
+      -    """The (arm, readout) fits a read draw uses."""
+      -    second = [(spec['second'], e) for e in row['between']] if spec['kind'] == 'matched' else [(spec['second'], FINAL)]
+      -    return [(spec['first'], FINAL)] + second
+      +def fits_used(row, first, second, kind, final):
+      +    """The (arm, readout) fits a draw's reading uses."""
+      +    return [(first, final)] + [(second, e) for e in (row['between'] if kind == 'matched' else [final])]
+N8 source/vendor/core.py byte-identical to N7 sealed-source/vendor/core.py: True f9320bae147f01bc
+N8 source/text_analysis.py byte-identical to N7 sealed-source/text_analysis.py: True f53cf877b57ea424
+N8 source/fewepoch_analysis.py byte-identical to N7 sealed-source/fewepoch_analysis.py: True fab5df60ab9d0acb

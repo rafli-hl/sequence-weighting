@@ -1,0 +1,48 @@
+numpy 2.5.3, python 3.12.10
+--- t quantile
+PASS  closed-form integer-df CDF at the quantile, df 1-60, probabilities 0.9 to 0.995 (1e-13)  [largest error 9.8e-15]
+PASS  two-sided p against the closed form, df 1-40 (1e-13)  [largest error 1.4e-14]
+PASS  N7's T95 table, df 2-11 (rounded to 9 decimals, so 5e-10)  [largest difference 4.1e-10]
+      df 19-23: 19: 2.093024054408, 20: 2.085963447266, 21: 2.079613844728, 22: 2.073873067904, 23: 2.068657610419
+SKIP  SciPy comparison: SciPy is not installed
+--- reading rule
+PASS  a flat interval holding the target is read at its earlier readout  [{'between': [2, 2.25], 'weight': 0.0, 'p_read': 0.1, 'intervals_holding_the_target': 2}]
+PASS  a target equal to a readout value is held by the first interval that contains it  [{'between': [2, 2.25], 'weight': 1.0, 'p_read': 0.11, 'intervals_holding_the_target': 3}]
+PASS  a target outside the path (4.31) is TARGET_OUTSIDE_PATH  [TARGET_OUTSIDE_PATH]
+PASS  a target outside the path (4.19) is TARGET_OUTSIDE_PATH  [TARGET_OUTSIDE_PATH]
+PASS  a non-monotone path: the first bracketing interval, and the count of all of them  [between [2, 2.25], count 5, p 0.1900]
+PASS  an undefined p* at the bracket: UNDEFINED_FIT  [UNDEFINED_FIT]
+PASS  an undefined p* off the bracket does not matter  [READ]
+PASS  an undefined p* of 512 at E3: UNDEFINED_FIT  [UNDEFINED_FIT]
+--- availability and the decision (N8 grid, 24 draws, minimum 20)
+PASS  plan grid: 28 readouts, a 25-readout path every 64 updates from 2,048 to 3,584, E3 on it  [28 readouts, path 2.0..3.5, minimum 20 draws]
+PASS  S-b windows: quarters; on N8's 64-update path the order check uses exactly the six quarter windows, none unaligned  [6 steps]
+PASS  19 of 24 available for H1: H1 UNAVAILABLE, REVERSAL_NOT_REPLICATED  [labels {'H1': 'UNAVAILABLE', 'H2': 'CONFIRMED'}, REVERSAL_NOT_REPLICATED, TARGET_OUTSIDE_PATH 5]
+PASS  20 of 24 available: both read, REVERSAL_REPLICATED  [H1 +0.00393 [+0.00290, +0.00497], envelope over 1048576 combinations]
+PASS  an undefined 768 fit at E3 in 5 draws: H2 UNAVAILABLE (19 of 24), H1 unaffected  [{'H1': 'CONFIRMED', 'H2': 'UNAVAILABLE'}]
+PASS  19 completed draws: INCOMPLETE, no statistic and no label  [19 of 24 draws completed, fewer than 20: the study is INCOMPLETE and nothing is read.]
+PASS  20 completed draws: read, failed draws counted as DRAW_MISSING for both  [{'H1': 'CONFIRMED', 'H2': 'CONFIRMED'}]
+PASS  H2 interval including 0: INCONCLUSIVE, REVERSAL_NOT_REPLICATED  [{'H1': 'CONFIRMED', 'H2': 'INCONCLUSIVE'}]
+PASS  both on the wrong side: CONTRARY  [{'H1': 'CONTRARY', 'H2': 'CONTRARY'}]
+--- saturation (fits at or above 7.999 refitted with the upper bound at 32)
+PASS  a fit below 7.999 is not refitted  [p 0.5000]
+PASS  gains rising as w^12: bound-8 fit at the bound, resolved at bound 32, not saturated  [p 8.0, at bound 32 12.0000]
+PASS  all gain on the heaviest sequence: unresolved at bound 32, SATURATED  [p 8.0, at bound 32 32.0]
+PASS  a saturated fit makes its draw unavailable (SATURATED); a resolved one stays, with its value at bound 32 reported  [available 23]
+--- sign test, leave-one-out, intervals
+PASS  sign test [1, 1, 1, 1, 1, 1]  [p 0.03125]
+PASS  sign test [1, 1, 1, 1, 1, 0]  [p 0.0625]
+PASS  sign test [1, 1, 1, 1, 1, -1]  [p 0.21875]
+PASS  sign test [0, 0]  [p None]
+PASS  leave-one-out intervals equal the interval of the remaining draws, df n - 2
+PASS  a constant sample is degenerate, with a zero-width interval  [[0.003, 0.003]]
+--- bracket envelope
+PASS  against itertools brute force, n = 2, 3, 5, 10, 13 (1e-12)  [largest difference 1.7e-18]
+PASS  brackets of zero width: the envelope is the plain interval
+PASS  one draw is refused
+PASS  24 draws: 16,777,216 combinations in 0.5 s, peak traced memory 16.1 MiB  [min lower +0.0020124, max upper +0.0098573]
+PASS  24 draws against a direct enumeration of all 2^24 combinations (1e-12)  [differences 4.3e-19 / 0; direct enumeration 7 s]
+PASS  the reported vertices give the reported limits
+PASS  20,000 interior points stay inside the vertex extremes (concavity)  [interior min lower +0.0029996, max upper +0.0089609]
+37 passed, 0 failed
+exit 0

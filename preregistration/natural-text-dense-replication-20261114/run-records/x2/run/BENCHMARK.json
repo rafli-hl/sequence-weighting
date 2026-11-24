@@ -1,0 +1,146 @@
+{
+  "benchmark": {
+    "architectures": {
+      "512": {
+        "parameters": 16870400,
+        "peaks": {
+          "cuda_allocated": 677201408,
+          "cuda_reserved": 891289600,
+          "device_used_sampled": 1755106508,
+          "worker_peak_rss": 2023141376
+        },
+        "seconds": 29.311018285000046,
+        "seconds_per_eval_batch": 0.03725997265625125,
+        "seconds_per_pretraining_update": 0.070102323531259,
+        "seconds_per_state_reload": 0.5437094890003209,
+        "seconds_per_state_write": 0.9599288149997847,
+        "seconds_per_update": 0.06521441590625443,
+        "state_bytes": 67497092,
+        "state_write_seconds": [
+          0.9599288149997847,
+          0.9356658900001094,
+          1.1275601590000406
+        ]
+      },
+      "768": {
+        "parameters": 34742784,
+        "peaks": {
+          "cuda_allocated": 1093707264,
+          "cuda_reserved": 1522532352,
+          "device_used_sampled": 2386349260,
+          "worker_peak_rss": 2475712512
+        },
+        "seconds": 29.60463436100008,
+        "seconds_per_eval_batch": 0.0732677838124971,
+        "seconds_per_pretraining_update": 0.11892958290624733,
+        "seconds_per_state_reload": 1.1480736290000095,
+        "seconds_per_state_write": 2.715831402999811,
+        "seconds_per_update": 0.13382570278125172,
+        "state_bytes": 138986628,
+        "state_write_seconds": [
+          4.754066019999755,
+          2.517586731999927,
+          2.715831402999811
+        ]
+      }
+    },
+    "overheads": {
+      "benchmark_seconds": 29.60451982199993,
+      "cache_entries": 2,
+      "seconds_data_generation": 0.001193773999602854,
+      "seconds_per_epoch_guard": 0.0009118734375022086,
+      "seconds_per_full_guard": 0.020718746187498027,
+      "seconds_per_inventory_entry": 0.006826551874998661
+    }
+  },
+  "benchmark_counts": {
+    "eval_batches": 128,
+    "models": 2,
+    "pretrained_states": 0,
+    "updates": 0
+  },
+  "caps": {
+    "counts": {
+      "adapt_updates": 3584,
+      "adaptations_per_width": {
+        "512": 1,
+        "768": 1
+      },
+      "array_bytes": 1892352,
+      "arrays": true,
+      "dirs": 4,
+      "e0_bytes": 67584,
+      "e0_eval_batches": 528,
+      "epoch_guards": 28,
+      "files": 12,
+      "full_guards": 8,
+      "order_bytes": 524288,
+      "pre_updates": 512,
+      "readout_eval_batches": 14784,
+      "trajectories": 2
+    },
+    "feasible": true,
+    "formula": "ceil(1.25*projected+120) <= 18840 s; 1*(cap+60)+900+1800 <= 21600 s",
+    "projected_stage_seconds": 2539.180213427175,
+    "stage_work_cap_seconds": 3294,
+    "stages": 1,
+    "write_model": {
+      "fixed_seconds": 0.0,
+      "seconds_per_byte": 1.8525281924190613e-08
+    }
+  },
+  "failure": null,
+  "guard_calls": {
+    "epoch": 168,
+    "full": 34,
+    "tick": 416
+  },
+  "n_train": 16384,
+  "pool_n": 2048,
+  "startup": {
+    "decision": "GO",
+    "fit_limit_bytes": 2415919104,
+    "guard_bytes": 2684354560,
+    "reason": "ALL_WIDTHS_WITHIN_LIMIT"
+  },
+  "states": {
+    "deleted": [
+      {
+        "bytes": 67497092,
+        "path": "benchmark/w512-w0.pt",
+        "sha256": "2d69693b905af648a47cb670d923b9093b6649c6667ed6b2c2be4fb59bee04c8"
+      },
+      {
+        "bytes": 67497092,
+        "path": "benchmark/w512-w1.pt",
+        "sha256": "2d69693b905af648a47cb670d923b9093b6649c6667ed6b2c2be4fb59bee04c8"
+      },
+      {
+        "bytes": 67497092,
+        "path": "benchmark/w512-w2.pt",
+        "sha256": "2d69693b905af648a47cb670d923b9093b6649c6667ed6b2c2be4fb59bee04c8"
+      },
+      {
+        "bytes": 138986628,
+        "path": "benchmark/w768-w0.pt",
+        "sha256": "ae1ce7f39a568229d64280c164e546fc91a8a3a8b58f1cadb87237d56acf0bb5"
+      },
+      {
+        "bytes": 138986628,
+        "path": "benchmark/w768-w1.pt",
+        "sha256": "ae1ce7f39a568229d64280c164e546fc91a8a3a8b58f1cadb87237d56acf0bb5"
+      },
+      {
+        "bytes": 138986628,
+        "path": "benchmark/w768-w2.pt",
+        "sha256": "ae1ce7f39a568229d64280c164e546fc91a8a3a8b58f1cadb87237d56acf0bb5"
+      }
+    ],
+    "deleted_bytes": 619451160,
+    "errors": [],
+    "ledger_released": {
+      "bytes": 619451160,
+      "files": 6
+    }
+  }
+}

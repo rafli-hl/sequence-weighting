@@ -1,0 +1,93 @@
+PASS  HASHES.json: 17 single-file hashes equal the published files  [[]]
+PASS  HASHES.json: grouped file hashes equal the published files, except those listed  [differ: [('tools/build_n8_activation.py', 'c31fd4aa')]; named but not published: ['tests-retired/test_draw_command.py']]
+      HASHES.json keys ending _sha256 with no published file checked above: ['draw_command_sha256', 'corpus_manifest_sha256', 'n7_partition_sha256']
+      published files bound neither by HASHES.json nor by SOURCE_SUBJECT.json: ['.gitattributes', 'HASHES.json', 'OPERATIONAL_NOTES.md', 'README.md', 'RUN_COMMAND.ps1', 'X2_COMMAND.txt', 'check_run.py', 'source/AUTHORIZATION.json']
+PASS  DRAW.json: 1,024 bytes of entropy
+PASS  my re-derivation of the 98 role values from DRAW.json and EXCLUSIONS.json equals REGISTRY.json  [candidates used up to index 97; rejected before that: 0]
+PASS  98 distinct values, each more than 2,048 from every exclusion and from each other  [nearest exclusion 37913, nearest other role 112876; the check record says 37913 and 112876]
+PASS  registry decisions list equals my accept/reject sequence
+PASS  registry binds its own draw, exclusions, policy and partition
+PASS  exclusions: 4,370 values, sorted, unique; provenance union_values agrees
+PASS  the pilot's five seeds are all in EXCLUSIONS.json  [{'adapt_order_seed': 90809628, 'benchmark_seed': 578352808, 'init_seed': 1188503724, 'pretrain_order_seed': 46458185, 'weight_seed': 1894175819}]
+PASS  N7: every role value (26), every census-rule value of its REGISTRY.json (26) and its exclusion list (4316) are in N8's exclusions  [registry sha bee57882; nearest N8 role value to one of its values: 3876906]
+PASS  N6: every role value (26), every census-rule value of its REGISTRY.json (26) and its exclusion list (not published) are in N8's exclusions  [registry sha 0e8b0528; nearest N8 role value to one of its values: 618034]
+PASS  capacity-shift-followup-seed-registry-20261027-01: every role value (0), every census-rule value of its REGISTRY.json (61) and its exclusion list (4046) are in N8's exclusions  [registry sha 00f3ab61; nearest N8 role value to one of its values: 37913]
+PASS  natural-text-fewepoch-seed-registry-20261101-01: every role value (46), every census-rule value of its REGISTRY.json (46) and its exclusion list (4236) are in N8's exclusions  [registry sha 75db913d; nearest N8 role value to one of its values: 88404]
+PASS  natural-text-ladder-seed-registry-20261028-01: every role value (46), every census-rule value of its REGISTRY.json (46) and its exclusion list (4158) are in N8's exclusions  [registry sha 8ce7d597; nearest N8 role value to one of its values: 540657]
+PASS  natural-text-lateturn-seed-registry-20261031-01: every role value (18), every census-rule value of its REGISTRY.json (18) and its exclusion list (4209) are in N8's exclusions  [registry sha b9b6a882; nearest N8 role value to one of its values: 2983161]
+PASS  N8's registry pins N7's registry and partition as published
+PASS  claim and registry: registry-source hashes equal the sealed source files (13 files)
+PASS  receipt: registry, partition, draw script and disclosure script hashes
+PASS  receipt: the draw ran on the pending seal kept in seal/pre-pin  [2026-11-14 01:09:29]
+PASS  post-draw check record: 16 checks, all ok
+PASS  partition: 24 groups n01-n24 in order, n = 16,384
+PASS  each group: exactly 16,384 distinct sequences
+PASS  groups are disjoint by sequence (393,216 distinct) and by article  [9500 articles in all; left over 4539; sum 14039]
+      partition pool record: {'assigned_articles': 13511, 'eligible_articles': 27859, 'fresh_articles': 14039, 'fresh_sequences': 582603, 'removed_repeats_inside_the_pool': 215, 'removed_text_duplicates_of_assigned': 94, 'sets_of_repeats_inside_the_pool': 107, 'unused_articles': 14348}
+PASS  articles used + left over = 14,039 fresh articles
+PASS  no N8 article or sequence is in N7's published partition  [N7: 2412 articles, 98304 sequences, left over 14039]
+      N6: no PARTITION.json published; not checked
+PASS  N7's left-over articles (14,039) equal N8's fresh pool size
+PASS  DISCLOSURE_FIGURES.md: articles and sequences per draw equal the partition
+PASS  check record: articles and sequences per draw equal the partition
+PASS  each group's sequences form at most as many consecutive runs as it has articles  [runs 361-418]
+PASS  fresh pool: count file = registry record = 14,039 articles and 582,603 sequences
+PASS  24 x 16,384 = 393,216; + 24 x (328 - 1) = 401,064 <= 582,603
+PASS  count: assigned 13,511 = 11,099 (N5, N6) + 2,412 (N7); N7 pool 16,451 - 2,412 = 14,039
+PASS  N7's published partition holds 2,412 articles in m01-m06  [2412]
+PASS  count tool hash and source hashes agree with HASHES.json and the sealed source
+PASS  matched_plan.py pins: policy, registry, exclusions, draw, partition
+PASS  matched_registry.py POLICY_SHA256 and N7_REGISTRY_SHA256; matched_data.py N7_PARTITION_SHA256
+PASS  builder (v2.1): EXPECTED_SUBJECT, and PUBLIC_REGISTRATION subject and pilot-log hash
+      N8-protocol-draft.md: 5 hash prefixes quoted; not matching any hash I can compute from published files: []
+      README.md: 6 hash prefixes quoted; not matching any hash I can compute from published files: []
+      source/README.md: 2 hash prefixes quoted; not matching any hash I can compute from published files: []
+      CHANGES.md: 2 hash prefixes quoted; not matching any hash I can compute from published files: []
+      files whose hash differs, pilot subject -> pending seal : ['MATCHED_OWNER_RUN.ps1', 'README.md', 'matched_plan.py', 'matched_registry.py']
+      files whose hash differs, pending seal -> sealed subject: ['MATCHED_OWNER_RUN.ps1', 'README.md', 'matched_plan.py']
+      files whose hash differs, pilot subject -> sealed subject: ['MATCHED_OWNER_RUN.ps1', 'README.md', 'matched_plan.py', 'matched_registry.py']
+PASS  pending seal -> sealed: exactly matched_plan.py, README.md and MATCHED_OWNER_RUN.ps1
+PASS  pilot subject -> sealed: exactly matched_plan.py, matched_registry.py, MATCHED_OWNER_RUN.ps1 and README.md (as the README says)
+PASS  the pre-pin copies are the files the pending seal lists
+PASS  the pilot log names the pilot subject and the pilot tool
+      --- pre-pin -> sealed: matched_plan.py
+        -                registry_sha256=None,
+        -                exclusions_sha256=None,
+        -                draw_sha256=None,
+        -                approval_id=None)
+        -PARTITION_SHA256 = None
+        +                registry_sha256='7628c80950fe14e130336909d3fb995fa35dcad3f836d2fd90ddd8071c96fd3e',
+        +                exclusions_sha256='232e3e60235e82e302905ece260c19148c0f7e44f2f58cd9cf7a951d58ad4555',
+        +                draw_sha256='58489c76bbcd9989527cc0377aa154aaac2a6733b2de623f278576e7784bdcda',
+        +                approval_id='OWNER-20261114-N8-SEEDS-01')
+        +PARTITION_SHA256 = '15c1d59876fa0c09b5e34c62f1d0ed278db37c69c878667142da1b297183f42a'
+      --- pre-pin -> sealed: README.md
+        -**This package has not run.** No seed of this study has been drawn, no activation exists, and none of this study's draws has been trained. One pilot draw, on N7's m01 with throwaway seeds, ran on source subject `9743b179…`, which
+        +**This package has not run.** The seeds have been drawn by the owner, but no activation exists, and none of this study's draws has been trained. One pilot draw, on N7's m01 with throwaway seeds, ran on source subject `9743b179…`,
+        -**SEALED_DISABLED:** `AUTHORIZATION.json` is disabled. The seed policy is frozen (`../registry/n8-seed-registry/SEED_REGISTRY_POLICY.md`), and `matched_registry.py` and `matched_plan.py` pin it. The seed registry and the partitio
+        +**SEALED_DISABLED:** `AUTHORIZATION.json` is disabled. The seed policy is frozen, and the seed registry and the partition exist (`../registry/n8-seed-registry/`); `matched_plan.py` pins them, and `SOURCE_SUBJECT.json` records the
+      --- pre-pin -> sealed: MATCHED_OWNER_RUN.ps1
+        -$hours='about 2.1'
+        +$hours='about 2.3 h wall time (2.1 h on the worker clock)'
+        -Write-Host ('Starting Run '+$mode+' ('+$m.hours+' hours; at most 6). Until the run ends nothing more is printed here; progress, including every GPU check, goes to '+$progress+'. Do not close this window or press Ctrl+C.')
+        +Write-Host ('Starting Run '+$mode+' ('+$m.hours+'; at most 6 h on the worker clock). Until the run ends nothing more is printed here; progress, including every GPU check, goes to '+$progress+'. Do not close this window or press C
+      SOURCE_SUBJECT pins_pending: pilot True, pre-pin True, sealed False
+      SOURCE_SUBJECT status: pilot 'SEALED_DISABLED', pre-pin 'SEALED_DISABLED', sealed 'SEALED_DISABLED'
+      SOURCE_SUBJECT has_run: pilot False, pre-pin False, sealed False
+      SOURCE_SUBJECT runtime_authorized: pilot False, pre-pin False, sealed False
+      seed_registry_and_partition: pilot {'draw_sha256': None, 'exclusions_sha256': None, 'partition_sha256': None, 'policy_sha256': None, 'registry_sha256': None, 'status': 'PENDING_OWNER_DRAW'} | pre-pin {'draw_sha256': None, 'exclusions_sha256': None, 'partition_sha256': None, 'policy_sha256': '6dde3e233abaa644df4a04df364542f42e67e57a97418faea17dc2e4d6209943', 'registry_sha256': None, 'status': 'PENDING_OWNER_DRAW'}
+PASS  pilot log vs protocol section 7: benchmark 43.6 s (22.0 + 21.6)
+PASS  pilot log vs protocol section 7: per draw 2,528 s = 42.1 min, cap 3,097 s
+PASS  pilot log vs protocol section 7: width 512: 867 s; 55 / 242 / 570
+PASS  pilot log vs protocol section 7: width 768: 1,660 s; 101 / 462 / 1,097
+PASS  pilot log vs protocol section 7: evaluation about two thirds
+PASS  pilot log vs protocol section 7: run of three: 7,629 s measured, 7,186 s projected; both under 21,600 s
+PASS  pilot log vs protocol section 7: PyTorch reserved at most 1.42 GiB
+PASS  pilot log vs protocol section 7: eight runs: about 17 h on the worker clock
+PASS  pilot log vs protocol section 7: 28 readouts per record; 12 files; orders 524,288 bytes = 4 epochs x 16,384 x 8
+PASS  pilot log vs protocol section 7: status PASS, real, no loss read, no p* fitted, run folder deleted
+PASS  pilot log vs protocol section 7: the pilot's draw is N7's m01, none of it in N8's fresh pool
+      evaluation share 0.682; device-wide GPU memory sampled by the guard, peak 2,386,349,260 bytes = 2.222 GiB; guard limit 2.5 GiB = 2,684,354,560; headroom 284 MiB
+      kept E0 states: (67,497,092 + 138,986,628) x 24 = 4,955,609,280 bytes = 4.62 GiB (protocol: about 4.6 GiB)
+
+52 of 52 checks passed

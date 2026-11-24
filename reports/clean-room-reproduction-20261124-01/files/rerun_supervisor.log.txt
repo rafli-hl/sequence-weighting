@@ -1,0 +1,19 @@
+selftest passed
+bundle files verified against MANIFEST.json: 66
+fitted m01 w512
+fitted m01 w768
+fitted m02 w512
+fitted m02 w768
+fitted m03 w512
+fitted m03 w768
+fitted m04 w512
+fitted m04 w768
+fitted m05 w512
+fitted m05 w768
+fitted m06 w512
+fitted m06 w768
+wrote ecdf_arrays
+wrote ecdf_record
+wrote ordinal_arrays
+wrote ordinal_record
+done

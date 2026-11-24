@@ -1,0 +1,52 @@
+N7 sealed-source files: 34 | N8 source files: 33
+identical: 24
+changed  : ['AUTHORIZATION.json', 'MATCHED_OWNER_RUN.ps1', 'README.md', 'SOURCE_SUBJECT.json', 'matched_data.py', 'matched_plan.py', 'matched_registry.py', 'matched_worker.py']
+added    : ['n7_matched_data.py']
+dropped  : ['PROTOCOL.md', 'matched_analysis.py']
+  added n7_matched_data.py sha b634f4b74157d127 byte-equal to N7 file(s): ['matched_data.py']
+
+SOURCE_SUBJECT.json sha256: 9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b
+files listed: 31 | mismatching bytes/sha: []
+in source/ but not listed: ['AUTHORIZATION.json', 'SOURCE_SUBJECT.json']
+listed but not in source/: []
+changed_from_n7 (subject): ['matched_plan.py', 'matched_data.py', 'matched_registry.py', 'matched_worker.py', 'MATCHED_OWNER_RUN.ps1', 'README.md'] | equals my changed minus unlisted: True
+dropped_from_n7 (subject): ['matched_analysis.py', 'PROTOCOL.md'] | equals mine: True
+new_files (subject): ['n7_matched_data.py'] | equals mine: True
+byte_copies_of_n7_source keys equal my identical set (minus unlisted): True | values: {'7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56'}
+N7 SOURCE_SUBJECT.json sha256: 7ef133ad0120d0852c93ebe65f020718f51cebbf75abd43c29f89cdec8674f56
+disabled_authorization_sha256 matches source/AUTHORIZATION.json: True | AUTHORIZATION.json: {'enabled': False, 'execution_ready': False, 'note': 'Sealed disabled source of the dense-readout replication (N8); activations are built per run by the pinned builder after owner approval and after the public registration is merged.'}
+  subject draw_sha256 == sha256(DRAW.json): True
+  subject exclusions_sha256 == sha256(EXCLUSIONS.json): True
+  subject partition_sha256 == sha256(PARTITION.json): True
+  subject policy_sha256 == sha256(SEED_REGISTRY_POLICY.md): True
+  subject registry_sha256 == sha256(REGISTRY.json): True
+  bound record reports/natural-text-fewepoch-seed-registry-20261101-01/REGISTRY.json: MATCH
+  bound record reports/natural-text-matched-analysis-20261105-01/ANALYSIS.json: MATCH
+  bound record reports/natural-text-matched-seed-registry-20261104-01/REGISTRY.json: ABSENT in clone
+  bound record reports/natural-text-peak-analysis-approval-20261103-01/pinned-records/LR_SELECTION.json: ABSENT in clone
+  bound record reports/natural-text-peak-seed-registry-20261103-01/REGISTRY.json: ABSENT in clone
+N7 subject lists 32 files; N7 files mismatching their own subject: [] | N7 unlisted: ['AUTHORIZATION.json', 'SOURCE_SUBJECT.json']
+
+CHANGES.md sha256: 73f72f3a11e5045ac79e30332743186009bfefdd8ada0d6a42a33f02928edd77 | CR bytes in it: 0
+CHANGES Unchanged lists 24 files; my identical set has 24
+  listed as unchanged but not identical: []
+  identical but not listed as unchanged: []
+  hash prefixes wrong: []
+CHANGES Added: [('n7_matched_data.py', 'b634f4b74157d127')] | Dropped: [('matched_analysis.py', '2108f0b287a0b355'), ('PROTOCOL.md', 'adf006ba144efccb')] | Regenerated: ['SOURCE_SUBJECT.json']
+  added hash prefix ok: n7_matched_data.py True
+  dropped hash prefix ok (N7 file): matched_analysis.py True
+  dropped hash prefix ok (N7 file): PROTOCOL.md True
+CHANGES per-file sections: ['matched_plan.py', 'matched_data.py', 'matched_registry.py', 'matched_worker.py', 'MATCHED_OWNER_RUN.ps1', 'AUTHORIZATION.json', 'README.md']
+  equals my changed set minus SOURCE_SUBJECT.json: True
+matched_plan.py: fenced blocks 6, hunks 6, +40/-60 lines | patch(N7)==N8 bytes: True | my difflib(n=1) hunks identical to listed: True | (CRLF,LF) N7 (0, 89) N8 (0, 69)
+matched_data.py: fenced blocks 7, hunks 7, +21/-18 lines | patch(N7)==N8 bytes: True | my difflib(n=1) hunks identical to listed: True | (CRLF,LF) N7 (0, 62) N8 (0, 65)
+matched_registry.py: fenced blocks 14, hunks 14, +46/-26 lines | patch(N7)==N8 bytes: True | my difflib(n=1) hunks identical to listed: True | (CRLF,LF) N7 (0, 228) N8 (0, 248)
+matched_worker.py: fenced blocks 20, hunks 20, +111/-66 lines | patch(N7)==N8 bytes: True | my difflib(n=1) hunks identical to listed: True | (CRLF,LF) N7 (0, 342) N8 (0, 387)
+MATCHED_OWNER_RUN.ps1: fenced blocks 10, hunks 10, +31/-15 lines | patch(N7)==N8 bytes: True | my difflib(n=1) hunks identical to listed: True | (CRLF,LF) N7 (0, 110) N8 (0, 126)
+AUTHORIZATION.json: fenced blocks 1, hunks 1, +1/-1 lines | patch(N7)==N8 bytes: True | my difflib(n=1) hunks identical to listed: True | (CRLF,LF) N7 (0, 5) N8 (0, 5)
+README.md: fenced blocks 3, hunks 3, +15/-16 lines | patch(N7)==N8 bytes: True | my difflib(n=1) hunks identical to listed: True | (CRLF,LF) N7 (0, 26) N8 (0, 25)
+numbered notes: 61 | consecutive 1..N: True | total hunks: 61
+notes citing no protocol section, brief, gate review or owner decision:
+  50. [MATCHED_OWNER_RUN.ps1] Names N8.
+  58. [AUTHORIZATION.json] Names N8; still disabled.
+  60. [README.md] Lists N8's changed, new, dropped and byte-copied files.

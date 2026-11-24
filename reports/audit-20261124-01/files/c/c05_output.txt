@@ -1,0 +1,20 @@
+0. the plan against the sealed source plan, written out independently: readouts equal True | path 25 readouts 2.0 .. 3.5 | rate tag True | minimum 20 20 | draws 24
+1. all 24 draws: COMPLETE {'H1': 'CONFIRMED', 'H2': 'INCONCLUSIVE'} REVERSAL_NOT_REPLICATED
+   sections: {'sensitivity': ['envelope', 'leave_one_out', 'starting_offset'], 'secondary': ['S_a', 'S_b', 'S_c', 'S_d'], 'carried_over': ['not_overfit', 'records_against_arrays']}
+   H1: n8_analysis +0.002740680 [+0.001844411, +0.003636948] df 23; auditor +0.002740680 [+0.001844411, +0.003636948] from 24 draws; largest difference 3.3e-18
+   H2: n8_analysis -0.000763905 [-0.002204365, +0.000676554] df 23; auditor -0.000763905 [-0.002204365, +0.000676554] from 24 draws; largest difference 5e-18
+   envelope: 16,777,216 combinations, min lower +0.0017045, max upper +0.0039313; H1 brackets 64 updates apart: True
+   S-b steps: [2.25, 2.5, 2.75] | S-d readouts: 25 | S-c rows: 1344 | leave-one-out: {'H1': 24, 'H2': 24}
+   serialises to JSON: yes
+2. a failed draw given as None (n07):
+   COMPLETE_WITH_FAILED_DRAWS {'H1': 'CONFIRMED', 'H2': 'INCONCLUSIVE'} REVERSAL_NOT_REPLICATED | H1 unavailable {'n07': 'DRAW_MISSING'} | NOT_OVERFIT n {'512|lr1e-04': 23, '768|lr1e-04': 23}
+3. the same draw absent from the mapping (not None):
+   analyse() raises KeyError 'n07' (decide() alone returns COMPLETE_WITH_FAILED_DRAWS)
+4. three draws given as None although nothing says they failed (for example a run not yet made):
+   COMPLETE_WITH_FAILED_DRAWS {'H1': 'CONFIRMED', 'H2': 'INCONCLUSIVE'} REVERSAL_NOT_REPLICATED -> the function labels whatever it is given; what counts as failed is decided by its caller
+5. fewer than 20:
+   ['decision', 'environment', 'plan'] INCOMPLETE None None
+6. records against arrays: the recorded training loss of 768 at the first readout of n01's H1 bracket moved by +0.002 (arrays unchanged):
+   flagged: [{'draw': 'n01', 'width': 768, 'tag': 'lr1e-04', 'epoch': 2.3125, 'difference': 0.001999713152646798}]
+   n01 is still READ | weight 0.665644 -> 0.694162 | value 0.0041918739499680335 -> 0.004165970727503798 (the reading uses the record; the flag does not gate, as the protocol says)
+7. NOT_OVERFIT labels: {'512|lr1e-04': 'NOT_OVERFIT', '768|lr1e-04': 'NOT_OVERFIT'} (validation falls from E2 to E3 by construction)

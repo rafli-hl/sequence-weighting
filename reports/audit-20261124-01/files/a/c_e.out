@@ -1,0 +1,81 @@
+$ grep -n "closed again" NATURAL_TEXT_STUDIES.md ; sed -n "187,188p;191,192p" NATURAL_TEXT_STUDIES.md
+149:The experiments were reopened for N7 alone and are closed again.
+record was closed after N7; on 14 November 2026 it was reopened for one registered study, N8, a dense-readout
+replication of N7 on fresh draws ([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)), which has no results yet.
+**N8, paused on 23 November 2026.**
+- Training stopped after 6 of its 24 draws: n01–n06, with n06 completed in the retry run X2. R3–R8 have not started.
+
+$ sed -n "3p" CURRENT_CLAIMS.md | cut -c1-120 ; sed -n "1p" NATURAL_TEXT_STUDIES.md
+**As of 12 November 2026; wording revised 13 November 2026, with no claim, number or label changed.** This page states w
+# Natural-text studies, 27 October – 11 November 2026
+
+$ git log --format="%h %ad" --date=short -- DATA_AVAILABILITY.md ; grep -c "N8" DATA_AVAILABILITY.md ; sed -n "9,10p;13,14p" DATA_AVAILABILITY.md
+fee55ea 2026-11-13
+c4ae0e1 2026-11-12
+0
+- **Protocols and registrations.** Each study's protocol, amendments and seed registry, and the public registrations
+  of N6 and N7.
+- **Review records.** The adversarial review, the response to it, the owner's design decisions for the natural-text
+  studies, the audits of 8 and 12 November 2026, and the corrections of 9, 11 and 12 November 2026.
+
+$ grep -n "Only N7 was publicly\|Public registrations of N6 and N7\|sign depends" README.md | cut -c1-150 ; grep -n "the two public registrations" METHODS.md ; grep -n "Two studies were also registered publicly" NATURAL_TEXT_STUDIES.md ; ls preregistration
+272:   readings are a sensitivity check, not a bound on the unobserved trajectory. S4's sign depends on this.
+276:6. **Registration.** Only N7 was publicly preregistered. N6 was registered publicly after its data existed; the other
+303:| `preregistration/` | Public registrations of N6 and N7, each with sealed source and seed registry |
+23:How to check the two public registrations against the archived commits is in
+27:Two studies were also registered publicly. N6 was registered only after its data existed (see
+natural-text-dense-replication-20261114/
+natural-text-matched-confirmation-20261104/
+natural-text-peak-confirmation-20261103/
+
+$ grep -n "version\|v2\.1\|date-released" CITATION.cff README.md | grep -i "2\.1\|version \|date-released" | cut -c1-140
+CITATION.cff:11:version: "2.1"
+CITATION.cff:16:date-released: 2026-11-23
+README.md:13:[v2.1](https://github.com/rafli-hl/sequence-weighting/releases/tag/v2.1) (23 November 2026). The README
+README.md:315:This repository starts from a single commit of the finished record (version 1.2). The record was built in an earlier
+README.md:329:  version      = {2.1},
+
+$ gh api -X GET repos/rafli-hl/sequence-weighting/releases --jq ".[] | [.tag_name, .created_at, .published_at] | @tsv"
+v2.1	2026-11-23T05:09:20Z	2026-11-23T05:10:47Z
+v2.0	2026-11-14T18:44:07Z	2026-11-14T18:45:38Z
+v1.2	2026-11-12T10:13:56Z	2026-11-12T10:25:53Z
+
+$ git log -3 --format="%h %ad %s" --date=iso-strict c6f98b2 ; git for-each-ref --format="%(refname) %(objecttype) %(objectname:short)" refs/tags
+c6f98b2 2026-11-15T01:19:19+07:00 Merge pull request #1 from rafli-hl/n8-registration
+aaafa2e 2026-11-15T01:17:02+07:00 Register N8: dense-readout replication of N7
+fee55ea 2026-11-13T12:54:48+07:00 Revise README and add METHODS.md (documentation only; no result changed
+refs/tags/n8-registration commit c6f98b2
+refs/tags/v1.2 commit c4ae0e1
+refs/tags/v2.0 commit 88ac496
+refs/tags/v2.1 commit 30548db
+
+$ git diff --name-status v2.0 v2.1
+M	CITATION.cff
+M	CURRENT_CLAIMS.md
+M	METHODS.md
+M	NATURAL_TEXT_STUDIES.md
+M	PUBLICATION_MANIFEST.csv
+M	PUBLICATION_NOTES.md
+M	README.md
+A	preregistration/natural-text-dense-replication-20261114/OPERATIONAL_NOTES.md
+M	preregistration/natural-text-dense-replication-20261114/README.md
+A	preregistration/natural-text-dense-replication-20261114/RUN_COMMAND.ps1
+A	preregistration/natural-text-dense-replication-20261114/X2_COMMAND.txt
+A	preregistration/natural-text-dense-replication-20261114/check_run.py
+M	reports/README.md
+A	reports/external-audit-20261113-01/AUDIT.md
+A	reports/external-audit-20261113-01/README.md
+A	reports/natural-text-correction-20261123-01/CORRECTION.md
+A	reports/natural-text-correction-20261123-01/GAP_SCALE.txt
+A	reports/natural-text-correction-20261123-01/gap_scale.py
+
+$ curl -s "https://archive.softwareheritage.org/api/1/origin/https://github.com/rafli-hl/sequence-weighting/visits/?per_page=5"
+{"exception":"NotFoundExc","reason":"Origin with url https://github.com/rafli-hl/sequence-weighting not found!"}
+$ curl -s -o /dev/null -w "%{http_code}" "https://archive.softwareheritage.org/api/1/revision/c6f98b26669f5d29f30c576b6d800c1fc82c98eb/"
+404
+$ curl -s "http://web.archive.org/cdx/search/cdx?url=github.com/rafli-hl/sequence-weighting&limit=5&output=json&fl=timestamp,original,statuscode"
+[]
+
+
+$ grep -n -i -c "pause\|interrupt\|resum" preregistration/natural-text-dense-replication-20261114/N8-protocol-draft.md
+0

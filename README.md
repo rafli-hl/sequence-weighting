@@ -12,10 +12,12 @@ N7: its protocol and sealed source were registered publicly before any of its ru
 ([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)). Latest release:
 [v2.1](https://github.com/rafli-hl/sequence-weighting/releases/tag/v2.1) (23 November 2026). The README
 and methods were revised on 13 November 2026, and corrected on 23 November 2026 after an external audit; no registered
-result, label or sealed file changed ([`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md)).
+result, label or sealed file changed ([`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md)). Since that release: an audit of
+version 2.1, a clean-room reproduction of N7's analysis, a correction and N8's run records, all of 24 November.
 
 **N8, paused on 23 November 2026.**
 - Training stopped after 6 of 24 draws: n01–n06, with n06 completed in the retry run X2. R3–R8 have not started.
+- Paused at the owner's decision for reasons unrelated to the data; no N8 result has been computed or examined.
 - No p\* has been computed or examined, and the per-sequence losses stay unpublished until the sealed analysis.
 - Resuming continues with R3 under the registered protocol. If fewer than 20 draws are ever completed, the registered
   INCOMPLETE rule applies: no statistic and no label.
@@ -79,10 +81,11 @@ interpolation bracket, instead of interpolating, was added in the [9 November co
 | S4 | above 0 with any one draw left out | **+0.01043 [−0.00027, +0.02113], includes 0**; draw m06, read at epoch 3.08, decides it |
 | S5 | above 0 with any one draw left out | not interpolated |
 
-The later bracket end gives the lowest mean, not the lowest interval. With each draw read at either end of its bracket
-(64 combinations, if p\* stays between the bracketing readouts), the lowest lower limits are +0.0000764 for P1, barely
-above 0, and −0.0000507 for S1 and −0.000268 for S4, below 0
-([23 November correction](reports/natural-text-correction-20261123-01/CORRECTION.md)). The labels are unchanged.
+The later bracket end gives the lowest mean. For P1 and S1 it does not give the lowest interval. With each draw read
+at either end of its bracket (64 combinations, if p\* stays between the bracketing readouts), the lowest lower limits
+are +0.0000764 for P1, barely above 0, and −0.0000507 for S1, below 0. For S4 the lowest, −0.000268, is the later-end
+reading in the table ([23 November correction](reports/natural-text-correction-20261123-01/CORRECTION.md), as corrected
+on [24 November](reports/natural-text-correction-20261124-01/CORRECTION.md)). The labels are unchanged.
 
 **How to read the labels.** A step is CONFIRMED when its interval lies on the predicted side of 0 and every earlier
 step in the sequence is confirmed; this holds the chance of any false confirmation at about 2.5% under the protocol's
@@ -253,8 +256,8 @@ orders with `torch.randperm`. The figures are redrawn by `python docs/make_resul
 |---|---|
 | 1. File integrity | Yes: `tools/verify_publication.py` checks every file against [`PUBLICATION_MANIFEST.csv`](PUBLICATION_MANIFEST.csv) |
 | 2. Statistics from published tables | Yes, for every study: per-readout p\* and losses are in each analysis folder's `POINTS.csv` |
-| 3. p\* from released losses | N7 only: from the v1.2 bundle. The earlier studies' per-sequence losses are not published |
-| 4. Losses from model evaluation | No. Natural-text model states were hashed and deleted during the runs, and no model state of any study is published |
+| 3. p\* from released losses | N7 only: from the v1.2 bundle, by `tools/verify_n7_losses.py` and by a [clean-room reimplementation](reports/clean-room-reproduction-20261124-01/README.md) written without the original code. The earlier studies' per-sequence losses are not published |
+| 4. Losses from model evaluation | No. Natural-text model states of N1–N7 were hashed and deleted during the runs; N8 keeps only each width's E0 state, unpublished. No model state of any study is published |
 | 5. Training from scratch | Not demonstrated. Code, protocols, seeds, article partitions and data hashes are published, and WikiText is public. The blockers are practical: the corpus files and tokenizer must be rebuilt and checked against their pinned hashes; the sealed launcher and worker run only from the original machine's one-use activation folders and refuse any other GPU, PyTorch or cuDNN version, so they must be adapted; and deterministic algorithms were not enforced, so bit-identical losses are not expected even on the original hardware. No one has attempted it. The audit of 13 November reports rebuilding the tokenizer from the pinned public WikiText-2 parquet with its pinned SHA-256 (the audit's result, not rerun here; [`AUDIT.md`](reports/external-audit-20261113-01/AUDIT.md)) |
 
 [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md) lists what is published and what is not, and why.
@@ -269,17 +272,22 @@ orders with `torch.randperm`. The figures are redrawn by `python docs/make_resul
 3. **Alignment is not progress.** Every alignment fixes one quantity. At equal training loss inside an epoch, exposure
    differs between the models, and the exposure-matched comparisons have small sets and low power near equal loss.
 4. **Interpolation.** Matched readings interpolate fitted p\* between readouts a quarter epoch apart. The later-end
-   readings are a sensitivity check, not a bound on the unobserved trajectory. S4's sign depends on this.
+   readings are a sensitivity check, not a bound on the unobserved trajectory. No contrast changes sign with the
+   bracket end, but whether an interval excludes 0 does: S4's includes 0 under five of the 64 combinations of bracket
+   ends, and S1's under one.
 5. **Few draws.** Six draws, df = 5, normality assumed. S3's interval includes 0 when one of two draws is left out.
    Intervals cover variation in articles, weights and seeds, not the shared tokenizer, pre-training pool, validation
    set or recipe.
-6. **Registration.** Only N7 was publicly preregistered. N6 was registered publicly after its data existed; the other
-   studies were sealed within the project, and their protocols and all results were published from 9 November 2026,
-   after the runs.
+6. **Registration.** Of the studies with results, only N7 was publicly preregistered. N8 is also preregistered
+   publicly, and is paused with no results. N6 was registered publicly after its data existed; the other studies were
+   sealed within the project, and their protocols and all results were published from 9 November 2026, after the runs.
 7. **Post-hoc analyses** were chosen after the results were known; their intervals are not adjusted for that or for
    multiplicity.
 8. **Review.** Reviews and audits in this record were carried out by AI systems. There has been no independent human
-   review and no independent replication.
+   review and no independent replication. On 24 November 2026 a separate AI session reproduced N7's analysis from its
+   protocol and released losses without the original code: all 240 fits within 8.7e-9, and every registered statistic
+   and label. That reproduces the analysis, not the training. Its blinding was imperfect: the session had seen N7's
+   labels, though no number ([reproduction](reports/clean-room-reproduction-20261124-01/README.md)).
 
 Open questions, and what would settle each, are in
 [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md#open-questions-and-what-would-settle-them).
@@ -294,13 +302,14 @@ Open questions, and what would settle each, are in
 | N7's registration, sealed source and seed registry | [`preregistration/natural-text-matched-confirmation-20261104/`](preregistration/natural-text-matched-confirmation-20261104/README.md) |
 | N7's result, as written when the analysis ran | [`RESULT.md`](reports/natural-text-matched-result-20261105-01/RESULT.md) |
 | The post-hoc exposure analysis | [`natural-text-matched-assistant-posthoc-20261111-01`](reports/natural-text-matched-assistant-posthoc-20261111-01/REPORT.md) |
-| Audits and corrections | [8 November audit](reports/full-audit-20261108-01/AUDIT.md), [12 November audit](reports/follow-up-audit-20261112-01/REPORT.md), [13 November external audit](reports/external-audit-20261113-01/README.md); corrections of [9](reports/natural-text-correction-20261109-01/CORRECTION.md), [11](reports/natural-text-correction-20261111-01/CORRECTION.md), [12](reports/natural-text-correction-20261112-01/CORRECTION.md) and [23 November](reports/natural-text-correction-20261123-01/CORRECTION.md) |
+| Audits and corrections | [8 November audit](reports/full-audit-20261108-01/AUDIT.md), [12 November audit](reports/follow-up-audit-20261112-01/REPORT.md), [13 November external audit](reports/external-audit-20261113-01/README.md), [24 November audit of v2.1](reports/audit-20261124-01/README.md); corrections of [9](reports/natural-text-correction-20261109-01/CORRECTION.md), [11](reports/natural-text-correction-20261111-01/CORRECTION.md), [12](reports/natural-text-correction-20261112-01/CORRECTION.md), [23](reports/natural-text-correction-20261123-01/CORRECTION.md) and [24 November](reports/natural-text-correction-20261124-01/CORRECTION.md) |
+| Clean-room reproduction of N7's analysis | [`clean-room-reproduction-20261124-01`](reports/clean-room-reproduction-20261124-01/README.md) |
 | What is published, and how this copy differs from the local record | [`DATA_AVAILABILITY.md`](DATA_AVAILABILITY.md), [`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md) |
 | Map of the folders | [`reports/README.md`](reports/README.md), [`outputs/README.md`](outputs/README.md) and the table below |
 
 | Path | Contents |
 |---|---|
-| `preregistration/` | Public registrations of N6 and N7, each with sealed source and seed registry |
+| `preregistration/` | Public registrations of N6, N7 and N8, each with sealed source and seed registry; N8's folder also holds its operational notes and run records |
 | `work/*-source-*/` | Sealed protocols and source of S, N1 and N3–N5; `work/text-assets/` holds pinned dataset metadata |
 | `reports/` | Seed registries, sealed analyses (`POINTS.csv`, `FITS.csv`, `MATCHED.csv`, `ANALYSIS.json`), results, reviews, audits, corrections |
 | `outputs/`, `figure/`, `migration/` | Earlier synthetic-task studies, their figure catalogue, and an environment lock their scripts read |

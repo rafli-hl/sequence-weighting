@@ -1,0 +1,41 @@
+1. refits against POINTS.csv: 240 fits, largest |p* difference| 0; bit-identical in 240/240
+   objective and J0 against FITS.csv: largest difference 0; fits at or above 7.999: 0; largest p* 0.1489
+2. statistics from POINTS.csv: n8_analysis.contrast | auditor | ANALYSIS.json
+   P1: +0.0090879 [+0.0040039, +0.0141720] ABOVE; vs auditor 7.2e-13; vs ANALYSIS.json 7.2e-13; sign 6/0 p 0.03125 (sealed 0.03125); leave-one-out vs sealed 4.8e-13
+       envelope over 64 combinations: min lower +0.00007639 (auditor brute force +0.00007639; correction of 23 Nov +0.0000764), max upper +0.02743476 (auditor +0.02743476); ends at min lower [0, 1, 1, 1, 1, 1]
+   S1: +0.0080848 [+0.0048733, +0.0112963] ABOVE; vs auditor 4.5e-13; vs ANALYSIS.json 4.5e-13; sign 6/0 p 0.03125 (sealed 0.03125); leave-one-out vs sealed 3e-13
+       envelope over 64 combinations: min lower -0.00005074 (auditor brute force -0.00005074; correction of 23 Nov -0.0000507), max upper +0.01423631 (auditor +0.01423631); ends at min lower [1, 0, 1, 1, 1, 1]
+   S3: -0.0045420 [-0.0079470, -0.0011370] BELOW; vs auditor 4.8e-13; vs ANALYSIS.json 4.8e-13; sign 0/6 p 0.03125 (sealed 0.03125); leave-one-out vs sealed 3.2e-13
+   S4: +0.0139419 [+0.0089276, +0.0189563] ABOVE; vs auditor 7.1e-13; vs ANALYSIS.json 7.1e-13; sign 6/0 p 0.03125 (sealed 0.03125); leave-one-out vs sealed 4.7e-13
+       envelope over 64 combinations: min lower -0.00026786 (auditor brute force -0.00026786; correction of 23 Nov -0.0002680), max upper +0.02431174 (auditor +0.02431174); ends at min lower [1, 1, 1, 1, 1, 1]
+   S5: +0.0138212 [+0.0111616, +0.0164807] ABOVE; vs auditor 3.8e-13; vs ANALYSIS.json 3.8e-13; sign 6/0 p 0.03125 (sealed 0.03125); leave-one-out vs sealed 2.5e-13
+   S2: UNAVAILABLE, available ['m02', 'm03', 'm06'] (auditor 3 readings; ANALYSIS.json UNAVAILABLE, ['m02', 'm03', 'm06']), reasons {'m01': 'TARGET_OUTSIDE_PATH', 'm04': 'TARGET_OUTSIDE_PATH', 'm05': 'TARGET_OUTSIDE_PATH'}
+   MATCHED.csv: 36 rows, 0 mismatches of status, bracket or count, largest value difference 0
+2. statistics from refits: n8_analysis.contrast | auditor | ANALYSIS.json
+   P1: +0.0090879 [+0.0040039, +0.0141720] ABOVE; vs auditor 7.2e-13; vs ANALYSIS.json 7.2e-13; sign 6/0 p 0.03125 (sealed 0.03125); leave-one-out vs sealed 4.8e-13
+       envelope over 64 combinations: min lower +0.00007639 (auditor brute force +0.00007639; correction of 23 Nov +0.0000764), max upper +0.02743476 (auditor +0.02743476); ends at min lower [0, 1, 1, 1, 1, 1]
+   S1: +0.0080848 [+0.0048733, +0.0112963] ABOVE; vs auditor 4.5e-13; vs ANALYSIS.json 4.5e-13; sign 6/0 p 0.03125 (sealed 0.03125); leave-one-out vs sealed 3e-13
+       envelope over 64 combinations: min lower -0.00005074 (auditor brute force -0.00005074; correction of 23 Nov -0.0000507), max upper +0.01423631 (auditor +0.01423631); ends at min lower [1, 0, 1, 1, 1, 1]
+   S3: -0.0045420 [-0.0079470, -0.0011370] BELOW; vs auditor 4.8e-13; vs ANALYSIS.json 4.8e-13; sign 0/6 p 0.03125 (sealed 0.03125); leave-one-out vs sealed 3.2e-13
+   S4: +0.0139419 [+0.0089276, +0.0189563] ABOVE; vs auditor 7.1e-13; vs ANALYSIS.json 7.1e-13; sign 6/0 p 0.03125 (sealed 0.03125); leave-one-out vs sealed 4.7e-13
+       envelope over 64 combinations: min lower -0.00026786 (auditor brute force -0.00026786; correction of 23 Nov -0.0002680), max upper +0.02431174 (auditor +0.02431174); ends at min lower [1, 1, 1, 1, 1, 1]
+   S5: +0.0138212 [+0.0111616, +0.0164807] ABOVE; vs auditor 3.8e-13; vs ANALYSIS.json 3.8e-13; sign 6/0 p 0.03125 (sealed 0.03125); leave-one-out vs sealed 2.5e-13
+   S2: UNAVAILABLE, available ['m02', 'm03', 'm06'] (auditor 3 readings; ANALYSIS.json UNAVAILABLE, ['m02', 'm03', 'm06']), reasons {'m01': 'TARGET_OUTSIDE_PATH', 'm04': 'TARGET_OUTSIDE_PATH', 'm05': 'TARGET_OUTSIDE_PATH'}
+   MATCHED.csv: 36 rows, 0 mismatches of status, bracket or count, largest value difference 0
+3. analyse() on N7 at 1e-4 (H1 = P1, H2 = S3), no orders
+   decision COMPLETE {'H1': 'CONFIRMED', 'H2': 'CONFIRMED'} REVERSAL_REPLICATED | S_b: {'status': 'NOT_COMPUTED', 'reason': 'no batch orders given'}
+   H1: +0.00909 [+0.00400, +0.01417] df 5 t 2.570581836
+   H2: -0.00454 [-0.00795, -0.00114] df 5 t 2.570581836
+   starting offset, contrast: +0.00625 [-0.00008, +0.01257], positive 5/6
+   starting offset, change_in_768: +0.00284 [+0.00124, +0.00444], positive 5/6
+   starting offset, offset: +0.03697 [+0.01634, +0.05760], positive 5/6
+   auditor: contrast with the offset +0.00625 [-0.00008, +0.01257]   (AA-3 printed +0.0062 [-0.0001, +0.0126], 5/6)
+   S-a: +0.01583581 [+0.01040960, +0.02126202]; positions 2.09092701 2.17570429 2.13578642 2.19158563 2.07568226 2.23352733   (13 Nov audit: +0.01583581 +0.01040960 +0.02126202; 2.09092701 2.17570429 2.13578642 2.19158563 2.07568226 2.23352733)
+   S-c cumulative_rms: min/median/max 0.00476198 0.01443651 0.01914414; largest difference from the 13 Nov audit 2.4e-09; rows 240
+   S-c cumulative_max_abs: min/median/max 0.00847085 0.02297270 0.02961557; largest difference from the 13 Nov audit 2.6e-09; rows 240
+   S-c bin_max_abs: min/median/max 0.02492288 0.26589176 0.40357918; largest difference from the 13 Nov audit 3.1e-09; rows 240
+   S-c bin_rms: min/median/max 0.01448940 0.12248159 0.18862965; largest difference from the 13 Nov audit 4.9e-09; rows 240
+   S-d against ANALYSIS.json by_readout D4: values 0, intervals 6.5e-13
+   NOT_OVERFIT: {'512|lr1e-04': ('NOT_OVERFIT', 'NOT_OVERFIT', 1.3622297734272593e-12), '768|lr1e-04': ('NOT_OVERFIT', 'NOT_OVERFIT', 1.089475731852474e-12)}
+   records against arrays: 8.549686754122376e-07 flagged 0 | ANALYSIS.json 8.549686754122376e-07
+   the result of analyse() serialises to JSON: yes

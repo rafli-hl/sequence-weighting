@@ -1,0 +1,13 @@
+m01.i64: emulated 1454c34d6a9be84a..., pinned in HASHES.json 1454c34d6a9be84a...  MATCH
+m01-seed-plus-1.i64: emulated c616d85dfc78f5df..., pinned in HASHES.json c616d85dfc78f5df...  MATCH
+m02.i64: emulated 2dd2b964e1839d51..., pinned in HASHES.json 2dd2b964e1839d51...  MATCH
+m02-seed-plus-1.i64: emulated 9453256699a44e46..., pinned in HASHES.json 9453256699a44e46...  MATCH
+m03.i64: emulated cac1b23951790ca0..., pinned in HASHES.json cac1b23951790ca0...  MATCH
+m03-seed-plus-1.i64: emulated f552dd02dcbdb99d..., pinned in HASHES.json f552dd02dcbdb99d...  MATCH
+m04.i64: emulated 849eedd91be26e6e..., pinned in HASHES.json 849eedd91be26e6e...  MATCH
+m04-seed-plus-1.i64: emulated 35e8815ecc62c3ed..., pinned in HASHES.json 35e8815ecc62c3ed...  MATCH
+m05.i64: emulated 0bb27a61d12bc33e..., pinned in HASHES.json 0bb27a61d12bc33e...  MATCH
+m05-seed-plus-1.i64: emulated cea25e11ea041f6b..., pinned in HASHES.json cea25e11ea041f6b...  MATCH
+m06.i64: emulated 67d29a9c25d8cd21..., pinned in HASHES.json 67d29a9c25d8cd21...  MATCH
+m06-seed-plus-1.i64: emulated ea2a16b25ed13468..., pinned in HASHES.json ea2a16b25ed13468...  MATCH
+12 of 12 emulated order files are byte-identical to the pinned PyTorch-generated files

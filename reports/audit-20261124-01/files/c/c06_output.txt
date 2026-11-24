@@ -1,0 +1,18 @@
+PART A. test_synthetic.py (its first five functions, 30 checks) on mutants of n8_analysis.py
+  M0 unmutated copy: SURVIVES (30 passed, 0 failed)
+  M1 the 1e-9 margin dropped from side(): SURVIVES (30 passed, 0 failed)
+  M2 H1 value at bound 32 ignores the interpolation weight: SURVIVES (30 passed, 0 failed)
+  M3 a saturated fit makes a draw unavailable for H2 only, not for H1: SURVIVES (30 passed, 0 failed)
+  M4 records flagged above 1e-2 instead of 1e-3: SURVIVES (30 passed, 0 failed)
+  M5 NOT_OVERFIT: the labels OVERFIT and PLATEAU swapped: SURVIVES (30 passed, 0 failed)
+  M6 S-d keeps saturated fits: SURVIVES (30 passed, 0 failed)
+  M7 starting offset: an undefined refit is not set aside: SURVIVES (30 passed, 0 failed)
+  M8 refit threshold 7.5 instead of 7.999: SURVIVES (30 passed, 0 failed)
+  K1 control: unavailable at exactly the minimum: KILLED (the test aborts: KeyError: 'interval')
+  K2 control: the last bracketing interval is read: KILLED (27 passed, 3 failed: a flat interval holding the target is read at its earlier readout  [{'between': [2.2; a target equal to a readout value is held by the first interval that contains it  [{; a non-monotone path: the first bracketing interval, and the count of all of them  [b)
+  K3 control: a flat interval is read at its later readout: KILLED (29 passed, 1 failed: a flat interval holding the target is read at its earlier readout  [{'between': [2, )
+PART B. on N7 with the unmutated module: do the mutated branches ever arise? (test_on_n7.py reads only N7)
+  fits: 240; undefined: 0; largest p*: 0.1489 (M2, M3, M6, M8 need a fit of at least 7.5); saturated: 0
+  lr1e-04: NOT_OVERFIT labels ['NOT_OVERFIT'] (M5 needs another label); records against arrays, largest difference 8.55e-07 (M4 needs one between 1e-3 and 1e-2); starting-offset rows ['READ'] (M7 needs UNDEFINED_FIT); H2 has an envelope: False (test_on_n7.py never looks for one)
+  lr3e-04: NOT_OVERFIT labels ['NOT_OVERFIT'] (M5 needs another label); records against arrays, largest difference 8.55e-07 (M4 needs one between 1e-3 and 1e-2); starting-offset rows ['READ'] (M7 needs UNDEFINED_FIT); H2 has an envelope: False (test_on_n7.py never looks for one)
+  interval limits examined: 106; nearest to 0: 0.000121 (M1 needs one within 1e-9 of 0)

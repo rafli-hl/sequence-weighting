@@ -1,8 +1,9 @@
 # Methods
 
 This document describes how the studies were run and analysed: data, models, training, the estimator, the
-alignments compared, interpolation and statistics. It describes N7, the publicly preregistered study, unless a section
-says otherwise. Whatever this page says, the sealed protocol and source code of each study take precedence; they are
+alignments compared, interpolation and statistics. It describes N7, the publicly preregistered study with results,
+unless a section says otherwise. N8, also preregistered publicly, is paused and has no results; its design is in its
+[preregistration](preregistration/natural-text-dense-replication-20261114/README.md). Whatever this page says, the sealed protocol and source code of each study take precedence; they are
 linked in [`NATURAL_TEXT_STUDIES.md`](NATURAL_TEXT_STUDIES.md). Current claims are in
 [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md).
 
@@ -17,11 +18,12 @@ linked in [`NATURAL_TEXT_STUDIES.md`](NATURAL_TEXT_STUDIES.md). Current claims a
 | N5 | WikiText-103 | 64–768 | 3e-4 | 3 | 10 | sealed by hash within the project |
 | N6 | WikiText-103 | 384, 512, 768 | 3e-4 (all three); 1e-4 (512 and 768) | 3 | 6 | registered publicly after its data existed (merge commit `58240f0`, 3 Nov 2026) |
 | N7 | WikiText-103 | 512, 768 | 1e-4, 3e-4 | 3.5 | 6 | registered publicly before any run (merge commit `f3a2571`, 5 Nov 2026) |
+| N8 (paused, no results) | WikiText-103 | 512, 768 | 1e-4 | 3.5 | 24 planned; 6 trained | registered publicly before any run (merge commit `c6f98b2`, 2026-11-14T18:19:19Z, which is 15 Nov 01:19 at +07:00) |
 
 "Sealed by hash within the project" means the protocol and source were hashed and frozen before the runs, but not
 published until later. The whole record was published retrospectively; version 1.0 was released on 9 November 2026.
-How to check the two public registrations against the archived commits is in
-[`NATURAL_TEXT_STUDIES.md`](NATURAL_TEXT_STUDIES.md).
+How to check N6's and N7's public registrations against the archived commits is in
+[`NATURAL_TEXT_STUDIES.md`](NATURAL_TEXT_STUDIES.md). N8's is the GitHub-signed merge commit of this repository.
 
 ## 2. Data, splits and overlap
 
@@ -112,7 +114,7 @@ writes it as a quadratic form in the difference vector. The sealed implementatio
 | Constant weights | undefined (`constant_weights`) |
 | Total gain at most $10^{-10}$ | undefined (`nonpositive_total_gain`); individual negative gains are kept |
 | Boundary fits | flagged at $\ge 7.999$ and refitted with the upper bound at 32 in a registered sensitivity analysis; a fit at 0 is reported as 0 |
-| Ties | stable sort: tied weights keep their sequence order |
+| Ties | stable sort: tied weights keep their sequence order and get consecutive ranks, not a shared rank. The protocol does not state this. N7's draws have 3, 4, 1, 1, 1 and 1 surplus tied weights, and ranking ties by the empirical CDF instead moves p\* by at most $8.8 \times 10^{-9}$ ([clean-room reproduction](reports/clean-room-reproduction-20261124-01/README.md)) |
 
 **Checks run on this implementation.** [`core_checks.py`](outputs/sequence-weighting-pilot/core_checks.py) confirms
 that the cumulative form equals the quadratic form (largest absolute difference $4.9 \times 10^{-20}$), recovers
@@ -168,6 +170,13 @@ in general.
 
 In every matched alignment, width 512 is read at epoch 3 and width 768 is read where it reaches 512's value.
 
+**Where the losses come from.** The mean training and validation losses, the gap and every matching target are the
+values the worker wrote in its records (`train_loss`, `validation_loss`), not means recomputed from the per-sequence
+arrays. The protocol does not state this either. The two agree within $10^{-6}$: the largest difference is
+$8.55 \times 10^{-7}$, the registered `records_against_arrays` figure. Using array means instead moves a matched value
+by at most $6.8 \times 10^{-7}$ and no label
+([clean-room reproduction](reports/clean-room-reproduction-20261124-01/README.md)).
+
 **Exposure.** At equal training loss, 768 is read part-way through its third epoch (epochs 2.19–2.48 in P1) while 512
 is read at the end of its third. The two models have therefore trained on different shares of the current epoch's
 sequences, and sequences trained within the current epoch have a higher fitted exponent than the rest by 0.05–0.08
@@ -178,8 +187,10 @@ establish how much, and a subgroup difference within one model cannot be subtrac
 the matched set is the sequences trained in quarters 1..k of each of epochs 1–3; for 512 at epoch 3, those trained in
 quarters 5−k..4: matched recency windows, in which each pass of both sets falls in the same quarters before the
 readout. The realised recencies are not identical: the largest difference between the two sets in the mean age of a
-pass, over draws and passes, is 14.1, 8.4 and 7.0 updates at k = 1, 2 and 3, and the largest total-variation distance
-between their joint distributions over quarter cells is 0.000, 0.037 and 0.037 (the audit of 13 November, reproduced
+pass, over draws and passes, is 14.1, 8.4 and 7.0 updates at k = 1, 2 and 3. The largest Kolmogorov–Smirnov distance
+between the two sets' ages of one pass is 0.119, 0.034 and 0.018. The largest total-variation distance between their
+joint distributions over quarter cells is 0.037 at k = 2 and at k = 3; at k = 1 there is one cell, so that distance is
+0 by construction (the audit of 13 November and the [24 November correction](reports/natural-text-correction-20261124-01/CORRECTION.md), reproduced
 by N8's [`test_on_n7.py`](preregistration/natural-text-dense-replication-20261114/analysis/test_on_n7.py); [23 November
 correction](reports/natural-text-correction-20261123-01/CORRECTION.md), F3). The two models' sets are different
 sequences. Script and per-draw values:
@@ -219,11 +230,13 @@ trajectory. S2 lost three of six draws this way.
 
 The sensitivity analyses read 768 at the later end of each bracket instead of interpolating. Since the fitted exponent
 mostly rises inside a bracket, this shows how the contrast moves if the true value lies near that end; it is not a
-bound on the unobserved trajectory. Nor is it the least favourable reading for the interval: with each draw read at
-either end of its bracket (64 combinations), the lowest lower t limits are +0.0000764 for P1, −0.0000507 for S1 and
-−0.000268 for S4, against +0.00216, +0.00099 and −0.00027 with every draw at the later end. These are envelopes of
+bound on the unobserved trajectory. For P1 and S1 it is not the least favourable reading for the interval either: with
+each draw read at either end of its bracket (64 combinations), the lowest lower t limits are +0.0000764 for P1 and
+−0.0000507 for S1, against +0.00216 and +0.00099 with every draw at the later end. For S4 the later end is the least
+favourable of the 64: its lowest lower limit, −0.000268, is the later-end reading itself. These are envelopes of
 plug-in limits, conditional on p\* staying between the bracketing readouts
-([23 November correction](reports/natural-text-correction-20261123-01/CORRECTION.md), F1).
+([23 November correction](reports/natural-text-correction-20261123-01/CORRECTION.md), F1, as corrected on
+[24 November](reports/natural-text-correction-20261124-01/CORRECTION.md)).
 
 ## 7. Statistics
 
@@ -359,7 +372,9 @@ the weights. Width 768 gains more in every bin at every readout; part of that di
 *Within one model and readout, the sequences already trained in the current epoch have a higher fitted exponent than
 the rest. This is a difference between subgroups of one model, not a decomposition of the cross-width contrast.*
 
-**Figure 6.** Every estimate of the 512 − 768 contrast.
+**Figure 6.** Fifteen estimates of the 512 − 768 contrast, as drawn on 13 November. It does not show every estimate
+on these pages: S1 at the later bracket end, P1 with the E0 offset, and the bracket-envelope limits of 23 November are
+among those left out.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/figures/estimates-dark.png">

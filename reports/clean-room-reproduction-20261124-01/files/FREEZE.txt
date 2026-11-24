@@ -1,0 +1,39 @@
+FREEZE RECORD - clean-room reproduction of N7's analysis
+Frozen at (machine clock, UTC): 2026-11-23T18:12:32Z
+Local time: 2026-11-24 01:12:32 +0700
+No published table (POINTS.csv, MATCHED.csv, FITS.csv, ANALYSIS.json) had been fetched or read at this time; the phase2 folder did not exist.
+After this point code/n7_repro.py, SPEC_LOG.md and everything under out/ are not changed. Any later change goes into a separate, labelled second pass.
+
+Primary variant: out/ecdf_arrays (ties: empirical CDF; losses: float64 means of the array blocks).
+Other frozen variants: out/ordinal_arrays, out/ecdf_record, out/ordinal_record.
+
+SHA-256 of the code and the specification log:
+004b2841c7b5e16b75732ba727590e1e854fd89c2e51b946a64e205bb528a033 *code/n7_repro.py
+8900cda094c900e90d5d86c43dec46c2c1b7b437d379b8a2f0406595a7a1043c *SPEC_LOG.md
+
+SHA-256 of every output file:
+b1f6f89a881d19a6188107b686c4d91dceaf97889415d647b21912ab56f03275 *out/ecdf_arrays/analysis.json
+b4d6f428ae7ed66fc99f7e1f69b87efe49073807fc1678790829c6bafe4222a3 *out/ecdf_arrays/contrasts.csv
+e56ef497d8dd403d9b36bac04ba2fdb177cb19868194f62a6014373d5075da86 *out/ecdf_arrays/matched.csv
+9f2749d5dfe9ec390667de24351b104789510718e4a9ef4c1ec623a7991b724e *out/ecdf_arrays/per_readout.csv
+94277915fcb855724bd3fdd135f04ccadc2c2b05e4795bd3e66de2f27c8f74f9 *out/ecdf_record/analysis.json
+1bb4b85cf339f12b00afb0c90c49ebd93ae7f373784b4577eb9e1cf588deaa2f *out/ecdf_record/contrasts.csv
+3dfdce4409239299923d715f1574e662217f37076913a751528da582730d31ca *out/ecdf_record/matched.csv
+d3ba54b445f537ae589036121184a6b221e3d219e4a89c27ebb905fd17638da2 *out/ecdf_record/per_readout.csv
+a519cbda502dd568b959253a1256535dca5f7d671dc9a48406f71be4c7aa3fd0 *out/ordinal_arrays/analysis.json
+c64eb0f9a7418f3062ac2eb6ed23a675a286268d7951c844b8cafe2748370af3 *out/ordinal_arrays/contrasts.csv
+9a3f92cb172b7a3c036aa4d7df6a784bead28cf400f23d97d68b0d9c89b4003f *out/ordinal_arrays/matched.csv
+83e7f9c5f6a23769b436c6c7712ff621d0814515f7120d95063a65b2c7f617e4 *out/ordinal_arrays/per_readout.csv
+73b89d25c00fa393504345f95d95f723c016fc9cbd074fecb859c16a3cb6771d *out/ordinal_record/analysis.json
+0d87368db359c342afe2c0e71cf1943404ac5558bb0dfa21fc7caf5cfcd28057 *out/ordinal_record/contrasts.csv
+c122a8f795d87d034cd7098a7ba028a1923d8c0505ab88ab5fa1adb4ec8a4474 *out/ordinal_record/matched.csv
+5219a14acf6b16d9bbb815961bf649223ef40212027a679b2110e8bc334d7e9a *out/ordinal_record/per_readout.csv
+
+SHA-256 of the inputs:
+41584c8335ab040eeaf5550243b2edd4357cc31634b949113d57b409b255f985 *BRIEF.md
+adf006ba144efccbf54710dc0c3ae56cba9b66d105c0d25624e5b8e1348dd23e *phase1/protocol/PROTOCOL.md
+f7728b89b9c083c88b70f89c9da2a33ecc147e43007faa3aff374c3feafed346 *phase1/note/sequence-weighting-note.pdf
+cbe26760e2062a4cf03307d779226fa6efce8cfcfbf57b2e092bd818af80b8a9 *phase1/bundle/n7-loss-arrays-v1.zip
+
+Environment: Python 3.12.10 | NumPy 2.5.3 | Windows-11-10.0.26300-SP0
+Command: python -I -B code/n7_repro.py --bundle phase1/bundle/n7-loss-arrays --out out --selftest (run twice; both runs gave byte-identical outputs)

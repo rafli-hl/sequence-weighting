@@ -1,0 +1,130 @@
+{
+  "arms": {
+    "512": [
+      0.0001
+    ],
+    "768": [
+      0.0001
+    ]
+  },
+  "benchmark": {
+    "bytes": 4181,
+    "path": "BENCHMARK.json",
+    "sha256": "2d4c08a135f839c1fa1a273b305d46e04f9dae7c6800b01fbdf15cbfc7366389"
+  },
+  "bindings": {
+    "approval_id": "OWNER-20261116-N8-X2-01",
+    "approval_record_sha256": "168b6ece08cc0d4f812b919ef5108103ac8a11e578ff3fe5521dc77c6aee2884",
+    "corpus_manifest_sha256": "be911db7a63238a205fc74c5732f78431befd61ba7d26af48202a31163df39ea",
+    "draw_sha256": "58489c76bbcd9989527cc0377aa154aaac2a6733b2de623f278576e7784bdcda",
+    "exclusions_sha256": "232e3e60235e82e302905ece260c19148c0f7e44f2f58cd9cf7a951d58ad4555",
+    "fewepoch_registry_sha256": "75db913de7b1860cd269ce262144859334b61e8248ebad5c00b47caaa60106af",
+    "first_attempt_terminal_sha256": "2a02e9573e4009c066d43bbf9e7d25d588dc10bd763865828cc8e59007607fe8",
+    "n7_registry_sha256": "bee578826fbdb5e66fbb36d577e45929af756e05b12b62d6cd141b4b5da7ea64",
+    "partition_sha256": "15c1d59876fa0c09b5e34c62f1d0ed278db37c69c878667142da1b297183f42a",
+    "peak_registry_sha256": "0e8b05285a6ad98a32a2041f0907e423c9c8d85fa6408e6a90be9acfb8c326dd",
+    "registry_sha256": "7628c80950fe14e130336909d3fb995fa35dcad3f836d2fd90ddd8071c96fd3e"
+  },
+  "counted_as_attempt": true,
+  "counts": {
+    "eval_batches": 30624,
+    "models": 4,
+    "pretrained_states": 2,
+    "updates": 8192
+  },
+  "draws": [
+    "n06"
+  ],
+  "elapsed_seconds": 2778.9040263449997,
+  "inventory": {
+    "bytes": 211376352,
+    "files": 18
+  },
+  "kind": "n8",
+  "mode": "X2",
+  "n_train": 16384,
+  "peaks": {
+    "cuda_allocated": 1093707264,
+    "cuda_reserved": 1522532352,
+    "device_used_sampled": 2386349260,
+    "worker_peak_rss": 2475712512
+  },
+  "readouts": [
+    0.25,
+    0.5,
+    1,
+    2.0,
+    2.0625,
+    2.125,
+    2.1875,
+    2.25,
+    2.3125,
+    2.375,
+    2.4375,
+    2.5,
+    2.5625,
+    2.625,
+    2.6875,
+    2.75,
+    2.8125,
+    2.875,
+    2.9375,
+    3.0,
+    3.0625,
+    3.125,
+    3.1875,
+    3.25,
+    3.3125,
+    3.375,
+    3.4375,
+    3.5
+  ],
+  "stage_folders": [
+    "n06"
+  ],
+  "stages": [
+    {
+      "closed_totals": [
+        211359220,
+        12
+      ],
+      "counts": {
+        "eval_batches": 30624,
+        "models": 4,
+        "pretrained_states": 2,
+        "updates": 8192
+      },
+      "e0_against_first_attempt": {
+        "512": "ABSENT",
+        "768": "DIFFERENT"
+      },
+      "guard_calls": {
+        "epoch": 207,
+        "full": 42,
+        "tick": 46400
+      },
+      "ledger_total": [
+        211375691,
+        17
+      ],
+      "peaks": {
+        "cuda_allocated": 1093707264,
+        "cuda_reserved": 1522532352,
+        "device_used_sampled": 2386349260,
+        "worker_peak_rss": 2475712512
+      },
+      "seconds": 2683.1222660999997,
+      "stage": "n06",
+      "state_errors": 0,
+      "states_kept": 2,
+      "status": "COMPLETE",
+      "trajectories": 2
+    }
+  ],
+  "startup": {
+    "decision": "GO",
+    "reason": "ALL_WIDTHS_WITHIN_LIMIT"
+  },
+  "status": "COMPLETE",
+  "subject": "9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b"
+}

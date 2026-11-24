@@ -1,0 +1,9 @@
+bundle files with a SHA-256 different from MANIFEST.json: 0
+fitted m01, 30 s
+fitted m02, 60 s
+fitted m03, 92 s
+fitted m04, 123 s
+fitted m05, 157 s
+fitted m06, 195 s
+fits: 240 environment {'system': 'Windows', 'python': '3.12.10', 'numpy': '2.5.3', 'executable': 'C:\\Users\\rafli\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'registered': {'system': 'Windows', 'python': '3.12.10', 'numpy': '2.5.3'}, 'matches_registered': True}
+exit 0

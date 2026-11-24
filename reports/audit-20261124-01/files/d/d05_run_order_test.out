@@ -1,0 +1,23 @@
+﻿--- the extracted run-order lines (93-95), first 110 characters of each:
+    if (-not (Test-Path -LiteralPath "$study\activations\n8-r$prev\OWNER_EXIT_RECEIPT.json" -PathType Leaf)) { thr
+    $before = Get-Content -LiteralPath "$study\activations\n8-r$prev\OWNER_EXIT_RECEIPT.json" -Raw -Encoding UTF8 
+    if ($before.status -ne 'COMPLETE' -and -not (Test-Path -LiteralPath "$study\activations\n8-x$prev\OWNER_EXIT_R
+--- (1) run order, Build step of R3 (k = 3, the run before it is R2)
+  STOPS     no exit receipt of R2   [Run R2 has not ended: activations\n8-r2 has no OWNER_EXIT_RECEIPT.json. Runs go in registry ord]
+  STOPS     R2 FAILED, no exit receipt of X2   [Run R2 did not complete (status FAILED) and its retry run X2 has not ended: activations\n8-x2 h]
+  STOPS     R2 FAILED, X2 built but never claimed (activation folder, no exit receipt)   [Run R2 did not complete (status FAILED) and its retry run X2 has not ended: activations\n8-x2 h]
+  PROCEEDS  R2 FAILED, X2 ended COMPLETE
+  PROCEEDS  R2 FAILED, X2 ended FAILED
+  PROCEEDS  R2 COMPLETE, no X2
+  STOPS     R2 STOPPED_AT_STARTUP, no X2   [Run R2 did not complete (status STOPPED_AT_STARTUP) and its retry run X2 has not ended: activat]
+  STOPS     R2 EXIT_UNOBSERVED_NO_KILL, no X2   [Run R2 did not complete (status EXIT_UNOBSERVED_NO_KILL) and its retry run X2 has not ended: ac]
+--- (2) approval checks, Build step of R3 (draws n07, n08, n09)
+  ACCEPTED  id and text name Run R3, n07-n09 and the id
+  REFUSED   no approval given   [The Build step needs -ApprovalId and -ApprovalText. Nothing was built]
+  REFUSED   id names R4   [The approval id must name Run R3: OWNER-<yyyymmdd>-N8-R3-<nn>. Nothing was built]
+  REFUSED   id date is not a date   [The approval id's date is not a date: 20991341. Nothing was built]
+  REFUSED   text names a second run   [The approval text must name Run R3, its draws n07, n08, n09 and the approval id,]
+  REFUSED   text names a wrong draw   [The approval text must name Run R3, its draws n07, n08, n09 and the approval id,]
+  REFUSED   text lacks a draw   [The approval text must name Run R3, its draws n07, n08, n09 and the approval id,]
+  REFUSED   text lacks the id   [The approval text must name Run R3, its draws n07, n08, n09 and the approval id,]
+  REFUSED   text has a double quote   [The approval text must not contain double quotes or backslashes (they do not rea]

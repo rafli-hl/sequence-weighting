@@ -1,8 +1,9 @@
-# Natural-text studies, 27 October – 11 November 2026
+# Natural-text studies, 27 October – 24 November 2026
 
 This page indexes the synthetic follow-up and the natural-text studies that came after the Stage 10 record. It also
-covers the adversarial review of their claims, the response, N7 (the confirmation study the review led to), the audit
-of the whole record, the correction that followed it, and the post-hoc analysis and second correction of 11 November.
+covers the adversarial review of their claims, the response, N7 (the confirmation study the review led to), the audits
+and corrections that followed, the post-hoc analysis of 11 November, N8 (registered on 14 November and paused on
+23 November, with no results), and the clean-room reproduction of N7's analysis of 24 November.
 
 **Read these first.** The current claims, with their scope and qualifications, are in
 [`CURRENT_CLAIMS.md`](CURRENT_CLAIMS.md). The final claims as first written are in [`RESPONSE.md` §5](reports/adversarial-review-response-20261104-01/RESPONSE.md),
@@ -24,7 +25,9 @@ under training-progress and learning-rate confounds, not a replication.
 "Pre-registered" in these records means specified and sealed by hash within the project before the data existed;
 such protocols were not public until the record was published, from 9 November 2026. [`METHODS.md`](METHODS.md)
 tabulates how each study was registered.
-Two studies were also registered publicly. N6 was registered only after its data existed (see
+Three studies were also registered publicly: N6, N7 and N8. N8's registration is the GitHub-signed merge commit
+`c6f98b2` of this repository (2026-11-14T18:19:19Z, which is 15 November 01:19 at +07:00) and the tag
+`n8-registration`; it has no third-party archive yet. N6 was registered only after its data existed (see
 [PR #3](reports/natural-text-peak-result-20261103-01/pr3-gh-snapshot-20261104/) and
 [`NOTE_PUBLIC_REGISTRATION_EDITS.md`](reports/natural-text-peak-result-20261103-01/NOTE_PUBLIC_REGISTRATION_EDITS.md)).
 N7 was registered before any of its runs (see [PR #5](reports/github-pr-snapshots-20261111-01/pr5/)).
@@ -65,7 +68,8 @@ designed after the review to test its strongest post-hoc finding.
 | N4 | WikiText-2 late-turn confirmation, 4 fresh draws | [`PROTOCOL.md`](work/natural-text-lateturn-source-20261031-01/PROTOCOL.md) | [`RESULT.md`](reports/natural-text-lateturn-result-20261031-01/RESULT.md) | [`analysis`](reports/natural-text-lateturn-analysis-20261031-01/) |
 | N5 | WikiText-103 few-epoch study, 10 fresh draws, 3 epochs | [`PROTOCOL.md`](work/natural-text-fewepoch-source-20261101-01/PROTOCOL.md) | [`RESULT.md`](reports/natural-text-fewepoch-result-20261103-01/RESULT.md); [descriptive section](reports/natural-text-fewepoch-descriptive-20261103-01/DESCRIPTIVE.md) | [`analysis`](reports/natural-text-fewepoch-analysis-20261103-01/) |
 | N6 | WikiText-103 peak confirmation, 6 fresh draws, two rates | [Registration](preregistration/natural-text-peak-confirmation-20261103/README.md) (sealed source and seed registry) | [`RESULT.md`](reports/natural-text-peak-result-20261103-01/RESULT.md) | [`analysis`](reports/natural-text-peak-analysis-20261103-01/) |
-| N7 | WikiText-103 matched-progress confirmation, 6 fresh draws, two rates, readouts every quarter epoch from epoch 2 | [Registration](preregistration/natural-text-matched-confirmation-20261104/README.md) (sealed source, seed registry, real-engine check), merged before any run | [`RESULT.md`](reports/natural-text-matched-result-20261105-01/RESULT.md), with its [verification](reports/natural-text-matched-result-20261105-01/RESULT_VERIFICATION.json) and an [assistant check](reports/natural-text-matched-result-20261105-01/ASSISTANT_CHECK.md); run records in `reports/natural-text-matched-run-checks-20261104-01/`; [post-hoc analysis by exposure](reports/natural-text-matched-assistant-posthoc-20261111-01/), not a sealed result | [`analysis`](reports/natural-text-matched-analysis-20261105-01/) |
+| N7 | WikiText-103 matched-progress confirmation, 6 fresh draws, two rates, readouts every quarter epoch from epoch 2 | [Registration](preregistration/natural-text-matched-confirmation-20261104/README.md) (sealed source, seed registry, real-engine check), merged before any run | [`RESULT.md`](reports/natural-text-matched-result-20261105-01/RESULT.md), with its [verification](reports/natural-text-matched-result-20261105-01/RESULT_VERIFICATION.json) and an [assistant check](reports/natural-text-matched-result-20261105-01/ASSISTANT_CHECK.md); run records in `reports/natural-text-matched-run-checks-20261104-01/`; [post-hoc analysis by exposure](reports/natural-text-matched-assistant-posthoc-20261111-01/), not a sealed result; [clean-room reproduction of the analysis](reports/clean-room-reproduction-20261124-01/README.md) | [`analysis`](reports/natural-text-matched-analysis-20261105-01/) |
+| N8 | WikiText-103 dense-readout replication of N7, 24 fresh draws planned, one rate, readouts every 64 updates from epoch 2. **Paused after 6 draws; no results** | [Registration](preregistration/natural-text-dense-replication-20261114/README.md) (protocol, sealed source, seed registry, pilot), merged before any run | None. [Operational notes](preregistration/natural-text-dense-replication-20261114/OPERATIONAL_NOTES.md) and [run records](preregistration/natural-text-dense-replication-20261114/run-records/README.md) of R1, R2 and X2, which hold no loss value | None |
 
 Seed registries for S, N1, N4 and N5 are in `reports/*-seed-registry-*/` (`REGISTRY.json`, `SEED_REGISTRY_POLICY.md`,
 the draw and its exclusions).
@@ -143,10 +147,26 @@ seeds. Neither failed attempt was analysed.
   below 0, and P1's barely above it); C3's "same gap" becomes "similar gap", with a descriptive scale; the
   exposure-matched sets have matched recency windows, not equal recencies; N6's width 384; the audit's tokenizer
   rebuild; and the unpublished simulation behind the "about 2.5%" familywise rate.
+- **Audit of version 2.1, 23–24 November.** [`README.md`](reports/audit-20261124-01/README.md): four fresh AI
+  sessions audited the 23 November correction, the living pages, N8's registration package, its analysis code and the
+  conduct of its runs; the session that supervised them had prepared much of version 2.1, so the audit is not fully
+  independent. It found no registered number, label or registration element wrong. Its main finding is that N8's
+  registered analysis has no entry point for N8's own run folders, which is still open.
+- **Clean-room reproduction of N7's analysis, 24 November.**
+  [`README.md`](reports/clean-room-reproduction-20261124-01/README.md): a separate AI session implemented N7's
+  analysis from the protocol, the technical note and the released losses, without the original code or results, and
+  froze its outputs before comparing. All 240 fits agree within 8.7e-9, and every registered statistic and label
+  reproduces. It is not a human or independent replication, it does not cover the training, and its blinding was
+  imperfect: the session had seen N7's labels, with no numbers.
+- **Correction, 24 November.** [`CORRECTION.md`](reports/natural-text-correction-20261124-01/CORRECTION.md): the
+  23 November correction's sentence about the later bracket end is false for S4; its 0.000 at k = 1 is zero by
+  construction; and two points N7's protocol left unwritten are stated (tied weights are ranked in stable sort order,
+  and mean losses come from the worker's records).
 
 ## Status
 
-The experiments were reopened for N7 alone and are closed again.
+The experiments were reopened for N7 and closed again after it. On 14 November 2026 they were reopened for N8, which
+is paused (below).
 
 N7's primary, P1, is **REVERSAL_CONFIRMED**, and that label stands. At learning rate 1e-4 on six fresh draws, p\* at
 width 512 at epoch 3 is above p\* at 768 when 768 is read at the training loss 512 reaches at epoch 3 (+0.00909
@@ -190,11 +210,16 @@ That is not a restriction on anyone else.
 
 **N8, paused on 23 November 2026.**
 - Training stopped after 6 of its 24 draws: n01–n06, with n06 completed in the retry run X2. R3–R8 have not started.
+- Paused at the owner's decision for reasons unrelated to the data; no N8 result has been computed or examined.
 - No p\* has been computed or examined, and the per-sequence losses stay unpublished until the sealed analysis.
 - Resuming continues with R3 under the registered protocol. If fewer than 20 draws are ever completed, the registered
   INCOMPLETE rule applies: no statistic and no label.
 - The operational events of R1, R2 and X2 are in
-  [`OPERATIONAL_NOTES.md`](preregistration/natural-text-dense-replication-20261114/OPERATIONAL_NOTES.md).
+  [`OPERATIONAL_NOTES.md`](preregistration/natural-text-dense-replication-20261114/OPERATIONAL_NOTES.md), and their
+  run records that hold no loss value are in
+  [`run-records/`](preregistration/natural-text-dense-replication-20261114/run-records/README.md).
+- Still open before any N8 loss is read: a published loader for N8's run folders and a dated amendment to its
+  protocol ([audit of 24 November](reports/audit-20261124-01/README.md)).
 
 ## Not included
 

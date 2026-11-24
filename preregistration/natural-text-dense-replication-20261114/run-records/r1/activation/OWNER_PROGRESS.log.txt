@@ -1,0 +1,3 @@
+2026-11-15 02:01:58  Check before n01: IDLE (GPU IDLE: mean utilization 3.6% (limit 12%), max memory used 507 MiB (recorded, not gated); power AC, battery 80%, plan Turbo)
+2026-11-15 02:47:07  Check before n02: IDLE (GPU IDLE: mean utilization 0% (limit 12%), max memory used 507 MiB (recorded, not gated); power AC, battery 80%, plan Turbo)
+2026-11-15 03:32:23  Check before n03: IDLE (GPU IDLE: mean utilization 0% (limit 12%), max memory used 507 MiB (recorded, not gated); power AC, battery 80%, plan Turbo)

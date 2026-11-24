@@ -1,0 +1,5 @@
+S-b on synthetic orders, 6 draws: largest difference between exposure_windows and the auditor, per-draw contrasts: {'whole': '0', 'last': '0', 'every': '0', 'loss_last': '0', 'loss_every': '0'}
+  768 at E2.25: every-pass set sizes 25-41 equal: True; max |mean age difference| 0.65546 updates, difference 0; max joint quarter-cell distance 0.00000, difference 0
+  768 at E2.5: every-pass set sizes 116-145 equal: True; max |mean age difference| 0.38345 updates, difference 0; max joint quarter-cell distance 0.04340, difference 0
+  768 at E2.75: every-pass set sizes 398-440 equal: True; max |mean age difference| 0.23381 updates, difference 0; max joint quarter-cell distance 0.02584, difference 0
+  order checks (synthetic losses do not depend on the orders, so about 0 is expected): {'n01': -0.0009, 'n02': -0.0012, 'n03': -0.0009, 'n04': -0.0009, 'n05': -0.0008, 'n06': -0.0013} | steps per draw {12}

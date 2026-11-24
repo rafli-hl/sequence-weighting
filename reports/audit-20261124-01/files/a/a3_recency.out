@@ -1,0 +1,9 @@
+MT19937 seed 5489: first output 3499211612 (standard 3499211612), 10000th 4123659995 (standard 4123659995)
+equals NumPy legacy MT19937 raw 32-bit stream for seed 2419856979 (2,000 outputs): True
+order seeds 999 + adapt_order_seed + e stay below 2^32: True
+loss change, trained minus untrained in the quarter (emulated orders; 192 arm-windows): mean -0.2257, range -0.3467 to -0.1187 nats
+loss change, trained minus untrained in the quarter (seed + 1 control; 192 arm-windows): mean +0.0001, range -0.0087 to +0.0123 nats
+k = 1: set sizes 226-272; largest |mean age difference| 14.11545 updates (draw m02, pass 2, signed -14.11545); largest joint quarter-cell TV 0.00000 (draw m06; 1 cell); mean |age difference| over 18 draw-passes 4.207; window width 256 updates
+k = 2: set sizes 2018-2116; largest |mean age difference| 8.44744 updates (draw m03, pass 3, signed +8.44744); largest joint quarter-cell TV 0.03709 (draw m03; 8 cells); mean |age difference| over 18 draw-passes 3.187; window width 512 updates
+k = 3: set sizes 6883-6931; largest |mean age difference| 6.99420 updates (draw m04, pass 3, signed -6.99420); largest joint quarter-cell TV 0.03659 (draw m03; 27 cells); mean |age difference| over 18 draw-passes 1.981; window width 768 updates
+published set sizes reproduced: 18 of 18 (draw, k) pairs; largest difference from the 18 published loss_every values: 0.00e+00

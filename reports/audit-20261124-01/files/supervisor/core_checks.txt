@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "known_exponent_recovery": [
+    {
+      "known_p": 0,
+      "estimated_p": 0.0
+    },
+    {
+      "known_p": 0.5,
+      "estimated_p": 0.49999999999147443
+    },
+    {
+      "known_p": 1,
+      "estimated_p": 0.9999999999914743
+    },
+    {
+      "known_p": 2,
+      "estimated_p": 1.9999999999914744
+    }
+  ],
+  "quadratic_form_equivalence_absolute_error": 4.912791094074942e-20,
+  "distinct_sequence_keys": 2816,
+  "checks": [
+    "constant weight and nonpositive gain handling",
+    "all 2816 sequences: lengths, target alignment, pattern counts",
+    "shared and group answer correctness",
+    "unique inputs within each sequence",
+    "disjoint train/validation/test keys",
+    "cross-regime query pairing"
+  ],
+  "not_checked": [
+    "Transformer causality at runtime",
+    "CUDA training",
+    "learning curves",
+    "runtime performance or peak GPU memory"
+  ],
+  "training_status": "not performed by these dependency-free checks; inspect run outputs separately"
+}

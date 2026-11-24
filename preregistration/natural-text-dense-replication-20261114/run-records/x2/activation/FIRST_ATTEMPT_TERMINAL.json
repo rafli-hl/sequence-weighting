@@ -1,0 +1,187 @@
+{
+  "active_stage": "n06",
+  "arms": {
+    "512": [
+      0.0001
+    ],
+    "768": [
+      0.0001
+    ]
+  },
+  "benchmark": {
+    "bytes": 4188,
+    "path": "BENCHMARK.json",
+    "sha256": "9bc435a3a98044c47827fa6f586be4d6a584c969e677ae929fa67d18caddc439"
+  },
+  "bindings": {
+    "approval_id": "OWNER-20261115-N8-R2-01",
+    "approval_record_sha256": "f777cd099341c94e897cc1bbf0ad782ebf930bb74008a130db359f01062da078",
+    "corpus_manifest_sha256": "be911db7a63238a205fc74c5732f78431befd61ba7d26af48202a31163df39ea",
+    "draw_sha256": "58489c76bbcd9989527cc0377aa154aaac2a6733b2de623f278576e7784bdcda",
+    "exclusions_sha256": "232e3e60235e82e302905ece260c19148c0f7e44f2f58cd9cf7a951d58ad4555",
+    "fewepoch_registry_sha256": "75db913de7b1860cd269ce262144859334b61e8248ebad5c00b47caaa60106af",
+    "n7_registry_sha256": "bee578826fbdb5e66fbb36d577e45929af756e05b12b62d6cd141b4b5da7ea64",
+    "partition_sha256": "15c1d59876fa0c09b5e34c62f1d0ed278db37c69c878667142da1b297183f42a",
+    "peak_registry_sha256": "0e8b05285a6ad98a32a2041f0907e423c9c8d85fa6408e6a90be9acfb8c326dd",
+    "registry_sha256": "7628c80950fe14e130336909d3fb995fa35dcad3f836d2fd90ddd8071c96fd3e"
+  },
+  "counted_as_attempt": true,
+  "counts": {
+    "eval_batches": 74464,
+    "models": 10,
+    "pretrained_states": 5,
+    "updates": 20288
+  },
+  "draws": [
+    "n04",
+    "n05",
+    "n06"
+  ],
+  "elapsed_seconds": 7497.792467716,
+  "error": {
+    "message": "Sampled GPU limit",
+    "type": "RuntimeError"
+  },
+  "inventory": {
+    "bytes": 562737220,
+    "files": 39
+  },
+  "kind": "n8",
+  "mode": "R2",
+  "n_train": 16384,
+  "peaks": {
+    "cuda_allocated": 1093707264,
+    "cuda_reserved": 1522532352,
+    "device_used_sampled": 3447063348,
+    "worker_peak_rss": 2472230912
+  },
+  "readouts": [
+    0.25,
+    0.5,
+    1,
+    2.0,
+    2.0625,
+    2.125,
+    2.1875,
+    2.25,
+    2.3125,
+    2.375,
+    2.4375,
+    2.5,
+    2.5625,
+    2.625,
+    2.6875,
+    2.75,
+    2.8125,
+    2.875,
+    2.9375,
+    3.0,
+    3.0625,
+    3.125,
+    3.1875,
+    3.25,
+    3.3125,
+    3.375,
+    3.4375,
+    3.5
+  ],
+  "stage_folders": [
+    "n04",
+    "n05",
+    "n06"
+  ],
+  "stages": [
+    {
+      "closed_totals": [
+        211358629,
+        12
+      ],
+      "counts": {
+        "eval_batches": 30624,
+        "models": 4,
+        "pretrained_states": 2,
+        "updates": 8192
+      },
+      "e0_against_first_attempt": null,
+      "guard_calls": {
+        "epoch": 207,
+        "full": 42,
+        "tick": 46400
+      },
+      "ledger_total": [
+        211375111,
+        17
+      ],
+      "peaks": {
+        "cuda_allocated": 1093707264,
+        "cuda_reserved": 1522532352,
+        "device_used_sampled": 2386349260,
+        "worker_peak_rss": 2472230912
+      },
+      "seconds": 2791.833497309,
+      "stage": "n04",
+      "state_errors": 0,
+      "states_kept": 2,
+      "status": "COMPLETE",
+      "trajectories": 2
+    },
+    {
+      "closed_totals": [
+        422717714,
+        24
+      ],
+      "counts": {
+        "eval_batches": 61248,
+        "models": 8,
+        "pretrained_states": 4,
+        "updates": 16384
+      },
+      "e0_against_first_attempt": null,
+      "guard_calls": {
+        "epoch": 246,
+        "full": 50,
+        "tick": 92384
+      },
+      "ledger_total": [
+        422739961,
+        32
+      ],
+      "peaks": {
+        "cuda_allocated": 1093707264,
+        "cuda_reserved": 1522532352,
+        "device_used_sampled": 2386349260,
+        "worker_peak_rss": 2472230912
+      },
+      "seconds": 2816.3661188,
+      "stage": "n05",
+      "state_errors": 0,
+      "states_kept": 2,
+      "status": "COMPLETE",
+      "trajectories": 2
+    }
+  ],
+  "startup": {
+    "decision": "GO",
+    "reason": "ALL_WIDTHS_WITHIN_LIMIT"
+  },
+  "states_on_failure": {
+    "benchmark": {
+      "deleted": [],
+      "deleted_bytes": 0,
+      "errors": []
+    },
+    "kept_in_active_stage": {
+      "errors": [],
+      "kept": [
+        {
+          "bytes": 138986628,
+          "path": "n06/w768/E0.pt",
+          "sha256": "efdb37332d65f7061de69467c4fe96bc69bf52516216bff2137537ef4ec071ae"
+        }
+      ],
+      "kept_bytes": 138986628
+    }
+  },
+  "status": "FAILED",
+  "subject": "9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b"
+}

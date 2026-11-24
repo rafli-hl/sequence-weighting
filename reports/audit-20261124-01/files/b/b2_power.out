@@ -1,0 +1,41 @@
+check of my t quantiles: t(.975,5) = 2.570582 (2.570582), t(.975,23) = 2.068658 (2.068658), t(.975,7) = 2.364624 (2.364624)
+N7 P1: n=6 mean=+0.009088 sd=0.004845 interval=[+0.004004, +0.014172]  half effect=+0.004544  d(full)=1.8759  d(half)=0.9379
+N7 S3: n=6 mean=-0.004542 sd=0.003245 interval=[-0.007947, -0.001137]  half effect=-0.002271  d(full)=1.3999  d(half)=0.6999
+
+protocol's planning values: H1 d = 0.9361, H2 d = 0.7006
+draws | H1 exact (MC) | H2 exact (MC) | Bonferroni lower bound | protocol table
+   12 | 0.8389 (0.8388) | 0.5997 (0.6001) | 0.4386 | (0.84, 0.6, 0.44)
+   16 | 0.9377 (0.9373) | 0.7453 (0.7451) | 0.6830 | (0.94, 0.74, 0.68)
+   20 | 0.9776 (0.9781) | 0.8441 (0.8440) | 0.8217 | (0.98, 0.84, 0.82)
+   21 | 0.9828 (0.9828) | 0.8628 (0.8623) | 0.8457 | 
+   22 | 0.9869 (0.9872) | 0.8795 (0.8798) | 0.8664 | 
+   23 | 0.9900 (0.9900) | 0.8944 (0.8944) | 0.8844 | 
+   24 | 0.9924 (0.9925) | 0.9076 (0.9074) | 0.9000 | (0.99, 0.91, 0.9)
+
+same table with the unrounded N7 values (H1 d = 0.9379, H2 d = 0.6999):
+   12 | 0.8403 | 0.5988 | 0.4392
+   16 | 0.9385 | 0.7445 | 0.6830
+   20 | 0.9780 | 0.8434 | 0.8215
+   24 | 0.9926 | 0.9070 | 0.8996
+    8 draws, full unrounded effects: H1 0.9943  H2 0.9220  lower bound 0.9163
+   24 draws, two-thirds effects, SDs x 1.5, unrounded: H1 0.9743  H2 0.8311  lower bound 0.8055
+
+full N7 effects (protocol: 8 draws give joint power of at least 0.92):
+  n=6: H1 0.9509  H2 0.7820  lower bound 0.7330
+  n=7: H1 0.9826  H2 0.8679  lower bound 0.8505
+  n=8: H1 0.9942  H2 0.9225  lower bound 0.9166
+two-thirds of N7 effects, SDs x 1.5 (protocol: 24 draws give a lower bound of 0.81):
+  n=20: H1 0.9415  H2 0.7524  lower bound 0.6939
+  n=24: H1 0.9739  H2 0.8318  lower bound 0.8057
+
+not in the protocol, for context (same rule, 24 and 20 draws):
+  half effects, SDs x 1.5      n=24: H1 0.833  H2 0.592  lower bound 0.425  product (if independent) 0.493
+  half effects, SDs x 1.5      n=20: H1 0.754  H2 0.509  lower bound 0.263  product (if independent) 0.384
+  half effects, SDs x 2        n=24: H1 0.594  H2 0.376  lower bound 0.000  product (if independent) 0.223
+  half effects, SDs x 2        n=20: H1 0.511  H2 0.318  lower bound 0.000  product (if independent) 0.163
+  one-third effects, N7 SDs    n=24: H1 0.833  H2 0.592  lower bound 0.425  product (if independent) 0.493
+  one-third effects, N7 SDs    n=20: H1 0.754  H2 0.509  lower bound 0.263  product (if independent) 0.384
+
+95% interval for a true SD given an SD s estimated from 6 draws (normal draws): [0.624 s, 2.453 s]
+simulated P(both CONFIRMED | H1 effect = 0, H2 effect = -5 SD), n = 24: 0.0249  (bound 0.025)
+envelope: over 200 random boxes (3-8 draws), largest (vertex minimum of the lower limit minus the lowest of 20,000 sampled interior points): -7.093e-03 (<= 0 means no interior point was lower than the best vertex)

@@ -1,0 +1,31 @@
+=== 1. t quantile, df 19-23, against numerical integration of the t density (independent of the incomplete beta)
+  df 19: quantile 2.093024054408; P(|T| <= q) by Simpson = 0.9500000000000 (want 0.95)
+  df 20: quantile 2.085963447266; P(|T| <= q) by Simpson = 0.9500000000000 (want 0.95)
+  df 21: quantile 2.079613844728; P(|T| <= q) by Simpson = 0.9500000000000 (want 0.95)
+  df 22: quantile 2.073873067904; P(|T| <= q) by Simpson = 0.9500000000000 (want 0.95)
+  df 23: quantile 2.068657610419; P(|T| <= q) by Simpson = 0.9500000000000 (want 0.95)
+=== 2. "entirely" = beyond 0 by more than 1e-9 (H1 above, H2 below)
+  margin 5e-10: H1 lower limit 5.000e-10 -> INCONCLUSIVE; H2 upper limit -5.000e-10 -> INCONCLUSIVE; joint REVERSAL_NOT_REPLICATED
+  margin 2e-09: H1 lower limit 2.000e-09 -> CONFIRMED; H2 upper limit -2.000e-09 -> CONFIRMED; joint REVERSAL_REPLICATED
+=== 3. reading rule
+  target equal to a readout value, held first by a sloping interval: {'status': 'READ', 'between': [2.0, 2.0625], 'weight': 1.0, 'p_read': 0.11, 'intervals_holding_the_target': 3}
+  flat first interval holding the target, its LATER fit undefined: {'status': 'UNDEFINED_FIT', 'between': [2.0, 2.0625], 'weight': 0.0, 'p_at_bracket': [0.1, None]}   | protocol wording expects: read at its earlier readout (p = 0.10)
+  non-monotone path: {'status': 'READ', 'between': [2.0, 2.0625], 'weight': 0.5, 'p_read': 0.10500000000000001, 'intervals_holding_the_target': 3}
+  target above / below every readout: ['TARGET_OUTSIDE_PATH', 'TARGET_OUTSIDE_PATH']
+=== 4. saturation on the matched contrast (H1) and on 512 at E3 (no registered test exercises these branches)
+  H1 unavailable: {'n02': 'SATURATED', 'n03': 'SATURATED'} | H2 unavailable: {'n03': 'SATURATED'}
+  H1 n01 bound-8 value (label uses it): -1.5774999999999095 = p512 - (8 + w (p_hi - 8)) = -1.5774999999999095
+  H1 n01 value at bound 32: -1.8774999999998934 = p512 - (9.5 + w (p_hi - 9.5)) = -1.8774999999998934
+  H1 saturation flagged / saturated: ['n01', 'n02', 'n03'] ['n02', 'n03'] | interval at bound 32 present: True
+  H2 saturation flagged / saturated: ['n03'] ['n03']
+  labels: {'H1': 'INCONCLUSIVE', 'H2': 'CONFIRMED'} REVERSAL_NOT_REPLICATED | available H1 22 H2 23
+=== 5. what an UNAVAILABLE hypothesis still emits (19 of 24 available)
+  label UNAVAILABLE | joint REVERSAL_NOT_REPLICATED | keys: ['available', 'expected', 'first', 'key', 'kind', 'leave_one_out', 'min_draws', 'second', 'sign_test', 'status', 'unavailable', 'unavailable_counts', 'values']
+  has interval: False | has envelope: False | per-draw values: 19 | sign test: {'positive': 19, 'negative': 0, 'zeros': 0, 'p': 3.814697265625e-06} | leave-one-out intervals: 19
+  one leave-one-out entry: {'mean': 0.004044646897764879, 'interval': [0.00369032581727835, 0.004398967978251408], 'df': 17, 'side': 'ABOVE'}
+=== 6. study status
+  24 completed: status COMPLETE, labels {'H1': 'CONFIRMED', 'H2': 'CONFIRMED'}, joint REVERSAL_REPLICATED, statistics present: True
+  23 completed: status COMPLETE_WITH_FAILED_DRAWS, labels {'H1': 'CONFIRMED', 'H2': 'CONFIRMED'}, joint REVERSAL_REPLICATED, statistics present: True
+  20 completed: status COMPLETE_WITH_FAILED_DRAWS, labels {'H1': 'CONFIRMED', 'H2': 'CONFIRMED'}, joint REVERSAL_REPLICATED, statistics present: True
+  19 completed: status INCOMPLETE, labels None, joint None, statistics present: False
+  a draw absent from the mapping (not None): decide -> COMPLETE_WITH_FAILED_DRAWS {'n24': 'DRAW_MISSING'}

@@ -1,0 +1,2 @@
+wrote 12 order files to orders_as_pinned; ORDERS.json records torch 2.7.0+cu126, numpy 2.2.6; ORDERS.json SHA-256 8ba4a3c2e7906f65c6335ece7a785bfb37fe1b2904684959d388f589f2287eb1
+wrote 12 order files to orders_public_install; ORDERS.json records torch 2.7.0+cpu, numpy 2.5.3; ORDERS.json SHA-256 536bb5d050b9642fa09d61cc65fd32a4725f32673289c6bf502eb668bc23b6e2

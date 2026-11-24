@@ -29,9 +29,12 @@ Folder names follow the pattern `<study>-<kind>-<date>-<n>`. `<date>` is the day
 | `owner-decisions` | A dated record of the owner's decisions and instructions |
 | `assistant-recompute`, `assistant-posthoc` | Work by an AI assistant after a sealed result: a recomputation, or a post-hoc analysis. Never a sealed result |
 | `correction` | A dated note that corrects earlier statements without editing the files that made them |
+| `audit` | A read-only audit by AI systems; each folder's README says who did it and how independent it was |
+| `clean-room-reproduction` | A reimplementation of a published analysis from its specification and released data, without the original code |
 
 Protocols and sealed source code are not in this folder. For S, N1 and N3–N5 they are in `work/*-source-*/`; for N6,
-N7 and N8 they are in [`preregistration/`](../preregistration/). N8, registered on 14 November 2026, has no folder here yet.
+N7 and N8 they are in [`preregistration/`](../preregistration/). N8, registered on 14 November 2026 and paused, has no
+results and no folder here; its operational notes and run records are in its preregistration folder.
 
 ## By study
 
@@ -108,6 +111,9 @@ N7 and N8 they are in [`preregistration/`](../preregistration/). N8, registered 
 | [`readme-revision-20261113-01`](readme-revision-20261113-01/NOTE.md) | Documentation revision of 13 November: two post-hoc descriptive summaries (fit diagnostics of N7, sizes and weights of the exposure-matched sets) and the checks run on the revised copy |
 | [`external-audit-20261113-01`](external-audit-20261113-01/README.md) | External audit of 13 November, post hoc and AI-made, of the record at commit `fee55ea`, filed as received |
 | [`natural-text-correction-20261123-01`](natural-text-correction-20261123-01/CORRECTION.md) | Correction after the external audit: the bracket-end envelope (F1), "similar gap" in C3 with a descriptive scale (F2, `gap_scale.py`), matched recency windows (F3), N6's width 384 (F4), the tokenizer rebuild and the unpublished familywise simulation |
+| [`audit-20261124-01`](audit-20261124-01/README.md) | Audit of version 2.1 by four fresh AI sessions, supervised by the session that had prepared much of that version: the report, each auditor's scripts and outputs, and how each finding was handled |
+| [`clean-room-reproduction-20261124-01`](clean-room-reproduction-20261124-01/README.md) | Clean-room reproduction of N7's analysis by a separate AI session, from the protocol, the technical note and the released losses: report, frozen specification log, code and outputs, and the comparison made after the freeze |
+| [`natural-text-correction-20261124-01`](natural-text-correction-20261124-01/CORRECTION.md) | Correction after the audit of version 2.1 and the reproduction: the later bracket end and S4, the zero at k = 1, and two points N7's protocol left unwritten (tied weights, the source of mean losses) |
 
 ## Owner decisions
 

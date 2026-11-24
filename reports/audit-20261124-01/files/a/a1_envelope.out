@@ -1,0 +1,49 @@
+t(0.975, df=5) = 2.5705818356363  (own bisection on the closed-form CDF)
+
+== P1 (lr1e-04, matched on train) ==
+  m01: bracket 2-2.25, weight 0.9959; p768 0.076656 -> 0.090136 (rises); contrast sealed +0.011705, earlier end +0.025130, later end +0.011650
+  m02: bracket 2.25-2.5, weight 0.5615; p768 0.088761 -> 0.095095 (rises); contrast sealed +0.010231, earlier end +0.013788, later end +0.007454
+  m03: bracket 2.25-2.5, weight 0.2071; p768 0.095407 -> 0.100937 (rises); contrast sealed +0.008166, earlier end +0.009311, later end +0.003780
+  m04: bracket 2-2.25, weight 0.7561; p768 0.078456 -> 0.092275 (rises); contrast sealed +0.014037, earlier end +0.024485, later end +0.010666
+  m05: bracket 2-2.25, weight 0.9251; p768 0.078437 -> 0.094538 (rises); contrast sealed +0.010368, earlier end +0.025263, later end +0.009162
+  m06: bracket 2.25-2.5, weight 0.9029; p768 0.095226 -> 0.101309 (rises); contrast sealed +0.000021, earlier end +0.005512, later end -0.000570
+  sealed (interpolated): +0.00909 [+0.00400, +0.01417], 6/6 above 0
+  all later ends       : +0.00702 [+0.00216, +0.01189], 5/6 above 0
+  all earlier ends     : +0.01725 [+0.00796, +0.02653], 6/6 above 0
+  64 combinations: lowest lower limit +0.0000764 (mean +0.00927, upper +0.01846) at ELLLLL (draw order m01..m06; E earlier, L later)
+    same combination with t = 2.5706: +0.0000763
+    second lowest: +0.0002565 at ELLELL; combinations with lower limit <= 0: 0 of 64; highest lower limit +0.0079627
+    lowest mean over the 64: +0.00702 at LLLLLL
+    200,000 random interior readings: lowest lower limit +0.0008162 (vertex minimum +0.0000764)
+
+== S1 (lr1e-04, matched on gap) ==
+  m01: bracket 2.25-2.5, weight 0.2130; p768 0.090136 -> 0.096273 (rises); contrast sealed +0.010343, earlier end +0.011650, later end +0.005513
+  m02: bracket 2.25-2.5, weight 0.1753; p768 0.088761 -> 0.095095 (rises); contrast sealed +0.012678, earlier end +0.013788, later end +0.007454
+  m03: bracket 2.25-2.5, weight 0.3246; p768 0.095407 -> 0.100937 (rises); contrast sealed +0.007516, earlier end +0.009311, later end +0.003780
+  m04: bracket 2.25-2.5, weight 0.9010; p768 0.092275 -> 0.097360 (rises); contrast sealed +0.006085, earlier end +0.010666, later end +0.005581
+  m05: bracket 2.25-2.5, weight 0.1911; p768 0.094538 -> 0.101493 (rises); contrast sealed +0.007834, earlier end +0.009162, later end +0.002208
+  m06: bracket 2.25-2.5, weight 0.2397; p768 0.095226 -> 0.101309 (rises); contrast sealed +0.004054, earlier end +0.005512, later end -0.000570
+  sealed (interpolated): +0.00808 [+0.00487, +0.01130], 6/6 above 0
+  all later ends       : +0.00399 [+0.00099, +0.00699], 5/6 above 0
+  all earlier ends     : +0.01001 [+0.00709, +0.01294], 6/6 above 0
+  64 combinations: lowest lower limit -0.0000507 (mean +0.00505, upper +0.01015) at LELLLL (draw order m01..m06; E earlier, L later)
+    same combination with t = 2.5706: -0.0000508
+    second lowest: +0.0002263 at EELLLL; combinations with lower limit <= 0: 1 of 64; highest lower limit +0.0070905
+    lowest mean over the 64: +0.00399 at LLLLLL
+    200,000 random interior readings: lowest lower limit +0.0004654 (vertex minimum -0.0000507)
+
+== S4 (lr3e-04, matched on train) ==
+  m01: bracket 2.75-3, weight 0.2042; p768 0.100862 -> 0.102674 (rises); contrast sealed +0.018293, earlier end +0.018663, later end +0.016851
+  m02: bracket 2.75-3, weight 0.8043; p768 0.100989 -> 0.101997 (rises); contrast sealed +0.017070, earlier end +0.017880, later end +0.016873
+  m03: bracket 2.75-3, weight 0.3845; p768 0.104627 -> 0.108042 (rises); contrast sealed +0.015546, earlier end +0.016859, later end +0.013444
+  m04: bracket 2.5-2.75, weight 0.9280; p768 0.103107 -> 0.106906 (rises); contrast sealed +0.012925, earlier end +0.016450, later end +0.012651
+  m05: bracket 2.75-3, weight 0.3352; p768 0.103096 -> 0.106238 (rises); contrast sealed +0.014874, earlier end +0.015927, later end +0.012785
+  m06: bracket 3-3.25, weight 0.3314; p768 0.103894 -> 0.126254 (rises); contrast sealed +0.004944, earlier end +0.012355, later end -0.010005
+  sealed (interpolated): +0.01394 [+0.00893, +0.01896], 6/6 above 0
+  all later ends       : +0.01043 [-0.00027, +0.02113], 5/6 above 0
+  all earlier ends     : +0.01636 [+0.01405, +0.01866], 6/6 above 0
+  64 combinations: lowest lower limit -0.0002679 (mean +0.01043, upper +0.02113) at LLLLLL (draw order m01..m06; E earlier, L later)
+    same combination with t = 2.5706: -0.0002679
+    second lowest: -0.0002413 at LELLLL; combinations with lower limit <= 0: 5 of 64; highest lower limit +0.0140518
+    lowest mean over the 64: +0.01043 at LLLLLL
+    200,000 random interior readings: lowest lower limit -0.0001098 (vertex minimum -0.0002679)

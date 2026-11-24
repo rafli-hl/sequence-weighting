@@ -1,0 +1,43 @@
+$ git rev-parse HEAD; git status --short | wc -l
+30548dbb789b2a117486fdf6f9ab9added680172
+0
+
+$ sha256sum preregistration/natural-text-dense-replication-20261114/analysis/*
+37b32fc547bb09f987f3131157f94ad171b5822b9d87d488bced3ae448f38538  analysis/n8_analysis.py
+0d5a3661761f19b2b400163421b2d420673c1c769ee846a91131d9ae1ff55b72  analysis/regenerate_n7_orders.py
+6f056cdb1e95e954559bb676709de3c7247313b8d5d628f06bb8c8b01ff6f161  analysis/test_on_n7.py
+6e8ec084b07765f9b00b5dfa9c72719d7e7f2fb0c544c1b9666530b3e3bb1455  analysis/test_synthetic.py
+
+$ sed -n 31,36p preregistration/natural-text-dense-replication-20261114/HASHES.json
+  "analysis": {
+    "analysis/n8_analysis.py": "37b32fc547bb09f987f3131157f94ad171b5822b9d87d488bced3ae448f38538",
+    "analysis/regenerate_n7_orders.py": "0d5a3661761f19b2b400163421b2d420673c1c769ee846a91131d9ae1ff55b72",
+    "analysis/test_on_n7.py": "6f056cdb1e95e954559bb676709de3c7247313b8d5d628f06bb8c8b01ff6f161",
+    "analysis/test_synthetic.py": "6e8ec084b07765f9b00b5dfa9c72719d7e7f2fb0c544c1b9666530b3e3bb1455"
+  },
+
+$ git diff --stat n8-registration v2.1 -- preregistration/natural-text-dense-replication-20261114/analysis preregistration/natural-text-dense-replication-20261114/N8-protocol-draft.md | wc -l
+0
+
+$ grep -n -E "__main__|open\(|read_bytes|read_text|Path\(|os\.|import " preregistration/natural-text-dense-replication-20261114/analysis/n8_analysis.py
+21:import hashlib
+22:import math
+23:import platform
+24:import statistics
+25:import sys
+26:from functools import lru_cache
+28:import numpy as np
+
+$ grep -rl "n8_analysis" --include=*.py --include=*.ps1 --include=*.txt . (outside .git)
+./preregistration/natural-text-dense-replication-20261114/analysis/regenerate_n7_orders.py
+./preregistration/natural-text-dense-replication-20261114/analysis/test_on_n7.py
+./preregistration/natural-text-dense-replication-20261114/analysis/test_synthetic.py
+./preregistration/natural-text-dense-replication-20261114/seal/pre-pin/matched_plan.py
+./preregistration/natural-text-dense-replication-20261114/source/matched_plan.py
+./preregistration/natural-text-dense-replication-20261114/source-tests/test_n8_source.py
+./preregistration/natural-text-dense-replication-20261114/tools/make_changes.py
+./preregistration/natural-text-dense-replication-20261114/tools-tests/test_tools.py
+
+$ grep -n -E "__main__|^def load" preregistration/natural-text-matched-confirmation-20261104/sealed-source/matched_analysis.py
+61:def load(runs, pins=mw.PINS, subject=None, allow_fixture=False):
+413:if __name__ == '__main__':

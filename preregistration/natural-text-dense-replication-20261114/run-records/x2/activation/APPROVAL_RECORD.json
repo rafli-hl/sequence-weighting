@@ -1,0 +1,43 @@
+{
+  "approval_id": "OWNER-20261116-N8-X2-01",
+  "bindings": {
+    "corpus_manifest_sha256": "be911db7a63238a205fc74c5732f78431befd61ba7d26af48202a31163df39ea",
+    "draw_sha256": "58489c76bbcd9989527cc0377aa154aaac2a6733b2de623f278576e7784bdcda",
+    "exclusions_sha256": "232e3e60235e82e302905ece260c19148c0f7e44f2f58cd9cf7a951d58ad4555",
+    "fewepoch_registry_sha256": "75db913de7b1860cd269ce262144859334b61e8248ebad5c00b47caaa60106af",
+    "first_attempt_terminal_sha256": "2a02e9573e4009c066d43bbf9e7d25d588dc10bd763865828cc8e59007607fe8",
+    "n7_registry_sha256": "bee578826fbdb5e66fbb36d577e45929af756e05b12b62d6cd141b4b5da7ea64",
+    "partition_sha256": "15c1d59876fa0c09b5e34c62f1d0ed278db37c69c878667142da1b297183f42a",
+    "peak_registry_sha256": "0e8b05285a6ad98a32a2041f0907e423c9c8d85fa6408e6a90be9acfb8c326dd",
+    "registry_sha256": "7628c80950fe14e130336909d3fb995fa35dcad3f836d2fd90ddd8071c96fd3e"
+  },
+  "builder_sha256": "c31fd4aa32873a1d025621f06bcc66e289c16ad86f64612c00dad76b1fd62904",
+  "created_local": "2026-11-16 12:32:31",
+  "fixture": false,
+  "kind": "N8 run approval (Run X2)",
+  "mode": "X2",
+  "owner_launches_only": true,
+  "pilot_log_sha256": "251d0951e30250afa16cb998b06550358c09234d8a24c45166b08d0642347db6",
+  "public_registration": {
+    "merge_commit": "c6f98b26669f5d29f30c576b6d800c1fc82c98eb",
+    "pilot_log_sha256": "251d0951e30250afa16cb998b06550358c09234d8a24c45166b08d0642347db6",
+    "pr_record_sha256": "e8d92b7ec779ca63015ea857500ab887dd3d89611680e3fa8d4e5aa11e36f381",
+    "source_subject_sha256": "9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b",
+    "tag": "n8-registration",
+    "url": "https://github.com/rafli-hl/sequence-weighting/pull/1"
+  },
+  "retry_of": "R2",
+  "seed_registry": {
+    "approval_id": "OWNER-20261114-N8-SEEDS-01",
+    "directory": "registry/n8-seed-registry",
+    "draw_sha256": "58489c76bbcd9989527cc0377aa154aaac2a6733b2de623f278576e7784bdcda",
+    "exclusions_sha256": "232e3e60235e82e302905ece260c19148c0f7e44f2f58cd9cf7a951d58ad4555",
+    "policy_sha256": "6dde3e233abaa644df4a04df364542f42e67e57a97418faea17dc2e4d6209943",
+    "registry_sha256": "7628c80950fe14e130336909d3fb995fa35dcad3f836d2fd90ddd8071c96fd3e"
+  },
+  "source_subject_sha256": "9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b",
+  "stages": [
+    "n06"
+  ],
+  "user_text": "I approve N8 Run X2 (draw n06, the retry of Run R2) under OWNER-20261116-N8-X2-01."
+}

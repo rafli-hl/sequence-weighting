@@ -1,6 +1,6 @@
 # Current claims
 
-**As of 12 November 2026; wording revised 13 November 2026, with no claim, number or label changed.** This page states what the project currently claims, in one place. It is maintained for the
+**As of 24 November 2026. The claims are those of 12 November; their wording and qualifications were revised on 13 and 23 November, with no registered number or label changed.** This page states what the project currently claims, in one place. It is maintained for the
 publication copy and replaces nothing: the historical records it cites keep their original wording and bytes. Where
 this page and an older summary differ, this page is current.
 
@@ -14,7 +14,10 @@ and a second [correction](reports/natural-text-correction-20261111-01/CORRECTION
 read. On 12 November a [follow-up audit](reports/follow-up-audit-20261112-01/REPORT.md) of the earlier studies and of
 alternative explanations led to a third [correction](reports/natural-text-correction-20261112-01/CORRECTION.md): C1–C3
 are reworded and qualified, the registered outcomes that did not confirm are listed, and C4 gains a power figure and
-three disclosures. No label changed. Every contrast below is p\*(narrower width) − p\*(wider width), with a two-sided 95% t
+three disclosures. On 23 November a fourth [correction](reports/natural-text-correction-20261123-01/CORRECTION.md),
+after an external audit, changed C3 to "a similar gap" and added the bracket-end envelope to C4; a
+[correction of 24 November](reports/natural-text-correction-20261124-01/CORRECTION.md) fixed one of its sentences. No
+label changed. Every contrast below is p\*(narrower width) − p\*(wider width), with a two-sided 95% t
 interval over draws.
 
 ## Scope of every claim
@@ -221,8 +224,8 @@ own result. All figures reproduce from the published tables (follow-up audit, EA
 This record was closed after N7. On 14 November 2026 it was reopened for one registered study, N8, a dense-readout
 replication of N7 on fresh draws ([preregistration](preregistration/natural-text-dense-replication-20261114/README.md)), which has no results yet.
 That is not a restriction on anyone else. N8's training was paused on 23 November 2026 after 6 of its 24 draws
-(n01–n06; n06 was completed in the retry run X2). R3–R8 have not started, and no p\* of N8 has been computed or
-examined. Resuming continues with R3 under the registered protocol; if fewer than 20 draws are ever completed, its
+(n01–n06; n06 was completed in the retry run X2). Paused at the owner's decision for reasons unrelated to the data; no
+N8 result has been computed or examined. R3–R8 have not started. Resuming continues with R3 under the registered protocol; if fewer than 20 draws are ever completed, its
 registered INCOMPLETE rule applies. Model states were deleted, so each item that needs readouts needs a new study.
 
 | Question | What would settle it | What would not |
@@ -244,6 +247,8 @@ registered INCOMPLETE rule applies. Model states were deleted, so each item that
 | p\* from the per-sequence losses | Public for N7. The loss arrays are attached to the [v1.2 release](https://github.com/rafli-hl/sequence-weighting/releases/tag/v1.2), and `tools/verify_n7_losses.py` refits all 240 estimates with its own implementation (largest difference from `POINTS.csv` 2.9e-9) and recomputes the confirmed contrasts. An earlier AI audit (OpenAI Codex) reached the same result with separately written code |
 | Post-hoc exposure analysis of 11 November | Public for N7. `posthoc_exposure.py` in [`natural-text-matched-assistant-posthoc-20261111-01`](reports/natural-text-matched-assistant-posthoc-20261111-01/) reproduces every figure from the same bundle and `POINTS.csv`. It needs PyTorch to regenerate the batch orders, which it checks against the losses. A second model (Claude Opus 5.5, the session supervising the check) recomputed the main figures with separate code, which is not published |
 | Follow-up audit of 12 November | Public. Two fresh AI auditors (Claude Fable 5.2) audited the earlier studies and alternative explanations; their reports are in [`follow-up-audit-20261112-01`](reports/follow-up-audit-20261112-01/). The supervising session (Claude Opus 5.5) re-checked the main findings with separate code, `verify_findings.py`, which is published with its output; AA-5 was not re-checked |
+| Clean-room reproduction of N7's analysis, 24 November | Public. A separate AI session implemented the analysis from the protocol, the technical note and the released losses, without the original code or results, and froze its outputs before comparing: all 240 fits within 8.7e-9, every registered statistic and label reproduced ([`README.md`](reports/clean-room-reproduction-20261124-01/README.md)). Not a human or independent replication; it does not cover the training; its blinding was imperfect (the session had seen N7's labels, with no numbers) |
+| Audit of version 2.1, 23–24 November | Public. Four fresh AI sessions, supervised by the session that had prepared much of that version ([`README.md`](reports/audit-20261124-01/README.md)). No registered number or label found wrong. Open from it: N8's analysis has no registered entry point for its run folders |
 | Losses from model evaluation | Not possible: no model state of any study is published (README's level 4) |
 | Training from scratch | Not demonstrated (README's level 5). Code, protocols, seeds, partitions and data hashes are published; the corpus files must be rebuilt and checked against their pinned hashes, and the sealed launcher adapted. The audit of 13 November reports rebuilding the tokenizer from the pinned public WikiText-2 parquet with its pinned SHA-256 ([`AUDIT.md`](reports/external-audit-20261113-01/AUDIT.md); the audit's result, not rerun here). No one has attempted a retraining |
 

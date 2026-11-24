@@ -1,0 +1,66 @@
+{
+    "status":  "COMPLETE",
+    "mode":  "X2",
+    "subject":  "9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b",
+    "exit_observed":  true,
+    "exit_code":  0,
+    "elapsed_seconds":  3009.652637,
+    "terminal_status":  "COMPLETE",
+    "terminal_sha256":  "f92644a3d989d4b221685f12cfe04518e56072221e3bb336240ba5c9ed931606",
+    "terminal_unreadable":  false,
+    "terminal_outside_ledger":  false,
+    "startup_decision":  "GO",
+    "startup_reason":  "ALL_WIDTHS_WITHIN_LIMIT",
+    "stop_reason":  null,
+    "stage_folders":  [
+                          "n06"
+                      ],
+    "counted_as_attempt":  true,
+    "gpu_prestart":  {
+                         "verdict":  "IDLE",
+                         "mean_utilization_percent":  7,
+                         "max_memory_used_mib":  324
+                     },
+    "power_prestart":  {
+                           "utc":  "2026-11-16T05:32:53.3019365Z",
+                           "power":  "AC",
+                           "battery_percent":  80,
+                           "scheme_guid":  "6fecc5ae-f350-48a5-b669-b472cb895ccf",
+                           "scheme_name":  "Turbo",
+                           "error":  null
+                       },
+    "gpu_gates":  [
+                      {
+                          "stage":  "n06",
+                          "verdict":  "IDLE",
+                          "checks":  1,
+                          "off_ac_checks":  0
+                      }
+                  ],
+    "gpu_check_files":  [
+                            {
+                                "name":  "n06-RESPONSE.json",
+                                "sha256":  "8f0dd2250a6bec7037abaaa133dda4734b164b8d3c629dceeb059d3da99f83f3"
+                            },
+                            {
+                                "name":  "PRESTART.json",
+                                "sha256":  "72384e00019e3dcea1d174682b573baf7c2dd60c297cf2a2922a16e95b8b2838"
+                            }
+                        ],
+    "power_during_run":  {
+                             "samples":  586,
+                             "log_write_failures":  0,
+                             "scheme_read_failures":  0,
+                             "off_ac_samples":  0,
+                             "min_battery_percent":  80,
+                             "schemes":  [
+                                             "Turbo"
+                                         ],
+                             "changes":  [
+
+                                         ]
+                         },
+    "power_log_sha256":  "0350a4a62fffeabd42eb542daa2e467776269ba22ffa1fdbb001b3cf6a48c2ec",
+    "retry":  true,
+    "note":  "Native exit does not prove Linux process absence. Preserve every directory; do not rerun."
+}

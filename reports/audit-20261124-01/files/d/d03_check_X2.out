@@ -1,0 +1,47 @@
+=== Run X2 (n06, the retry of Run R2): completeness only; no p*, no contrast, no loss value
+--- the terminal
+PASS  TERMINAL.json's SHA-256 equals the owner receipt's  [5a09208d7c6aae8fbefd4bbc95065f8081d8edf5ea7049f02f3ccc17aa65eec9]
+PASS  terminal: n8, COMPLETE, mode X2, the sealed subject, draws n06, no error, written through the ledger
+PASS  terminal: start-up GO, every stage record COMPLETE, every draw folder there, counted as an attempt  [start-up GO (ALL_WIDTHS_WITHIN_LIMIT)]
+PASS  terminal's bindings equal the activation's; the approval id and its recorded text name Run X2, the retry of R2  [OWNER-20991231-N8-X2-01]
+PASS  terminal: n_train 1,024, arms 768 and 512 at 1e-4, the plan's 28 readouts
+PASS  BENCHMARK.json is the one the terminal names; its caps were feasible  [stage cap 3097 s]
+PASS  the run folder holds only the expected entries; its gate records are PRESTART and one request and one check per draw; benchmark\ and cache\, if there, are empty  [6 entries; cache\ empty folders]
+FAIL  the terminal's inventory (files only, text_worker.Output.inventory) equals the run folder less TERMINAL.json itself  [terminal 414,775 bytes in 18 files; now 412,420 in 17]
+--- the first attempt, Run R2
+PASS  FIRST_ATTEMPT_TERMINAL.json is R2's terminal byte for byte, bound by the activation and this terminal; R2 did not complete; this run's draws are those it did not complete  [R2's terminal 55153c35dd237412d7d35971bf5e80fa1b5f2578e1a4fe2e8315e2e2c759ad3f, FAILED; complete there: n04, n05; repeated here: n06]
+PASS  n06: the same seeds and saved orders as R2's n06, where R2 wrote them (protocol section 8: from scratch, with the same seeds)  [5a75fca90efd9f5d]
+--- each draw
+PASS  n06: exactly its 12 files, no partial state write  [12 files]
+PASS  n06: INPUTS has the registry's seeds for n06, n_train 1,024, widths 512 and 768, the 28 readouts, 1,024 weights
+PASS  n06: the saved orders: 4 epochs x 1,024 int64 indices, the file's and each epoch row's SHA-256 equal INPUTS', each row a permutation  [5a75fca90efd9f5d]
+PASS  n06: STATES_KEPT records exactly the two E0 states, no errors
+PASS  n06 w768: E0 state kept; its bytes and SHA-256 equal STATES_KEPT and PRETRAINED  [1,250 bytes, f053c20b21aeb9f2]
+PASS  n06 w768: E0.f32 is 1,024 + 512 float32 with the hash PRETRAINED gives, all finite; pre-training ran its updates
+PASS  n06 w768: record COMPLETE; 28 readouts at the plan's epochs and updates (16 ... 224), each with finite losses; epochs of 64, 64, 64, 32 updates
+PASS  n06 w768: arrays.f32 is 28 blocks of 1,024 + 512 float32 with the hash its record gives, laid out as recorded, all finite  [172,032 bytes, 1f7ebdc912ff1e94]
+PASS  n06 w512: E0 state kept; its bytes and SHA-256 equal STATES_KEPT and PRETRAINED  [1,250 bytes, f5a7493f97ec42e9]
+PASS  n06 w512: E0.f32 is 1,024 + 512 float32 with the hash PRETRAINED gives, all finite; pre-training ran its updates
+PASS  n06 w512: record COMPLETE; 28 readouts at the plan's epochs and updates (16 ... 224), each with finite losses; epochs of 64, 64, 64, 32 updates
+PASS  n06 w512: arrays.f32 is 28 blocks of 1,024 + 512 float32 with the hash its record gives, laid out as recorded, all finite  [172,032 bytes, 1f7ebdc912ff1e94]
+--- the receipts
+PASS  n06-RECEIPT: COMPLETE, 2 trajectories, 2 states kept, 0 state errors, a retry, with its E0 comparison; equals the terminal's stage record; its closed totals equal the draw folders now  [2,700 s on the worker clock]
+PASS  n06-RECEIPT: its comparison of each width's new E0 arrays with R2's n06 equals the one recomputed from their SHA-256 (SAME, DIFFERENT, or ABSENT where R2 left none)  [w512 ABSENT, w768 DIFFERENT]
+PASS  OWNER_CLAIM: X2, the approval id, the sealed subject, one use
+PASS  OWNER_EXIT_RECEIPT: COMPLETE, exit observed, exit code 0, terminal COMPLETE and readable, every draw folder, counted, a retry  [8,000 s owner elapsed; worker clock 7,500 s]
+PASS  OWNER_EXIT_RECEIPT: its gate files' hashes equal the activation's gpu-checks; its power log hash equals POWER_LOG.jsonl  [PRESTART.json, n06-RESPONSE.json]
+PASS  power during the run: on AC throughout, no change  [10 readings]
+PASS  the GPU check before each draw ended IDLE, none off AC  [n06 IDLE (1)]
+PASS  the run's gate records are byte copies of the activation's (prestart, and each draw's check)
+PASS  the worker's stdout and stderr logs are empty
+PASS  the activation's source still matches the sealed subject; no bytecode folder in the activation or the run  [31 files]
+      OWNER_PROGRESS.log:
+        2099-12-31 00:00:00  dummy progress line
+      inventory difference: 1 file, 2,355 bytes; every stage receipt's ledger carries the same (1 file, 2,355 bytes); cache\ is empty and was last changed 1,000 ms after TERMINAL.json
+--- disk
+      runs\n8-x2: 414,063 bytes (0.000 GiB), of which kept E0 states 2,500 (0.000 GiB)
+      activations\n8-x2: 392,788 bytes (0.4 MiB)
+      C:\ free: 26,587,463,680 bytes (24.76 GiB)
+      at 411,872 bytes per complete draw, the 6 later run(s) leave about 24.75 GiB free after R8 (floor 3 GiB at each admission)
+31 passed, 1 failed
+The inventory failure is the known operational gap (OPERATIONAL_NOTES.md): 1 file, 2,355 bytes; every stage receipt's ledger carries the same (1 file, 2,355 bytes); cache\ is empty and was last changed 1,000 ms after TERMINAL.json

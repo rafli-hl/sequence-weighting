@@ -1,0 +1,37 @@
+published check_run.py sha256: 4df2aba506af47277599e411ddb988fdfc1dfa683695d16fb92f39b4110d9aa4
+diff published -> scratch copy:
+    --- check_run.py
+    +++ check_run_copy.py
+    @@ -25 +25 @@
+    -STUDY = r'D:\sequence-weighting-n8'
+    +STUDY = r'C:\Users\rafli\AppData\Local\Temp\swa21\d\scratch\dummy-study'
+other mentions of drive D: left in the copy (comments and messages only): []
+== R1: exit 1; PASS lines 54, FAIL lines 1, total checks 55
+    54 passed, 1 failed
+    The inventory failure is the known operational gap (OPERATIONAL_NOTES.md): 1 file, 2,355 bytes; every stage receipt's ledger carries the same (1 file, 2,355 bytes; 1 file, 2,355 bytes; 1 file, 2,355 bytes); cache\ is empty and was
+    failed checks: ["the terminal's inventory (files only, text_worker.Output.inventory) equals the run f"]
+    sentinel 6.28 in output: False | any float with 4+ decimals printed: []
+== R2: exit 1; PASS lines 46, FAIL lines 1, total checks 47
+    46 passed, 1 failed
+    The inventory failure is the known operational gap (OPERATIONAL_NOTES.md): 1 file, 2,355 bytes; every stage receipt's ledger carries the same (1 file, 2,355 bytes; 1 file, 2,355 bytes); cache\ is empty and was last changed 1,000 m
+    Run R2 did not complete: n04, n05 complete; n06 left for the retry run X2 (protocol section 8)
+    failed checks: ["the terminal's inventory (files only, text_worker.Output.inventory) equals the run f"]
+    sentinel 6.28 in output: False | any float with 4+ decimals printed: []
+== X2: exit 1; PASS lines 31, FAIL lines 1, total checks 32
+    PASS  FIRST_ATTEMPT_TERMINAL.json is R2's terminal byte for byte, bound by the activation and this terminal; R2 did not complete; this run's draws are those it did not complete  [R2's terminal 55153c35dd237412d7d35971bf5e80fa1b5f2
+    31 passed, 1 failed
+    The inventory failure is the known operational gap (OPERATIONAL_NOTES.md): 1 file, 2,355 bytes; every stage receipt's ledger carries the same (1 file, 2,355 bytes); cache\ is empty and was last changed 1,000 ms after TERMINAL.json
+    failed checks: ["the terminal's inventory (files only, text_worker.Output.inventory) equals the run f"]
+    sentinel 6.28 in output: False | any float with 4+ decimals printed: []
+== R1 on the corrupted dummy: exit 1; PASS 45, FAIL 10, total 55
+    sentinel 6.28 in output: False | "nan" in output: False | floats with 4+ decimals: []
+    FAIL  the terminal's inventory (files only, text_worker.Outp ... [terminal 1,237,668 bytes in 48 files; now 1,223,541 in 47]
+    FAIL  n01 w768: arrays.f32 is 28 blocks of 1,024 + 512 float ... [172,029 bytes, 1f7ebdc912ff1e94]
+    FAIL  n01 w512: E0.f32 is 1,024 + 512 float32 with the hash  ... [KeyError: 'E0_validation_loss']
+    FAIL  n02 w512: record COMPLETE; 28 readouts at the plan's e ... 
+    FAIL  n03 w768: record COMPLETE; 28 readouts at the plan's e ... [TypeError: 'NoneType' object is not subscriptable]
+    FAIL  n03 w768: arrays.f32 is 28 blocks of 1,024 + 512 float ... [TypeError: 'NoneType' object is not subscriptable]
+    FAIL  n03 w512: E0.f32 is 1,024 + 512 float32 with the hash  ... 
+    FAIL  n01-RECEIPT: COMPLETE, 2 trajectories, 2 states kept,  ... [2,700 s on the worker clock]
+    FAIL  n02-RECEIPT: COMPLETE, 2 trajectories, 2 states kept,  ... [2,700 s on the worker clock]
+    FAIL  n03-RECEIPT: COMPLETE, 2 trajectories, 2 states kept,  ... [2,700 s on the worker clock]

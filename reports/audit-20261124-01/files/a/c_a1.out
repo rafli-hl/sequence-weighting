@@ -1,0 +1,63 @@
+$ git log --format="%h %cd %s" --date=iso-strict --stat -- reports/natural-text-correction-20261123-01/
+30548db 2026-11-23T12:09:20+07:00 Version 2.1: N8 paused
+
+ reports/natural-text-correction-20261123-01/CORRECTION.md | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+c1a2380 2026-11-23T12:05:02+07:00 N8 paused after 6 of 24 draws
+
+ .../CORRECTION.md                                  | 124 +++++++++++++++++++++
+ .../GAP_SCALE.txt                                  |   9 ++
+ .../gap_scale.py                                   |  40 +++++++
+ 3 files changed, 173 insertions(+)
+
+$ git diff c1a2380 30548db -- reports/natural-text-correction-20261123-01/CORRECTION.md
+diff --git a/reports/natural-text-correction-20261123-01/CORRECTION.md b/reports/natural-text-correction-20261123-01/CORRECTION.md
+index b0ae40b..edcb8a2 100644
+--- a/reports/natural-text-correction-20261123-01/CORRECTION.md
++++ b/reports/natural-text-correction-20261123-01/CORRECTION.md
+@@ -85,9 +85,9 @@ largest total-variation distance between the sets' joint distributions over quar
+ 
+ These are the audit's figures. `test_on_n7.py` reproduces them within 5e-6 from N7's regenerated batch orders.
+ 
+-**What changes:** `METHODS.md` now says "matched recency windows" and gives these differences. C4 in
+-`CURRENT_CLAIMS.md` says "in matched recency windows for all three passes" instead of "matched for the timing of all
+-three passes".
++**What changes:** `METHODS.md` now says "matched recency windows" and gives these differences. `CURRENT_CLAIMS.md`
++(C4), `README.md` and `NATURAL_TEXT_STUDIES.md` say "in matched recency windows" for every pass instead of "matched for
++the timing" of every pass.
+ 
+ ## 4. F4: N6's width 384, and the training statement
+ 
+@@ -121,4 +121,5 @@ diagnostics) and F6 (estimator edge-case fixtures) are not adopted in this updat
+ Living pages changed:
+ - `CURRENT_CLAIMS.md`: C3, C4's table and exposure bullet, and the training row;
+ - `METHODS.md`: §1's table, §5's exposure-matched comparison, §6 and §7;
+-- `README.md`: the sensitivity table's note, the familywise rate and the training level.
++- `README.md`: the sensitivity table's note, the familywise rate, matched recency windows and the training level;
++- `NATURAL_TEXT_STUDIES.md`: matched recency windows.
+
+$ git show c1a2380:reports/natural-text-correction-20261123-01/CORRECTION.md | sha256sum ; sha256sum reports/natural-text-correction-20261123-01/CORRECTION.md
+05f5459c988f25ff77a6330e056e574da09bfa075fa9061ed2d91c74ed5359e2 *-
+c043f501a9bb7963c57e41596b870e85e5cb1245d403328d833b3359981921cb *reports/natural-text-correction-20261123-01/CORRECTION.md
+
+$ git grep -c "c1a2380" 30548db -- . ; git grep -n -i "amend\|revis" 30548db -- reports/natural-text-correction-20261123-01/CORRECTION.md   (no output: no match)
+
+$ git diff --stat c1a2380 30548db
+ CITATION.cff                                       |   4 +-
+ NATURAL_TEXT_STUDIES.md                            |   4 +-
+ PUBLICATION_MANIFEST.csv                           |  17 +-
+ PUBLICATION_NOTES.md                               |  29 +-
+ README.md                                          |   8 +-
+ .../OPERATIONAL_NOTES.md                           |   6 +-
+ .../README.md                                      |   7 +-
+ .../RUN_COMMAND.ps1                                | 102 ++++++
+ .../X2_COMMAND.txt                                 |  73 ++++
+ .../check_run.py                                   | 379 +++++++++++++++++++++
+ .../CORRECTION.md                                  |   9 +-
+ 11 files changed, 607 insertions(+), 31 deletions(-)
+
+$ gh api -X GET "repos/rafli-hl/sequence-weighting/actions/runs?per_page=4" --jq ".workflow_runs[] | [.name, .head_sha[0:7], .event, .conclusion, .created_at] | @tsv"
+verify-posthoc	30548db	release	success	2026-11-23T05:10:49Z
+verify	30548db	release	success	2026-11-23T05:10:49Z
+verify	30548db	push	success	2026-11-23T05:09:35Z
+verify	c1a2380	push	success	2026-11-23T05:05:18Z

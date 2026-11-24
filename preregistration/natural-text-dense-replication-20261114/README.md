@@ -5,6 +5,8 @@ This folder publishes the protocol, the sealed code and the seeds of one study *
 ## Status, 23 November 2026: training paused
 
 - **Training is paused after 6 of 24 draws:** n01–n06, with n06 completed in the retry run X2. R3–R8 have not started.
+- **Paused at the owner's decision for reasons unrelated to the data; no N8 result has been computed or examined.**
+  This sentence was added on 24 November 2026.
 - **No p\* has been computed or examined.** The per-sequence losses stay unpublished until the sealed analysis.
 - **Resuming continues with R3** under the registered protocol. If fewer than 20 draws are ever completed, the
   registered INCOMPLETE rule applies (protocol section 6): no statistic and no label.
@@ -16,6 +18,28 @@ This folder publishes the protocol, the sealed code and the seeds of one study *
   - X2 completed n06.
 
   None changes a registered file or is a protocol deviation.
+- **Run records** of R1, R2 and X2 that hold no loss value are in [`run-records/`](run-records/README.md), published
+  on 24 November 2026. They show that each run was built after the registration's merge commit, by the recorded
+  builder.
+
+## Open before any N8 loss is read (24 November 2026)
+
+The [audit of version 2.1](../../reports/audit-20261124-01/README.md) found no registered element wrong, and found
+that some things are not yet fixed in writing. They are to be settled by dated notes and newly published files, without
+editing a registered file, before R3 and in any case before any N8 loss is read:
+
+- **A loader for N8's run folders.** The registered analysis, `analysis/n8_analysis.py`, takes its inputs in memory.
+  Nothing registered reads the run folders, says what makes a draw completed, or reads a retried draw from its retry.
+  The loader is to be published with its SHA-256 and tests first.
+- **Amendment 1 to the protocol,** covering at least:
+  - a run that leaves no terminal;
+  - when the study ends and the one analysis runs;
+  - how tied weights are ranked, and where the mean losses and matching targets are read from. N7's protocol left
+    both unwritten; N7's analysis ranks ties in stable sort order and reads the worker's records
+    ([clean-room reproduction](../../reports/clean-room-reproduction-20261124-01/README.md));
+  - the saturation rule, which is not N7's although the protocol says it is carried over.
+- **The criterion for resuming.** The reason for the pause is the owner's statement above; nothing yet says who
+  decides to resume, or on what.
 
 ## Status when published
 
@@ -29,7 +53,11 @@ This folder publishes the protocol, the sealed code and the seeds of one study *
 
 - **15 November 2026, wording.** The registered protocol's title ("Protocol draft") and its sentence "This is a new study in a new record. It reuses N7's sealed code and recipe, and adds nothing to the closed `sequence-weighting` record" predate the decision to register N8 inside the reopened record. Its status line governs: "FINAL, 14 November 2026. Registered by the merge into `rafli-hl/sequence-weighting` and the tag `n8-registration`." The registered file is not edited.
 - **15 November 2026, the registration recorded.** The merge commit `c6f98b26669f5d29f30c576b6d800c1fc82c98eb` (pull request #1, signed by GitHub) and the tag `n8-registration` are recorded in the activation builder. [`tools/build_n8_activation.py`](tools/build_n8_activation.py) here is that recorded builder, SHA-256 `c31fd4aa…`. It differs from the registered builder that `HASHES.json` names (`30765693…`) only in its two lines `EXPECTED_SUBJECT` and `PUBLIC_REGISTRATION`, as `HASHES.json`'s `activation_builder_note` says.
-- **15 November 2026, operational: two empty folders before R1.** The first build of R1's activation stopped with `FileNotFoundError` at `target.mkdir()` in `tools/build_n8_activation.py`. The builder makes the activation folder but not its parent, `activations\`, which did not exist in the study folder. It stopped before writing anything: no activation, approval record or claim was made, and nothing ran. The worker likewise makes its run folder but not its parent, `runs\`, and its first admission check reads the free space of `runs\`. In a run, that check comes after the owner script's claim, and the owner script does not look for the folder. So the two empty folders `activations\` and `runs\` are created in the study folder before the build, and the owner's commands for each run check that both exist. A test on N7's test doubles reproduces the failure and the fix. No registered file changes, so this is not a protocol deviation.
+- **15 November 2026, operational: two empty folders before R1.** The first build of R1's activation stopped with `FileNotFoundError` at `target.mkdir()` in `tools/build_n8_activation.py`. The builder makes the activation folder but not its parent, `activations\`, which did not exist in the study folder. It stopped before writing anything: no activation, approval record or claim was made, and nothing ran. The worker likewise makes its run folder but not its parent, `runs\`, and its first admission check reads the free space of `runs\`. In a run, that check comes after the owner script's claim, and the owner script does not look for the folder. So the two empty folders `activations\` and `runs\` are created in the study folder before the build, and the owner's commands for each run check that both exist. A test on N7's test doubles reproduces the failure and the fix. No registered file changes, so this is not a protocol deviation. This note was first published on 23 November 2026.
+- **24 November 2026, `analysis/test_on_n7.py` on public files: 59 of 60.** The test pins the SHA-256 of `ORDERS.json`, the index that `regenerate_n7_orders.py` writes, and that file records the PyTorch and NumPy version strings. The pin (`8ba4a3c2…`) is reproduced only with `2.7.0+cu126` and `2.2.6`, the versions of the machine that made it. With the CPU build (`2.7.0+cpu`) and NumPy 2.5.3, the twelve regenerated order files are byte-identical to those `HASHES.json` names, the one check on `ORDERS.json` fails, and the other 59 pass, among them every statistic, every `MATCHED.csv` row, all 240 refits and the envelope. So the protocol's "60/60 on N7" needs the registrant's version strings. The registered test is not edited ([audit](../../reports/audit-20261124-01/README.md), F-a1).
+- **24 November 2026, `tools/write_hashes.py --check` cannot run on this published folder.** It hashes `DRAW_COMMAND.txt`, which is not published, and stops there. The snippet under "How to verify" checks the sealed source and five named files. Every other hash in `HASHES.json` whose file is published matches, except the builder, as the note of 15 November says.
+- **24 November 2026, the recorded builder's two lines.** `PUBLIC_REGISTRATION` also holds a key `pr_record_sha256` (`e8d92b7e…`), the hash of a saved copy of GitHub's record of pull request #1, and both lines' comments name `registration/apply_registration.py`, the tool that wrote them. Neither file is published. The builder reads only the merge commit, the tag, the source subject and the pilot log's hash from that dictionary.
+- **24 November 2026, `CHANGES.md`.** Each change cites the protocol section that justifies it. Hunks 29 and 55 cite only the owner's unpublished task brief ("brief"), and hunks 50, 58 and 60 cite nothing: they are paths, names and file lists. None touches the model, the optimiser, the loss, the weights, the batch order or the evaluation.
 
 ## The question
 
@@ -49,7 +77,7 @@ The reversal is called replicated only if both are confirmed. Each hypothesis is
 | **Models** | Depth 4, 4 heads, context 128, 4,096-token vocabulary; widths 512 and 768 (16.9 M and 34.7 M parameters) |
 | **Rate** | 1e-4 only |
 | **Training** | Each width pre-trained uniformly to E0, then weighted for 3.5 epochs (3,584 updates); both widths share a draw's tokens, weights and batch orders |
-| **Readouts** | E0, E0.25, E0.5, E1, then every 64 updates from update 2,048 to 3,584 (28 in all) |
+| **Readouts** | E0, then 28 readouts: E0.25, E0.5, E1, and every 64 updates from update 2,048 to 3,584 |
 | **Matching** | H1: 768 read along its 25 readouts from E2 to E3.5, by linear interpolation of fitted p\* at 512's E3 training loss. H2: both widths at update 3,072 |
 | **Runs** | R1–R8 of three draws each; a run that stops early is retried once, from scratch with the same seeds (X1–X8) |
 | **Analysis** | [`analysis/n8_analysis.py`](analysis/n8_analysis.py), which reproduces N7's published numbers from its released losses |
@@ -73,6 +101,7 @@ Sensitivity and secondary analyses, the reading rules carried over from N7, powe
 | [`PILOT_COMMAND.txt`](PILOT_COMMAND.txt) | The owner's command that ran the pilot: its hash checks, its GPU and power checks, and the pilot's command line with the approval id and the five throwaway seeds |
 | [`data-count/FRESH_POOL_COUNT.json`](data-count/FRESH_POOL_COUNT.json) | The owner's count of the fresh pool, made before the draw |
 | [`OPERATIONAL_NOTES.md`](OPERATIONAL_NOTES.md) | Dated operational events of the runs (R1, R2, X2), known gaps and precautions, copied from the study folder |
+| [`run-records/`](run-records/README.md) | The records of R1, R2 and X2 that hold no loss value: terminals, stage receipts, benchmarks, approval records, claims, exit receipts, and the GPU and power check records |
 | [`check_run.py`](check_run.py) | The completeness check run after each run (`check_run.py R<k>` or `X<k>`): structure, sizes, counts and hashes, with an audit hook that confines it to that run's folders and refuses every write. It fits nothing and prints no loss value |
 | [`X2_COMMAND.txt`](X2_COMMAND.txt) | The owner's command for the retry run X2: its hash and tag checks, R2's FAILED exit receipt and terminal, the build with the approval id and text, and the GPU memory check before the claim |
 | [`RUN_COMMAND.ps1`](RUN_COMMAND.ps1) | The owner's command for R3–R8, not yet used: the approval checked before anything is read, the build checks, R<k−1>'s retry first if R<k−1> did not complete, and the GPU memory check before the claim. It mentions `R2_COMMAND.txt`, which is not published |

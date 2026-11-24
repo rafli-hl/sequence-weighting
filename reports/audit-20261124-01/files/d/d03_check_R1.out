@@ -1,0 +1,69 @@
+=== Run R1 (n01, n02, n03): completeness only; no p*, no contrast, no loss value
+--- the terminal
+PASS  TERMINAL.json's SHA-256 equals the owner receipt's  [95bac0a7f2fa09975afece76ef60b0e1f4319501c9be317f3dfb1cb9a1977c2d]
+PASS  terminal: n8, COMPLETE, mode R1, the sealed subject, draws n01, n02, n03, no error, written through the ledger
+PASS  terminal: start-up GO, every stage record COMPLETE, every draw folder there, counted as an attempt  [start-up GO (ALL_WIDTHS_WITHIN_LIMIT)]
+PASS  terminal's bindings equal the activation's; the approval id and its recorded text name Run R1  [OWNER-20991231-N8-R1-01]
+PASS  terminal: n_train 1,024, arms 768 and 512 at 1e-4, the plan's 28 readouts
+PASS  BENCHMARK.json is the one the terminal names; its caps were feasible  [stage cap 3097 s]
+PASS  the run folder holds only the expected entries; its gate records are PRESTART and one request and one check per draw; benchmark\ and cache\, if there, are empty  [10 entries; cache\ empty folders]
+FAIL  the terminal's inventory (files only, text_worker.Output.inventory) equals the run folder less TERMINAL.json itself  [terminal 1,237,668 bytes in 48 files; now 1,235,313 in 47]
+--- each draw
+PASS  n01: exactly its 12 files, no partial state write  [12 files]
+PASS  n01: INPUTS has the registry's seeds for n01, n_train 1,024, widths 512 and 768, the 28 readouts, 1,024 weights
+PASS  n01: the saved orders: 4 epochs x 1,024 int64 indices, the file's and each epoch row's SHA-256 equal INPUTS', each row a permutation  [84551b39bb252685]
+PASS  n01: STATES_KEPT records exactly the two E0 states, no errors
+PASS  n01 w768: E0 state kept; its bytes and SHA-256 equal STATES_KEPT and PRETRAINED  [1,000 bytes, 6b66046d59a91a8e]
+PASS  n01 w768: E0.f32 is 1,024 + 512 float32 with the hash PRETRAINED gives, all finite; pre-training ran its updates
+PASS  n01 w768: record COMPLETE; 28 readouts at the plan's epochs and updates (16 ... 224), each with finite losses; epochs of 64, 64, 64, 32 updates
+PASS  n01 w768: arrays.f32 is 28 blocks of 1,024 + 512 float32 with the hash its record gives, laid out as recorded, all finite  [172,032 bytes, 1f7ebdc912ff1e94]
+PASS  n01 w512: E0 state kept; its bytes and SHA-256 equal STATES_KEPT and PRETRAINED  [1,000 bytes, 6569cae8f5ba88b8]
+PASS  n01 w512: E0.f32 is 1,024 + 512 float32 with the hash PRETRAINED gives, all finite; pre-training ran its updates
+PASS  n01 w512: record COMPLETE; 28 readouts at the plan's epochs and updates (16 ... 224), each with finite losses; epochs of 64, 64, 64, 32 updates
+PASS  n01 w512: arrays.f32 is 28 blocks of 1,024 + 512 float32 with the hash its record gives, laid out as recorded, all finite  [172,032 bytes, 1f7ebdc912ff1e94]
+PASS  n02: exactly its 12 files, no partial state write  [12 files]
+PASS  n02: INPUTS has the registry's seeds for n02, n_train 1,024, widths 512 and 768, the 28 readouts, 1,024 weights
+PASS  n02: the saved orders: 4 epochs x 1,024 int64 indices, the file's and each epoch row's SHA-256 equal INPUTS', each row a permutation  [0be4dc4b546f5aad]
+PASS  n02: STATES_KEPT records exactly the two E0 states, no errors
+PASS  n02 w768: E0 state kept; its bytes and SHA-256 equal STATES_KEPT and PRETRAINED  [1,000 bytes, 0aab8cc1cf634550]
+PASS  n02 w768: E0.f32 is 1,024 + 512 float32 with the hash PRETRAINED gives, all finite; pre-training ran its updates
+PASS  n02 w768: record COMPLETE; 28 readouts at the plan's epochs and updates (16 ... 224), each with finite losses; epochs of 64, 64, 64, 32 updates
+PASS  n02 w768: arrays.f32 is 28 blocks of 1,024 + 512 float32 with the hash its record gives, laid out as recorded, all finite  [172,032 bytes, 1f7ebdc912ff1e94]
+PASS  n02 w512: E0 state kept; its bytes and SHA-256 equal STATES_KEPT and PRETRAINED  [1,000 bytes, 7dccd34bac0e3e5b]
+PASS  n02 w512: E0.f32 is 1,024 + 512 float32 with the hash PRETRAINED gives, all finite; pre-training ran its updates
+PASS  n02 w512: record COMPLETE; 28 readouts at the plan's epochs and updates (16 ... 224), each with finite losses; epochs of 64, 64, 64, 32 updates
+PASS  n02 w512: arrays.f32 is 28 blocks of 1,024 + 512 float32 with the hash its record gives, laid out as recorded, all finite  [172,032 bytes, 1f7ebdc912ff1e94]
+PASS  n03: exactly its 12 files, no partial state write  [12 files]
+PASS  n03: INPUTS has the registry's seeds for n03, n_train 1,024, widths 512 and 768, the 28 readouts, 1,024 weights
+PASS  n03: the saved orders: 4 epochs x 1,024 int64 indices, the file's and each epoch row's SHA-256 equal INPUTS', each row a permutation  [3aedcd1c9d0d1307]
+PASS  n03: STATES_KEPT records exactly the two E0 states, no errors
+PASS  n03 w768: E0 state kept; its bytes and SHA-256 equal STATES_KEPT and PRETRAINED  [1,000 bytes, d0fbb61fb273c6dc]
+PASS  n03 w768: E0.f32 is 1,024 + 512 float32 with the hash PRETRAINED gives, all finite; pre-training ran its updates
+PASS  n03 w768: record COMPLETE; 28 readouts at the plan's epochs and updates (16 ... 224), each with finite losses; epochs of 64, 64, 64, 32 updates
+PASS  n03 w768: arrays.f32 is 28 blocks of 1,024 + 512 float32 with the hash its record gives, laid out as recorded, all finite  [172,032 bytes, 1f7ebdc912ff1e94]
+PASS  n03 w512: E0 state kept; its bytes and SHA-256 equal STATES_KEPT and PRETRAINED  [1,000 bytes, 38f811ee05e8b746]
+PASS  n03 w512: E0.f32 is 1,024 + 512 float32 with the hash PRETRAINED gives, all finite; pre-training ran its updates
+PASS  n03 w512: record COMPLETE; 28 readouts at the plan's epochs and updates (16 ... 224), each with finite losses; epochs of 64, 64, 64, 32 updates
+PASS  n03 w512: arrays.f32 is 28 blocks of 1,024 + 512 float32 with the hash its record gives, laid out as recorded, all finite  [172,032 bytes, 1f7ebdc912ff1e94]
+--- the receipts
+PASS  n01-RECEIPT: COMPLETE, 2 trajectories, 2 states kept, 0 state errors, not a retry; equals the terminal's stage record; its closed totals equal the draw folders now  [2,700 s on the worker clock]
+PASS  n02-RECEIPT: COMPLETE, 2 trajectories, 2 states kept, 0 state errors, not a retry; equals the terminal's stage record; its closed totals equal the draw folders now  [2,700 s on the worker clock]
+PASS  n03-RECEIPT: COMPLETE, 2 trajectories, 2 states kept, 0 state errors, not a retry; equals the terminal's stage record; its closed totals equal the draw folders now  [2,700 s on the worker clock]
+PASS  OWNER_CLAIM: R1, the approval id, the sealed subject, one use
+PASS  OWNER_EXIT_RECEIPT: COMPLETE, exit observed, exit code 0, terminal COMPLETE and readable, every draw folder, counted, not a retry  [8,000 s owner elapsed; worker clock 7,500 s]
+PASS  OWNER_EXIT_RECEIPT: its gate files' hashes equal the activation's gpu-checks; its power log hash equals POWER_LOG.jsonl  [PRESTART.json, n01-RESPONSE.json, n02-RESPONSE.json, n03-RESPONSE.json]
+PASS  power during the run: on AC throughout, no change  [10 readings]
+PASS  the GPU check before each draw ended IDLE, none off AC  [n01 IDLE (1), n02 IDLE (1), n03 IDLE (1)]
+PASS  the run's gate records are byte copies of the activation's (prestart, and each draw's check)
+PASS  the worker's stdout and stderr logs are empty
+PASS  the activation's source still matches the sealed subject; no bytecode folder in the activation or the run  [31 files]
+      OWNER_PROGRESS.log:
+        2099-12-31 00:00:00  dummy progress line
+      inventory difference: 1 file, 2,355 bytes; every stage receipt's ledger carries the same (1 file, 2,355 bytes; 1 file, 2,355 bytes; 1 file, 2,355 bytes); cache\ is empty and was last changed 1,000 ms after TERMINAL.json
+--- disk
+      runs\n8-r1: 1,237,485 bytes (0.001 GiB), of which kept E0 states 6,000 (0.000 GiB)
+      activations\n8-r1: 391,035 bytes (0.4 MiB)
+      C:\ free: 26,587,463,680 bytes (24.76 GiB)
+      at this run's size, the 7 later run(s) leave about 24.75 GiB free after R8 (floor 3 GiB at each admission)
+54 passed, 1 failed
+The inventory failure is the known operational gap (OPERATIONAL_NOTES.md): 1 file, 2,355 bytes; every stage receipt's ledger carries the same (1 file, 2,355 bytes; 1 file, 2,355 bytes; 1 file, 2,355 bytes); cache\ is empty and was last changed 1,000 ms after TERMINAL.json

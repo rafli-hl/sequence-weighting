@@ -7,11 +7,15 @@ This page says what the repository contains, what it leaves out, and what can be
 - **Source code.** Versioned Python and scripts for every study, including the sealed source of each natural-text
   study, at its historical relative path.
 - **Protocols and registrations.** Each study's protocol, amendments and seed registry, and the public registrations
-  of N6 and N7.
+  of N6, N7 and N8. N8 is paused after 6 of its 24 draws and has no results.
 - **Results.** Compact CSV and JSON outputs of every sealed analysis (per-readout p\*, losses and fits), results
   reports and their verification records, failure reports, and figures with their backing tables.
 - **Review records.** The adversarial review, the response to it, the owner's design decisions for the natural-text
-  studies, the audits of 8 and 12 November 2026, and the corrections of 9, 11 and 12 November 2026.
+  studies, the audits of 8, 12, 13 and 24 November 2026, the corrections of 9, 11, 12, 23 and 24 November 2026, and
+  the clean-room reproduction of N7's analysis of 24 November 2026.
+- **N8's operational records.** Its operational notes, the completeness check, two owner commands, and the run
+  records of R1, R2 and X2 that hold no loss value (terminals, stage receipts, approval and exit receipts, GPU and
+  power check records), in `preregistration/natural-text-dense-replication-20261114/`.
 - **Post-hoc analysis.** The analysis of N7 by training exposure of 11 November 2026: its report, script, exact output
   and per-draw values.
 - **Asset metadata.** Pinned revisions, file names and hashes of the public model and tokenizer
@@ -25,6 +29,10 @@ This page says what the repository contains, what it leaves out, and what can be
 - Run folders (`work/runs/`), model states and optimiser states.
 - Per-sequence loss arrays and training traces, except N7's, which are attached to the
   [v1.2 release](https://github.com/rafli-hl/sequence-weighting/releases/tag/v1.2) as `n7-loss-arrays-v1.zip`.
+- **Everything of N8 that holds a loss:** the per-sequence loss arrays of its six trained draws, the records and
+  pre-training summaries that hold mean losses, and the kept E0 model states. They stay unpublished until the sealed
+  analysis has run. The saved batch orders, the draws' input files and the owner's commands for R1 and R2 are not
+  published either.
 - Dataset rows, tokenizer and model weights, downloaded packages, installers and caches.
 - Private conversations, host receipts and most approval and accounting records. The exceptions are listed in
   [`PUBLICATION_NOTES.md`](PUBLICATION_NOTES.md): the owner's design decisions for the natural-text studies, and N7's
@@ -43,7 +51,7 @@ Five levels, from the weakest to the strongest:
 | 1. File integrity | Yes | `python tools/verify_publication.py` compares every file with `PUBLICATION_MANIFEST.csv` and checks every local Markdown link (see [Checking the files](#checking-the-files)) |
 | 2. Statistics from the published tables | Yes, for every study | Each analysis folder's `POINTS.csv` holds per-draw, per-readout p\* and losses; N7's `MATCHED.csv` holds each draw's interpolation bracket. See the example in [`README.md`](README.md#reproducing-the-results) |
 | 3. p\* from released per-sequence losses | N7 only | The v1.2 release bundle `n7-loss-arrays-v1.zip`; `tools/verify_n7_losses.py` refits all 240 estimates with NumPy. The earlier studies' per-sequence arrays are not published |
-| 4. Losses from model evaluation | No | Each natural-text model state was hashed and then deleted during its run (each protocol's stage rule), and no model state of any study is published, so no model can be evaluated again |
+| 4. Losses from model evaluation | No | For N1–N7, each natural-text model state was hashed and then deleted during its run (each protocol's stage rule). N8 keeps each width's E0 state until its analysis is published, but not the trained states. No model state of any study is published, so no model can be evaluated again from this repository |
 | 5. Training from scratch | Not demonstrated | See below |
 
 Level 3 also covers analyses of N7 by training exposure. The bundle does not record which sequences were trained when,
@@ -51,7 +59,10 @@ but it holds each draw's seeds, and the sealed source gives the rule that turns 
 `reports/natural-text-matched-assistant-posthoc-20261111-01/posthoc_exposure.py` regenerates the orders with PyTorch,
 stops if they do not match the losses, and reproduces the post-hoc analysis; `tools/verify_posthoc.py` reruns it with
 the versions pinned in `tools/requirements-posthoc.txt` and compares every per-draw value with `RESULTS.json`. The
-orders are regenerated, not recorded: the bundle holds no hash of them. Self-contained fixtures such as
+orders are regenerated, not recorded: the bundle holds no hash of them. N8's `HASHES.json` names the twelve
+regenerated order files by SHA-256. Level 3 was also reached without the original code: a separate AI session
+reimplemented N7's analysis from its protocol and the bundle
+([`clean-room-reproduction-20261124-01`](reports/clean-room-reproduction-20261124-01/README.md)). Self-contained fixtures such as
 `outputs/sequence-weighting-pilot/core_checks.py` need only the standard library; fixtures that import PyTorch need
 the environment.
 

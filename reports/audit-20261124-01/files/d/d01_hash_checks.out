@@ -1,0 +1,38 @@
+== 1. hashes pinned in the owner commands
+X2_COMMAND.txt has 4 distinct 64-hex strings
+   251d0951e30250afa16cb998b06550358c09234d8a24c45166b08d0642347db6 -> pilot/PILOT_LOG.json MATCHES published file
+   2a02e9573e4009c066d43bbf9e7d25d588dc10bd763865828cc8e59007607fe8 -> not a published-file pin (see below)
+   9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b -> source/SOURCE_SUBJECT.json MATCHES published file
+   c31fd4aa32873a1d025621f06bcc66e289c16ad86f64612c00dad76b1fd62904 -> tools/build_n8_activation.py MATCHES published file
+   merge commit c6f98b26669f5d29f30c576b6d800c1fc82c98eb named: True
+RUN_COMMAND.ps1 has 3 distinct 64-hex strings
+   251d0951e30250afa16cb998b06550358c09234d8a24c45166b08d0642347db6 -> pilot/PILOT_LOG.json MATCHES published file
+   9bdea3a9715b05393afe6713ddc696834dd344c3485c4e1a6ed0fa222f44bb6b -> source/SOURCE_SUBJECT.json MATCHES published file
+   c31fd4aa32873a1d025621f06bcc66e289c16ad86f64612c00dad76b1fd62904 -> tools/build_n8_activation.py MATCHES published file
+   merge commit c6f98b26669f5d29f30c576b6d800c1fc82c98eb named: True
+sha256 of the two commands and check_run.py as published:
+   X2_COMMAND.txt e6b5e05ba21445e92458d1fb28b897cef5132090329cb026fb4e6cbdf65c99ef
+   RUN_COMMAND.ps1 5148dc07554c9685a60d6623b0096d8ccdb82bae8dc29941c9c4b7944e139f2e
+   check_run.py 4df2aba506af47277599e411ddb988fdfc1dfa683695d16fb92f39b4110d9aa4
+   OPERATIONAL_NOTES.md 99e3429a52331da44fa5b11f089cefbb5ada640698b692ab6b313af8531a9f4a
+== 2. source/ against SOURCE_SUBJECT.json
+   files listed 31 ; changed: [] ; on disk but not listed: ['AUTHORIZATION.json', 'SOURCE_SUBJECT.json'] ; listed but absent: []
+== 3. subjects: pilot vs pre-pin vs sealed
+   sha256 seal/pilot/SOURCE_SUBJECT.json   9743b179e3c2b809add53cfe6d706c189634e22b3776bec843a180f0675e6941
+   sha256 seal/pre-pin/SOURCE_SUBJECT.json 9209b566d3a7a97b54b079aaea6ec5d72ab0e0178755e9b6c8260f980dc57986
+   pilot -> sealed : differing ['MATCHED_OWNER_RUN.ps1', 'README.md', 'matched_plan.py', 'matched_registry.py'] ; only in first [] ; only in second []
+   pre-pin -> sealed : differing ['MATCHED_OWNER_RUN.ps1', 'README.md', 'matched_plan.py'] ; only in first [] ; only in second []
+   pilot -> pre-pin : differing ['MATCHED_OWNER_RUN.ps1', 'README.md', 'matched_plan.py', 'matched_registry.py'] ; only in first [] ; only in second []
+   seal/pre-pin/MATCHED_OWNER_RUN.ps1 equals the pre-pin subject entry: True
+   seal/pre-pin/matched_plan.py equals the pre-pin subject entry: True
+   seal/pre-pin/README.md equals the pre-pin subject entry: True
+== 4. the pilot seeds
+   pilot seeds: {'adapt_order_seed': 90809628, 'benchmark_seed': 578352808, 'init_seed': 1188503724, 'pretrain_order_seed': 46458185, 'weight_seed': 1894175819}
+   each in EXCLUSIONS.json: {'adapt_order_seed': True, 'benchmark_seed': True, 'init_seed': True, 'pretrain_order_seed': True, 'weight_seed': True}
+   any among the registry seeds: []
+   pilot log keys with "loss": ['loss_read'] ; loss_read = False ; p_star_fitted = False ; run_folder_deleted = True
+   registry groups: 24 ['n01', 'n02', 'n03'] ... n24
+== 5. 64-hex strings of OPERATIONAL_NOTES.md elsewhere in the repository
+   2a02e9573e4009c066d43bbf9e7d25d588dc10bd763865828cc8e59007607fe8 -> ['preregistration/natural-text-dense-replication-20261114/OPERATIONAL_NOTES.md', 'preregistration/natural-text-dense-replication-20261114/X2_COMMAND.txt']
+   4ffead3f0c46e7f16d789a3368c753013417a51b8c9b92261d8f9d65c22b4c68 -> ['preregistration/natural-text-dense-replication-20261114/OPERATIONAL_NOTES.md']
+   f92644a3d989d4b221685f12cfe04518e56072221e3bb336240ba5c9ed931606 -> ['preregistration/natural-text-dense-replication-20261114/OPERATIONAL_NOTES.md']

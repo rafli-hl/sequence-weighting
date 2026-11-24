@@ -1,0 +1,89 @@
+{
+    "schema":  1,
+    "stage":  "n06",
+    "verdict":  "IDLE",
+    "checks":  [
+                   {
+                       "started_utc":  "2026-11-16T05:34:23.6894242Z",
+                       "context":  "boundary",
+                       "utilization_mean_max_percent":  12,
+                       "memory_used_max_mib":  null,
+                       "samples":  [
+                                       {
+                                           "utc":  "2026-11-16T05:34:27.0911385Z",
+                                           "memory_used_mib":  377,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-16T05:34:28.1503023Z",
+                                           "memory_used_mib":  377,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  3
+                                       },
+                                       {
+                                           "utc":  "2026-11-16T05:34:29.2192484Z",
+                                           "memory_used_mib":  377,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  3
+                                       },
+                                       {
+                                           "utc":  "2026-11-16T05:34:30.2839169Z",
+                                           "memory_used_mib":  377,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-16T05:34:31.3656015Z",
+                                           "memory_used_mib":  377,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-16T05:34:32.4501185Z",
+                                           "memory_used_mib":  377,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-16T05:34:33.5133416Z",
+                                           "memory_used_mib":  377,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-16T05:34:34.5831922Z",
+                                           "memory_used_mib":  377,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-16T05:34:35.6525403Z",
+                                           "memory_used_mib":  377,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-16T05:34:36.7087085Z",
+                                           "memory_used_mib":  377,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       }
+                                   ],
+                       "failed_samples":  0,
+                       "mean_utilization_percent":  0.6,
+                       "max_memory_used_mib":  377,
+                       "verdict":  "IDLE",
+                       "power":  {
+                                     "utc":  "2026-11-16T05:34:36.7317675Z",
+                                     "power":  "AC",
+                                     "battery_percent":  80,
+                                     "scheme_guid":  "6fecc5ae-f350-48a5-b669-b472cb895ccf",
+                                     "scheme_name":  "Turbo",
+                                     "error":  null
+                                 },
+                       "gpu_verdict":  "IDLE",
+                       "since_first_check_seconds":  0
+                   }
+               ]
+}

@@ -1,0 +1,15 @@
+1. NOT_OVERFIT: validation loss at E3 minus E2 per width, over the completed draws
+   all falling: NOT_OVERFIT, interval [-3.449e-02, -2.851e-02], n 24
+   all rising: OVERFIT, interval [+2.851e-02, +3.449e-02], n 24
+   mixed: PLATEAU, interval [-4.313e-03, +4.313e-03], n 24
+   falling, upper limit within 1e-9 of 0: PLATEAU, interval [-8.627e-04, -5.000e-10], n 24
+2. S-d: a saturated fit drops its draw at that readout only
+   draws at E2.5: 22 (n05 saturated and n07 undefined are out; n06, resolved at bound 32, stays with its bound-8 value -7.895 ) | draws at E2.5625: 24
+3. starting offset: a refit that is undefined once the offset is taken off
+   rows: {'n01': ('READ', 0.05), 'n02': ('UNDEFINED_FIT', 3.0591), 'n03': ('READ', 0.0424), 'n04': ('READ', 0.0472)} | draws in the contrast: 3 | draws in the offset summary: 4
+4. the refit threshold: gains proportional to w^q, read through arm_points
+   q = 7.9: p* = 7.900000; refitted at bound 32: False; saturated: False
+   q = 7.9985: p* = 7.998500; refitted at bound 32: False; saturated: False
+   q = 7.9995: p* = 7.999500; refitted at bound 32: True (p32 = 7.999500); saturated: False
+   q = 8.0: p* = 8.000000; refitted at bound 32: True (p32 = 8.000000); saturated: False
+   q = 9.0: p* = 8.000000; refitted at bound 32: True (p32 = 9.000000); saturated: False

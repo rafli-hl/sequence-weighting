@@ -1,0 +1,78 @@
+numpy 2.5.3, python 3.12.3
+PASS  reports/natural-text-matched-analysis-20261105-01/POINTS.csv SHA-256  [234434a34cf64d98]
+PASS  reports/natural-text-matched-analysis-20261105-01/MATCHED.csv SHA-256  [86ea11d721068237]
+PASS  reports/natural-text-matched-analysis-20261105-01/ANALYSIS.json SHA-256  [a4af7bad78fdf9f4]
+PASS  reports/natural-text-matched-analysis-20261105-01/FITS.csv SHA-256  [b1cd03dec3a6e13b]
+INFO  reports/natural-text-matched-assistant-posthoc-20261111-01/RESULTS.json SHA-256 914490d1b6730c6a550462ce09d64710ab2982c1522e6faf1e95bd2b61de3a9c
+PASS  n8_analysis.exponent is a verbatim copy of the sealed vendor/core.py  [vendor/core.py f9320bae147f01bc]
+PASS  n8_analysis.exponent_upper is a verbatim copy of the sealed text_analysis.py  [text_analysis.py f53cf877b57ea424]
+PASS  n8_analysis.objective_at is a verbatim copy of the sealed text_analysis.py  [text_analysis.py f53cf877b57ea424]
+PASS  t quantile, df 5, against the sealed T95 table (2.570581836)  [2.570581835636313]
+--- statistics from POINTS.csv
+PASS  P1 +0.00909 [+0.00400, +0.01417], n = 6, side ABOVE  [vs brief 3.9e-06, vs ANALYSIS.json 7.2e-13]
+PASS  P1 sign test 6/0 p = 0.03125, t-test p, leave-one-out  [t-test p 0.005867 vs 0.005867; leave-one-out largest difference 4.8e-13]
+PASS  S1 +0.00808 [+0.00487, +0.01130], n = 6, side ABOVE  [vs brief 4.8e-06, vs ANALYSIS.json 4.5e-13]
+PASS  S1 sign test 6/0 p = 0.03125, t-test p, leave-one-out  [t-test p 0.001313 vs 0.001313; leave-one-out largest difference 3e-13]
+PASS  S3 -0.00454 [-0.00795, -0.00114], n = 6, side BELOW  [vs brief 3e-06, vs ANALYSIS.json 4.8e-13]
+PASS  S3 sign test 0/6 p = 0.03125, t-test p, leave-one-out  [t-test p 0.018656 vs 0.018656; leave-one-out largest difference 3.2e-13]
+PASS  S4 +0.01394 [+0.00893, +0.01896], n = 6, side ABOVE  [vs brief 3.7e-06, vs ANALYSIS.json 7.1e-13]
+PASS  S4 sign test 6/0 p = 0.03125, t-test p, leave-one-out  [t-test p 0.000833 vs 0.000833; leave-one-out largest difference 4.7e-13]
+PASS  S5 +0.01382 [+0.01116, +0.01648], n = 6, side ABOVE  [vs brief 1.6e-06, vs ANALYSIS.json 3.8e-13]
+PASS  S5 sign test 6/0 p = 0.03125, t-test p, leave-one-out  [t-test p 0.000042 vs 0.000042; leave-one-out largest difference 2.5e-13]
+PASS  S2 UNAVAILABLE; available m02, m03, m06; m01, m04, m05 TARGET_OUTSIDE_PATH  [status UNAVAILABLE, available ['m02', 'm03', 'm06']]
+PASS  every row of MATCHED.csv: status, bracket, weight, read position, interval count, values (1e-9)  [36 rows, largest difference 0]
+PASS  P1 envelope over 64 combinations: min lower +0.0000764, max upper +0.0274348  [vs brief 5.1e-09; vs itertools brute force 0 / 0]
+PASS  S1 envelope over 64 combinations: min lower -0.0000507, max upper +0.0142363  [vs brief 4.1e-08; vs itertools brute force 0 / 0]
+PASS  S4 envelope over 64 combinations: min lower -0.0002679, max upper +0.0243117  [vs brief 1.4e-07; vs itertools brute force 0 / 0]
+--- p* refitted from the loss arrays (about 0.7 s per fit)
+PASS  bundle MANIFEST.json SHA-256  [6f9c124787760b9b]
+PASS  bundle files against MANIFEST.json, weights against the runs' tensor hashes  [66 files, 6 weight hashes, 0 mismatches]
+      fitted m01: 40 fits, 25 s elapsed
+      fitted m02: 40 fits, 52 s elapsed
+      fitted m03: 40 fits, 78 s elapsed
+      fitted m04: 40 fits, 101 s elapsed
+      fitted m05: 40 fits, 124 s elapsed
+      fitted m06: 40 fits, 146 s elapsed
+PASS  240 refits of p* against POINTS.csv (1e-9)  [240 fits; largest |p* difference| 8.77e-10]
+PASS  record losses and gaps against POINTS.csv (exact)  [train 0, validation 0, gap 0]
+PASS  objective at p* and at p = 0 against FITS.csv (1e-9)  [largest difference 1.57e-18]
+--- statistics from the refitted loss arrays
+PASS  P1 +0.00909 [+0.00400, +0.01417], n = 6, side ABOVE  [vs brief 3.9e-06, vs ANALYSIS.json 1e-11]
+PASS  P1 sign test 6/0 p = 0.03125, t-test p, leave-one-out  [t-test p 0.005867 vs 0.005867; leave-one-out largest difference 3.1e-11]
+PASS  S1 +0.00808 [+0.00487, +0.01130], n = 6, side ABOVE  [vs brief 4.8e-06, vs ANALYSIS.json 1.7e-11]
+PASS  S1 sign test 6/0 p = 0.03125, t-test p, leave-one-out  [t-test p 0.001313 vs 0.001313; leave-one-out largest difference 3e-11]
+PASS  S3 -0.00454 [-0.00795, -0.00114], n = 6, side BELOW  [vs brief 3e-06, vs ANALYSIS.json 4.8e-13]
+PASS  S3 sign test 0/6 p = 0.03125, t-test p, leave-one-out  [t-test p 0.018656 vs 0.018656; leave-one-out largest difference 3.2e-13]
+PASS  S4 +0.01394 [+0.00893, +0.01896], n = 6, side ABOVE  [vs brief 3.7e-06, vs ANALYSIS.json 1.3e-10]
+PASS  S4 sign test 6/0 p = 0.03125, t-test p, leave-one-out  [t-test p 0.000833 vs 0.000833; leave-one-out largest difference 1.7e-10]
+PASS  S5 +0.01382 [+0.01116, +0.01648], n = 6, side ABOVE  [vs brief 1.6e-06, vs ANALYSIS.json 9.7e-11]
+PASS  S5 sign test 6/0 p = 0.03125, t-test p, leave-one-out  [t-test p 0.000042 vs 0.000042; leave-one-out largest difference 1.7e-10]
+PASS  S2 UNAVAILABLE; available m02, m03, m06; m01, m04, m05 TARGET_OUTSIDE_PATH  [status UNAVAILABLE, available ['m02', 'm03', 'm06']]
+PASS  every row of MATCHED.csv: status, bracket, weight, read position, interval count, values (1e-9)  [36 rows, largest difference 3.38e-10]
+PASS  P1 envelope over 64 combinations: min lower +0.0000764, max upper +0.0274348  [vs brief 5.2e-09; vs itertools brute force 0 / 0]
+PASS  S1 envelope over 64 combinations: min lower -0.0000507, max upper +0.0142363  [vs brief 4.2e-08; vs itertools brute force 0 / 0]
+PASS  S4 envelope over 64 combinations: min lower -0.0002679, max upper +0.0243117  [vs brief 1.4e-07; vs itertools brute force 0 / 0]
+FAIL  regenerated orders (PyTorch 2.7.0+cpu): ORDERS.json pinned, files, per-epoch order_sha256, each row a permutation  [536bb5d050b9642f, 0 mismatches]
+      analyse(): 19 s
+--- the N8 analysis run on N7 at 1e-4 (H1 = P1, H2 = S3)
+INFO  environment Linux Python 3.12.3 NumPy 2.5.3; matches the registered one: False
+PASS  decision COMPLETE: H1 CONFIRMED, H2 CONFIRMED, REVERSAL_REPLICATED; intervals equal P1 and S3
+PASS  leave-one-draw-out for H1 and H2 against ANALYSIS.json (1e-6)  [largest difference 3.1e-11]
+PASS  H1 envelope equals P1's  [min lower +0.0000764]
+PASS  starting offset, contrast: +0.0062 [-0.0001, +0.0126], 5/6 (AA-3, 4 decimals: 6e-5)  [largest difference 4.5e-05]
+PASS  starting offset, change in 768: +0.0028 [+0.0012, +0.0044], 5/6 (AA-3, 4 decimals: 6e-5)  [largest difference 4.4e-05]
+INFO  mean E0 offset, 768 minus 512: +0.03697 [+0.01634, +0.05760]
+PASS  S-a at 1e-04: +0.01583581 [+0.01040960, +0.02126202], n = 6 (13 Nov audit, 1e-8)  [largest difference 3.6e-09; read positions 4.3e-09]
+PASS  S-a at 3e-04: +0.01648477 [+0.01349573, +0.01947381], n = 6 (13 Nov audit, 1e-8)  [largest difference 4.6e-09; read positions 3.4e-09]
+PASS  S-b orders against the losses: every step, trained window minus the others, below -0.05 nats  [72 draw-steps x 2 widths; mean -0.1960, largest -0.1439]
+PASS  S-b negative control (seed + 1): every step within 0.02 nats of 0  [largest |gap| 0.0078]
+PASS  S-b, 768 at E2.25: whole, last, every, losses against the 11 Nov RESULTS.json (1e-6); every-pass balance: sizes 226-272, mean age difference 14.11545, joint cell distance 0.00000 (13 Nov audit)  [largest value difference 1.1e-08]
+PASS  S-b, 768 at E2.5: whole, last, every, losses against the 11 Nov RESULTS.json (1e-6); every-pass balance: sizes 2018-2116, mean age difference 8.44744, joint cell distance 0.03709 (13 Nov audit)  [largest value difference 2.2e-08]
+PASS  S-b, 768 at E2.75: whole, last, every, losses against the 11 Nov RESULTS.json (1e-6); every-pass balance: sizes 6883-6931, mean age difference 6.99420, joint cell distance 0.03659 (13 Nov audit)  [largest value difference 2.2e-08]
+PASS  S-c over 240 fits: min, median and max of four diagnostics against the 13 Nov audit (1e-8)  [largest difference 4.9e-09]
+INFO  S-c objective ratio min/median/max 0.028908 / 0.053137 / 0.076233
+PASS  S-d at the 7 path readouts against ANALYSIS.json by_readout D4: values (1e-9, protocol section 6), intervals (1e-6)  [7e-10, 1.8e-10]
+PASS  NOT_OVERFIT 512|lr1e-04 NOT_OVERFIT, 768|lr1e-04 NOT_OVERFIT against ANALYSIS.json (1e-6)  [largest difference 1.4e-12]
+PASS  records against arrays: largest difference 8.55e-07, none flagged (ANALYSIS.json: exact)
+59 passed, 1 failed
+exit=0

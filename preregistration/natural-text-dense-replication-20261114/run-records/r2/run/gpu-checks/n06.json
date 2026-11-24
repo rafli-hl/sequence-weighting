@@ -1,0 +1,171 @@
+{
+    "schema":  1,
+    "stage":  "n06",
+    "verdict":  "IDLE",
+    "checks":  [
+                   {
+                       "started_utc":  "2026-11-15T08:38:20.7016778Z",
+                       "context":  "boundary",
+                       "utilization_mean_max_percent":  12,
+                       "memory_used_max_mib":  null,
+                       "samples":  [
+                                       {
+                                           "utc":  "2026-11-15T08:38:23.8139280Z",
+                                           "memory_used_mib":  484,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  35
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:38:24.9111324Z",
+                                           "memory_used_mib":  438,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  44
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:38:25.9909966Z",
+                                           "memory_used_mib":  437,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:38:27.0489135Z",
+                                           "memory_used_mib":  434,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  33
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:38:28.1183456Z",
+                                           "memory_used_mib":  434,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  5
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:38:29.2009502Z",
+                                           "memory_used_mib":  428,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  5
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:38:30.2525424Z",
+                                           "memory_used_mib":  428,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  5
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:38:31.3160871Z",
+                                           "memory_used_mib":  428,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  10
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:38:32.4036406Z",
+                                           "memory_used_mib":  424,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  1
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:38:33.4735178Z",
+                                           "memory_used_mib":  424,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       }
+                                   ],
+                       "failed_samples":  0,
+                       "mean_utilization_percent":  13.8,
+                       "max_memory_used_mib":  484,
+                       "verdict":  "BUSY",
+                       "power":  {
+                                     "utc":  "2026-11-15T08:38:33.5011854Z",
+                                     "power":  "AC",
+                                     "battery_percent":  82,
+                                     "scheme_guid":  "6fecc5ae-f350-48a5-b669-b472cb895ccf",
+                                     "scheme_name":  "Turbo",
+                                     "error":  null
+                                 },
+                       "gpu_verdict":  "BUSY",
+                       "since_first_check_seconds":  0
+                   },
+                   {
+                       "started_utc":  "2026-11-15T08:39:33.5269214Z",
+                       "context":  "boundary",
+                       "utilization_mean_max_percent":  12,
+                       "memory_used_max_mib":  null,
+                       "samples":  [
+                                       {
+                                           "utc":  "2026-11-15T08:39:36.5956292Z",
+                                           "memory_used_mib":  428,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  1
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:39:37.6556903Z",
+                                           "memory_used_mib":  429,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  38
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:39:38.7498521Z",
+                                           "memory_used_mib":  422,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  17
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:39:39.8205431Z",
+                                           "memory_used_mib":  422,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:39:40.8831464Z",
+                                           "memory_used_mib":  419,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  31
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:39:41.9387170Z",
+                                           "memory_used_mib":  451,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  6
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:39:43.0042046Z",
+                                           "memory_used_mib":  458,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:39:44.0616083Z",
+                                           "memory_used_mib":  456,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  11
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:39:45.1443345Z",
+                                           "memory_used_mib":  472,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       },
+                                       {
+                                           "utc":  "2026-11-15T08:39:46.2144175Z",
+                                           "memory_used_mib":  472,
+                                           "memory_total_mib":  4096,
+                                           "utilization_percent":  0
+                                       }
+                                   ],
+                       "failed_samples":  0,
+                       "mean_utilization_percent":  10.4,
+                       "max_memory_used_mib":  472,
+                       "verdict":  "IDLE",
+                       "power":  {
+                                     "utc":  "2026-11-15T08:39:46.2401526Z",
+                                     "power":  "AC",
+                                     "battery_percent":  82,
+                                     "scheme_guid":  "6fecc5ae-f350-48a5-b669-b472cb895ccf",
+                                     "scheme_name":  "Turbo",
+                                     "error":  null
+                                 },
+                       "gpu_verdict":  "IDLE",
+                       "since_first_check_seconds":  72.8
+                   }
+               ]
+}

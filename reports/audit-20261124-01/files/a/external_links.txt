@@ -1,0 +1,14 @@
+https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/rafli-hl/sequence-weighting-research
+https://archive.softwareheritage.org/swh:1:rev:58240f0e0e86a8d5514267c80ac7c30f19fb4076;origin=https://github.com/rafli-hl/sequence-weighting-research
+https://archive.softwareheritage.org/swh:1:rev:<full
+https://archive.softwareheritage.org/swh:1:rev:f3a2571029f4a0b4d0dc2ee974338e13996e11d8;origin=https://github.com/rafli-hl/sequence-weighting-research
+https://blog.janestreet.com/a-study-of-sequence-weighting-at-scale/
+https://blog.janestreet.com/a-study-of-sequence-weighting-at-scale/sequence-weighting-note.pdf
+https://download.pytorch.org/whl/cpu
+https://github.com/rafli-hl/sequence-weighting
+https://github.com/rafli-hl/sequence-weighting.git
+https://github.com/rafli-hl/sequence-weighting/releases/tag/v1.2
+https://github.com/rafli-hl/sequence-weighting/releases/tag/v2.1
+https://github.com/rafli-hl/sequence-weighting}}
+https://web.archive.org/web/2026/https://github.com/rafli-hl/sequence-weighting-research/pull/3
+https://web.archive.org/web/2026/https://github.com/rafli-hl/sequence-weighting-research/pull/5

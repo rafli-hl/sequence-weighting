@@ -1,0 +1,37 @@
+{
+  "closed_totals": [
+    211359220,
+    12
+  ],
+  "counts": {
+    "eval_batches": 30624,
+    "models": 4,
+    "pretrained_states": 2,
+    "updates": 8192
+  },
+  "e0_against_first_attempt": {
+    "512": "ABSENT",
+    "768": "DIFFERENT"
+  },
+  "guard_calls": {
+    "epoch": 207,
+    "full": 42,
+    "tick": 46400
+  },
+  "ledger_total": [
+    211375691,
+    17
+  ],
+  "peaks": {
+    "cuda_allocated": 1093707264,
+    "cuda_reserved": 1522532352,
+    "device_used_sampled": 2386349260,
+    "worker_peak_rss": 2475712512
+  },
+  "seconds": 2683.1222660999997,
+  "stage": "n06",
+  "state_errors": 0,
+  "states_kept": 2,
+  "status": "COMPLETE",
+  "trajectories": 2
+}

@@ -1,0 +1,51 @@
+roots for R1:
+    dummy-study\runs\n8-r1
+    dummy-study\activations\n8-r1
+    dummy-study\source
+numpy imported under the hook: 2.5.3
+-- reads inside the allowed roots
+  ALLOWED  open run TERMINAL.json
+  ALLOWED  open activation AUTHORIZATION.json
+  ALLOWED  open source matched_plan.py
+  ALLOWED  same path in upper case
+  ALLOWED  list the run folder (os.listdir)
+  ALLOWED  rglob the run folder
+  ALLOWED  np.frombuffer of a run array via read_bytes
+-- the first attempt R2 (allowed only for X2: its terminal and the folders of the draws X2 repeats)
+  REFUSED  open R2 TERMINAL.json   [check_run.py reads only its run, its activation and the source: C:\Use]
+  REFUSED  open R2 n06/INPUTS.json (the draw X2 repeats)   [check_run.py reads only its run, its activation and the source: C:\Use]
+  REFUSED  open R2 n06/w768/E0.f32   [check_run.py reads only its run, its activation and the source: C:\Use]
+  REFUSED  open R2 n04/INPUTS.json (a draw X2 does not repeat)   [check_run.py reads only its run, its activation and the source: C:\Use]
+  REFUSED  open R2 n04/w768/lr1e-04/arrays.f32   [check_run.py reads only its run, its activation and the source: C:\Use]
+  REFUSED  open R2 BENCHMARK.json   [check_run.py reads only its run, its activation and the source: C:\Use]
+  REFUSED  open R2 n04-RECEIPT.json   [check_run.py reads only its run, its activation and the source: C:\Use]
+  REFUSED  list R2 run folder   [check_run.py lists only its run, its activation and the source: C:\Use]
+  REFUSED  open activations/n8-r2/OWNER_EXIT_RECEIPT.json   [check_run.py reads only its run, its activation and the source: C:\Use]
+-- other runs and anything else
+  ALLOWED  open R1 TERMINAL.json
+  ALLOWED  open R1 array via np.fromfile
+  ALLOWED  np.memmap of an R1 array
+  ALLOWED  os.open(O_RDONLY) of an R1 array
+  ALLOWED  open through ..\ from the run folder
+  REFUSED  open a file in a sibling folder n8-<run>-other   [check_run.py reads only its run, its activation and the source: C:\Use]
+  REFUSED  open a file outside the study   [check_run.py reads only its run, its activation and the source: C:\Use]
+  REFUSED  list runs\   [check_run.py lists only its run, its activation and the source: C:\Use]
+  REFUSED  os.scandir of the study folder   [check_run.py lists only its run, its activation and the source: C:\Use]
+  ALLOWED  os.walk of R1 (first step)
+  ALLOWED  glob R1 arrays
+-- writes, processes, network
+  REFUSED  open a run file for append   [check_run.py writes nothing: C:\Users\rafli\AppData\Local\Temp\swa21\d]
+  REFUSED  create a file in the run folder   [check_run.py writes nothing: C:\Users\rafli\AppData\Local\Temp\swa21\d]
+  REFUSED  Path.write_bytes in the activation   [check_run.py writes nothing: C:\Users\rafli\AppData\Local\Temp\swa21\d]
+  REFUSED  os.remove a run file   [check_run.py refuses os.remove]
+  REFUSED  os.rename a run file   [check_run.py refuses os.rename]
+  REFUSED  os.mkdir in the run folder   [check_run.py refuses os.mkdir]
+  REFUSED  shutil.copyfile out of the run folder   [check_run.py refuses shutil.copyfile]
+  REFUSED  subprocess.run   [check_run.py refuses subprocess.Popen]
+  REFUSED  os.system   [check_run.py refuses os.system]
+  REFUSED  socket.socket()   [check_run.py refuses socket.__new__]
+-- not covered by the hook (no audit event carries a path that it checks): metadata only
+  ALLOWED  os.stat of an R1 array (size, times)
+  ALLOWED  Path.exists / is_file outside the roots
+  ALLOWED  shutil.disk_usage of the drive
+files in the run folder unchanged: ['BENCHMARK.json', 'TERMINAL.json', 'cache', 'gpu-checks', 'n01', 'n01-RECEIPT.json', 'n02', 'n02-RECEIPT.json', 'n03', 'n03-RECEIPT.json']

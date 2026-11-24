@@ -1,0 +1,4 @@
+2026-11-15 14:01:31  Check before n04: IDLE (GPU IDLE: mean utilization 11.5% (limit 12%), max memory used 559 MiB (recorded, not gated); power AC, battery 82%, plan Turbo)
+2026-11-15 14:49:40  Check before n05: IDLE (GPU IDLE: mean utilization 0% (limit 12%), max memory used 428 MiB (recorded, not gated); power AC, battery 82%, plan Turbo)
+2026-11-15 15:38:33  Check before n06: BUSY (GPU BUSY: mean utilization 13.8% (limit 12%), max memory used 484 MiB (recorded, not gated); power AC, battery 82%, plan Turbo). Waiting; 30 min left before the run stops. Close GPU apps.
+2026-11-15 15:39:46  Check before n06: IDLE (GPU IDLE: mean utilization 10.4% (limit 12%), max memory used 472 MiB (recorded, not gated); power AC, battery 82%, plan Turbo)

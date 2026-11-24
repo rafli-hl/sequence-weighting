@@ -22,9 +22,91 @@ made and how it has changed, newest first.
   are limited to syntax, imports, links and bounded scans for credentials and personal paths, which cannot guarantee
   that no private information remains. The exceptions are dated below: the automated checks of versions 1.0 and 1.1,
   which run the estimator fixture and refit published data, the post-hoc analysis of 11 November, and the re-check of
-  the follow-up audit of 12 November, the checks and two descriptive summaries of 13 November, and the descriptive scale
-  of 23 November.
+  the follow-up audit of 12 November, the checks and two descriptive summaries of 13 November, the descriptive scale
+  of 23 November, and the audit and the clean-room reproduction of 24 November.
 - **Licence.** From 9 November 2026: MIT for code; CC BY 4.0 for everything else (`LICENSE`, `LICENSE-CC-BY-4.0.md`).
+
+## 24 November 2026: an audit of version 2.1, a clean-room reproduction of N7's analysis, and their fixes (unreleased)
+
+No registered number, label, sealed file or historical file changed, and no hash cited elsewhere changed. No run was
+made. Changes:
+
+- **Audit.** [`reports/audit-20261124-01/`](reports/audit-20261124-01/README.md): the audit of version 2.1, post hoc
+  and AI-made. Four fresh AI sessions audited it; the session that supervised them had prepared much of that version.
+  The folder holds the report byte for byte, each auditor's scripts and outputs, and a README that says how each
+  finding was handled. It found no registered number, label or N8 registration element wrong.
+- **Clean-room reproduction.**
+  [`reports/clean-room-reproduction-20261124-01/`](reports/clean-room-reproduction-20261124-01/README.md): a separate
+  AI session implemented N7's analysis from the protocol, the technical note and the released losses, without the
+  original code or results, and froze its outputs before comparing.
+  - All 240 fits agree within 8.7e-9, and every registered statistic and label reproduces.
+  - It is not a human or independent replication, and it does not cover the training.
+  - Its blinding was imperfect: a line of the project's memory index in the session's context named N7's labels, with
+    no numbers.
+  - The folder holds the report, the frozen specification log, the freeze record with its hashes, the code and its
+    outputs. The files the session downloaded are left out and named by hash; the technical note is a third party's.
+- **Two quoted links.** The stored audit quotes, twice, a sentence of a root page with its Markdown link, which is
+  written relative to the repository root and so does not resolve from inside `reports/audit-20261124-01/`. The stored
+  files are kept byte for byte, so the two are listed in `PUBLICATION_LINK_LIMITATIONS.json`, and
+  `tools/verify_publication.py` reports them as known.
+- **Correction.** [`reports/natural-text-correction-20261124-01/CORRECTION.md`](reports/natural-text-correction-20261124-01/CORRECTION.md):
+  the 23 November correction's sentence about the later bracket end is false for S4; its 0.000 at k = 1 is zero by
+  construction; and two points N7's protocol left unwritten are stated.
+- **N8's run records.** `preregistration/natural-text-dense-replication-20261114/run-records/` holds byte copies of the
+  records of R1, R2 and X2 that hold no loss value (55 files): terminals, stage receipts, benchmarks, approval records,
+  claims, exit receipts and the GPU and power check records. Every JSON file was scanned before copying: no key
+  contains "loss". The three `OWNER_PROGRESS.log` files are published as `OWNER_PROGRESS.log.txt`, because the
+  repository ignores `*.log`. They show that R1's approval record was built 40 minutes after the registration's merge
+  commit.
+- **N8's operational notes** (`OPERATIONAL_NOTES.md`, a byte copy of the study folder's file) are corrected and
+  extended: what the worker's memory guard measures is not established, and the first version's sentence about it is
+  withdrawn; the smaller margin at start-up; each run's start time with its zone; time caps; the SHA-256 of the check
+  behind each completeness result; and a limitation of `check_run.py` after a refused start.
+- **The N8 folder's README** gains: what is open before any N8 loss is read; dated notes on `test_on_n7.py` (59 of 60
+  on public files, with the reason), on `write_hashes.py --check`, on the recorded builder's sixth key and on the
+  hunks of `CHANGES.md` that cite the owner's brief; and a corrected count of readouts.
+- **Living pages.**
+  - `METHODS.md`: tied weights are ranked in stable sort order, and mean losses and matching targets come from the
+    worker's records (they agree with the array means within 1e-6); the S4 sentence; the marginal distances of the
+    exposure-matched sets; N8 in the study table, with its merge time and zone; Figure 6's caption.
+  - `README.md`: the S4 sentence and limitation 4; N8 in the registration limitation and the folder table; the review
+    limitation now names the reproduction and its limits; reproducibility levels 3 and 4.
+  - `CURRENT_CLAIMS.md`: its header date and history; two rows in the verification table.
+  - `NATURAL_TEXT_STUDIES.md`: its title and introduction; three public registrations; an N8 row; "closed again"
+    corrected; entries for the audit, the reproduction and the correction.
+  - `DATA_AVAILABILITY.md`: N8, what of it is and is not published, and the new review records.
+  - `reports/README.md`: the three new folders.
+- **Disclosures the audit asked for.**
+  - **The 23 November correction was revised once after its first publication.** Commit `c1a2380` (pushed
+    2026-11-23T05:05Z) published `reports/natural-text-correction-20261123-01/CORRECTION.md`. Commit `30548db`, four
+    minutes later, rewrote the "What changes" sentence of its §3 and its closing list of pages, to cover two more
+    pages. No number changed. The same commit replaced the sentence of `OPERATIONAL_NOTES.md` that said `check_run.py
+    X2` "had not been run by 23 November 2026" with that check's result, and the N8 README's statement that the check
+    and the commands "are not published" with their entries.
+  - **Entry dates in the N8 folder are event dates.** The README's note dated 15 November on the two empty folders
+    was first published on 23 November, as was R2's failure of 15 November. The entry of 23 November below says the
+    README "keeps" that note; it had not been published before.
+  - **Dates and clocks.** N8's merge commit is dated 2026-11-14T18:19:19Z, which is 15 November 01:19 in the owner's
+    local time (+07:00). The pages date the registration 14 November (UTC) and the v2.0 release, 26 minutes later,
+    15 November (local). Run events in the N8 folder are in local time.
+- **Not done here, and needed before any N8 loss is read** (the audit's open findings): a published loader for N8's
+  run folders with its tests, and amendment 1 to N8's protocol. Both must fix, explicitly, how tied weights are ranked
+  and where the mean losses and matching targets are read from, the two points this reproduction found unwritten in
+  N7's protocol. The amendment must also cover a run that leaves no terminal, when the study ends, the saturation
+  rule's wording, and the criterion for resuming N8.
+- **The owner's statement on N8's pause.** One sentence is added to the pause statement in `README.md`,
+  `NATURAL_TEXT_STUDIES.md`, `CURRENT_CLAIMS.md`, the N8 folder's README and `OPERATIONAL_NOTES.md`, and to the entry
+  of 23 November below, where it is marked as added: "Paused at the owner's decision for reasons unrelated to the
+  data; no N8 result has been computed or examined." It answers the audit's finding D2 in part. It is the owner's
+  statement, which public files cannot show, and it gives no criterion for resuming.
+- **One redaction in the stored audit.** In `reports/audit-20261124-01/files/supervisor/merge_commit.json`, the saved
+  GitHub metadata of the registration's merge commit, the author's email address is replaced with `<REDACTED>`.
+  Nothing else in that file changed, and no other stored audit file changed. The address remains in the public commit
+  itself.
+- **Checks run** on this copy: `tools/verify_publication.py`, and a simulation of the commit's line endings (a
+  throwaway git index: every file's committed bytes equal the bytes on disk). For the audit: the checks of its
+  section 2. For the reproduction: a rerun of its frozen code, which reproduced its 16 frozen output files byte for
+  byte.
 
 ## 23 November 2026: version 2.1, N8 paused; corrections of 23 November
 
@@ -53,6 +135,8 @@ No registered number, label, sealed file or historical file changed, and no hash
   X2).
   - R3–R8 have not started. No p\* has been computed or examined, and the per-sequence losses stay unpublished until
     the sealed analysis.
+  - Paused at the owner's decision for reasons unrelated to the data; no N8 result has been computed or examined.
+    (This sentence was added on 24 November 2026.)
   - Resuming continues with R3 under the registered protocol. If fewer than 20 draws are ever completed, the
     registered INCOMPLETE rule applies.
   - The same statement is in `README.md`, `NATURAL_TEXT_STUDIES.md`, `CURRENT_CLAIMS.md` and the N8 folder's README.
